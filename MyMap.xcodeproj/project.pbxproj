@@ -14,6 +14,10 @@
 		A90EE7711E9C7E4F00877DE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90EE76F1E9C7E4F00877DE4 /* LaunchScreen.storyboard */; };
 		A90EE77C1E9C7E5000877DE4 /* MyMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EE77B1E9C7E5000877DE4 /* MyMapTests.swift */; };
 		A90EE7871E9C7E5000877DE4 /* MyMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EE7861E9C7E5000877DE4 /* MyMapUITests.swift */; };
+		A90EEEEF1E9F0BCF0094CB96 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EEEEE1E9F0BCF0094CB96 /* LoginViewController.swift */; };
+		A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EEEF01E9F0C750094CB96 /* Constants.swift */; };
+		A90FD0B71EA04C310087DFD2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B61EA04C310087DFD2 /* Config.swift */; };
+		A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		A90EE7821E9C7E5000877DE4 /* MyMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90EE7861E9C7E5000877DE4 /* MyMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMapUITests.swift; sourceTree = "<group>"; };
 		A90EE7881E9C7E5000877DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A90EEEEE1E9F0BCF0094CB96 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A90EEEF01E9F0C750094CB96 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A90FD0B61EA04C310087DFD2 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +108,13 @@
 				A90EE7661E9C7E4F00877DE4 /* AppDelegate.swift */,
 				A90EE7681E9C7E4F00877DE4 /* ViewController.swift */,
 				A90EE76A1E9C7E4F00877DE4 /* Main.storyboard */,
-				A90EE76D1E9C7E4F00877DE4 /* Assets.xcassets */,
 				A90EE76F1E9C7E4F00877DE4 /* LaunchScreen.storyboard */,
+				A90EEEEE1E9F0BCF0094CB96 /* LoginViewController.swift */,
+				A90EEEF01E9F0C750094CB96 /* Constants.swift */,
+				A90EE76D1E9C7E4F00877DE4 /* Assets.xcassets */,
 				A90EE7721E9C7E4F00877DE4 /* Info.plist */,
+				A90FD0B61EA04C310087DFD2 /* Config.swift */,
+				A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -193,6 +205,7 @@
 				TargetAttributes = {
 					A90EE7621E9C7E4F00877DE4 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = G3BLNBS74P;
 						ProvisioningStyle = Automatic;
 					};
 					A90EE7761E9C7E5000877DE4 = {
@@ -259,8 +272,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90EEEEF1E9F0BCF0094CB96 /* LoginViewController.swift in Sources */,
 				A90EE7691E9C7E4F00877DE4 /* ViewController.swift in Sources */,
+				A90FD0B71EA04C310087DFD2 /* Config.swift in Sources */,
 				A90EE7671E9C7E4F00877DE4 /* AppDelegate.swift in Sources */,
+				A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */,
+				A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G3BLNBS74P;
 				INFOPLIST_FILE = MyMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CeceMobile.MyMap;
@@ -422,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G3BLNBS74P;
 				INFOPLIST_FILE = MyMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CeceMobile.MyMap;
@@ -503,6 +522,7 @@
 				A90EE78D1E9C7E5000877DE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A90EE78E1E9C7E5000877DE4 /* Build configuration list for PBXNativeTarget "MyMapTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +531,7 @@
 				A90EE7901E9C7E5000877DE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A90EE7911E9C7E5000877DE4 /* Build configuration list for PBXNativeTarget "MyMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +540,7 @@
 				A90EE7931E9C7E5000877DE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
