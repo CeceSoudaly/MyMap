@@ -21,9 +21,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-   // @IBOutlet weak var loginButton: BorderedButton!
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
-    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var udacityImageView: UIImageView!
     
     // MARK: Life Cycle
     
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             debugTextLabel.text = "Username or Password Empty."
         } else {
-//            setUIEnabled(false)
+           setUIEnabled(false)
             
             /*
              Steps for Authentication...
@@ -109,7 +109,7 @@ class LoginViewController: UIViewController {
             func displayError(_ error: String) {
                 print(error)
                 performUIUpdatesOnMain {
-//                    self.setUIEnabled(true)
+                    self.setUIEnabled(true)
                     self.debugTextLabel.text = "Login Failed."
                 }
             }
@@ -184,7 +184,7 @@ class LoginViewController: UIViewController {
             
             print("sessionID: \(sessionID)")
             performUIUpdatesOnMain {
-//                self.setUIEnabled(true)
+               self.setUIEnabled(true)
                 self.debugTextLabel.text = "Login Successful."
             }
         }
@@ -213,14 +213,14 @@ extension LoginViewController: UITextFieldDelegate {
     func keyboardWillShow(_ notification: Notification) {
         if !keyboardOnScreen {
             view.frame.origin.y -= keyboardHeight(notification)
-            movieImageView.isHidden = true
+            udacityImageView.isHidden = true
         }
     }
     
     func keyboardWillHide(_ notification: Notification) {
         if keyboardOnScreen {
             view.frame.origin.y += keyboardHeight(notification)
-            movieImageView.isHidden = false
+            udacityImageView.isHidden = false
         }
     }
     
@@ -253,45 +253,45 @@ extension LoginViewController: UITextFieldDelegate {
 
 private extension LoginViewController {
     
-//    func setUIEnabled(_ enabled: Bool) {
-//        usernameTextField.isEnabled = enabled
-//        passwordTextField.isEnabled = enabled
-//        loginButton.isEnabled = enabled
-//        debugTextLabel.text = ""
-//        debugTextLabel.isEnabled = enabled
-//    
-//        // adjust login button alpha
-//        if enabled {
-////            loginButton.alpha = 1.0
-//        } else {
-////            loginButton.alpha = 0.5
-//        }
-//    }
+    func setUIEnabled(_ enabled: Bool) {
+        usernameTextField.isEnabled = enabled
+        passwordTextField.isEnabled = enabled
+        loginButton.isEnabled = enabled
+        debugTextLabel.text = ""
+        debugTextLabel.isEnabled = enabled
+    
+        // adjust login button alpha
+        if enabled {
+            loginButton.alpha = 1.0
+        } else {
+           loginButton.alpha = 0.5
+        }
+    }
    
     func configureUI() {
         
         // configure background gradient
         let backgroundGradient = CAGradientLayer()
-//       backgroundGradient.colors = [Constants.UI.LoginColorTop, Constants.UI.LoginColorBottom]
+//        backgroundGradient.colors = [Constants.UI.LoginColorTop, Constants.UI.LoginColorBottom]
         backgroundGradient.locations = [0.0, 1.0]
         backgroundGradient.frame = view.frame
         view.layer.insertSublayer(backgroundGradient, at: 0)
         
-       // configureTextField(usernameTextField)
-        //configureTextField(passwordTextField)
+        configureTextField(usernameTextField)
+        configureTextField(passwordTextField)
     }
-//
-//    func configureTextField(_ textField: UITextField) {
-//        let textFieldPaddingViewFrame = CGRect(x: 0.0, y: 0.0, width: 13.0, height: 0.0)
-//        let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
-//        textField.leftView = textFieldPaddingView
-//        textField.leftViewMode = .always
-////        textField.backgroundColor = Constants.UI.GreyColor
-////        textField.textColor = Constants.UI.BlueColor
-//        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.white])
-////        textField.tintColor = Constants.UI.BlueColor
-//        textField.delegate = self
-//    }
+
+    func configureTextField(_ textField: UITextField) {
+        let textFieldPaddingViewFrame = CGRect(x: 0.0, y: 0.0, width: 13.0, height: 0.0)
+        let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
+        textField.leftView = textFieldPaddingView
+        textField.leftViewMode = .always
+//        textField.backgroundColor = Constants.UI.GreyColor
+//        textField.textColor = Constants.UI.BlueColor
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.white])
+//        textField.tintColor = Constants.UI.BlueColor
+        textField.delegate = self
+    }
 }
 
 // MARK: - LoginViewController (Notifications)

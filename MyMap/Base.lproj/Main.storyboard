@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="MyMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="MyMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -90,10 +90,17 @@
                             <constraint firstItem="dNZ-9P-8bc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="l4S-6u-whB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="debugTextLabel" destination="mmH-8z-0BR" id="jJj-I9-rTf"/>
+                        <outlet property="loginButton" destination="q9W-pE-hgU" id="yg1-SY-nOQ"/>
+                        <outlet property="passwordTextField" destination="nq3-QR-GIZ" id="KmE-SL-R77"/>
+                        <outlet property="udacityImageView" destination="b62-WE-U3S" id="YRe-Qk-Ai7"/>
+                        <outlet property="usernameTextField" destination="3Jb-Gw-Fhn" id="xhr-OC-thW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
+            <point key="canvasLocation" x="58" y="-149"/>
         </scene>
     </scenes>
     <resources>
