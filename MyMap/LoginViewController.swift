@@ -256,7 +256,7 @@ private extension LoginViewController {
     func setUIEnabled(_ enabled: Bool) {
         usernameTextField.isEnabled = enabled
         passwordTextField.isEnabled = enabled
-        loginButton.isEnabled = enabled
+//        loginButton.isEnabled = enabled
         debugTextLabel.text = ""
         debugTextLabel.isEnabled = enabled
     
