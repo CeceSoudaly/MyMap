@@ -249,7 +249,6 @@ extension LoginViewController: UITextFieldDelegate {
         resignIfFirstResponder(passwordTextField)
     }
 }
-
 // MARK: - LoginViewController (Configure UI)
 
 private extension LoginViewController {
