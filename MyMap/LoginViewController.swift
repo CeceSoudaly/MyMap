@@ -259,7 +259,7 @@ private extension LoginViewController {
         loginButton.isEnabled = enabled
         debugTextLabel.text = ""
         debugTextLabel.isEnabled = enabled
-        
+    
         // adjust login button alpha
         if enabled {
             loginButton.alpha = 1.0
