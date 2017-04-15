@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MoviesTabBarController") as! UITabBarController
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
             self.present(controller, animated: true, completion: nil)
         }
     }
@@ -187,6 +187,10 @@ class LoginViewController: UIViewController {
                self.setUIEnabled(true)
                 self.debugTextLabel.text = "Login Successful."
             }
+            
+            /* 6. Use the data! */
+//            self.appDelegate.userID = userID
+            self.completeLogin()
         }
         
         task.resume()

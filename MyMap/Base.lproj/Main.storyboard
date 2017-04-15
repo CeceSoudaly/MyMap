@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="58" y="-149"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="ica-3c-8P9">
             <objects>
-                <viewController id="hKQ-V3-zHU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hKQ-V3-zHU" customClass="MapViewController" customModule="MyMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9gJ-9N-gBM"/>
                         <viewControllerLayoutGuide type="bottom" id="Gkn-l3-hPn"/>
@@ -118,12 +118,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="viz-Cc-rx6">
-                                <rect key="frame" x="0.0" y="7" width="375" height="652"/>
+                                <rect key="frame" x="0.0" y="37" width="375" height="531"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="viz-Cc-rx6" id="leL-pd-Ksa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fec-rl-qyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

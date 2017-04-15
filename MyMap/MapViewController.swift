@@ -3,7 +3,7 @@
 //  MyMap
 //
 //  Created by Cece Soudaly on 4/10/17.
-//  /Users/cecesoudaly/Desktop/MyMap/MyMap.xcodeprojCopyright © 2017 CeceMobile. All rights reserved.
+//  Copyright © 2017 CeceMobile. All rights reserved.
 //
 
 import UIKit
