@@ -74,12 +74,12 @@ class LoginViewController: UIViewController {
     }
     
     private func completeLogin() {
-//        performUIUpdatesOnMain {
-//            self.debugTextLabel.text = ""
-//            self.setUIEnabled(true)
-//            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MoviesTabBarController") as! UITabBarController
-//            self.present(controller, animated: true, completion: nil)
-//        }
+        performUIUpdatesOnMain {
+            self.debugTextLabel.text = ""
+            self.setUIEnabled(true)
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MoviesTabBarController") as! UITabBarController
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     // MARK: TheMovieDB
@@ -189,8 +189,6 @@ class LoginViewController: UIViewController {
             }
         }
         
-        
-        
         task.resume()
     }
     
@@ -272,7 +270,7 @@ private extension LoginViewController {
         
         // configure background gradient
         let backgroundGradient = CAGradientLayer()
-//        backgroundGradient.colors = [Constants.UI.LoginColorTop, Constants.UI.LoginColorBottom]
+        backgroundGradient.colors = [Constants.UI.LoginColorTop, Constants.UI.LoginColorBottom]
         backgroundGradient.locations = [0.0, 1.0]
         backgroundGradient.frame = view.frame
         view.layer.insertSublayer(backgroundGradient, at: 0)
@@ -286,10 +284,10 @@ private extension LoginViewController {
         let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
         textField.leftView = textFieldPaddingView
         textField.leftViewMode = .always
-//        textField.backgroundColor = Constants.UI.GreyColor
-//        textField.textColor = Constants.UI.BlueColor
+        textField.backgroundColor = Constants.UI.GreyColor
+        textField.textColor = Constants.UI.BlueColor
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.white])
-//        textField.tintColor = Constants.UI.BlueColor
+        textField.tintColor = Constants.UI.BlueColor
         textField.delegate = self
     }
 }
