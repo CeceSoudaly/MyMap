@@ -18,6 +18,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let barButtonPin = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.plain, target: self, action: "pinButtonTouchUp")
+        let barButtonRefresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: "refreshButtonTouchUp")
+        
+        self.navigationItem.rightBarButtonItems = [barButtonRefresh, barButtonPin]
+        
+
+        
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.
         let locations = hardCodedLocationData()

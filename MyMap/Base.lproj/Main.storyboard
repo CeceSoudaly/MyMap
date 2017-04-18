@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dNZ-9P-8bc">
-                                <rect key="frame" x="16" y="28" width="327" height="448"/>
+                                <rect key="frame" x="16" y="72" width="327" height="448"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="b62-WE-U3S">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="100"/>
@@ -93,6 +93,7 @@
                             <constraint firstItem="dNZ-9P-8bc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="l4S-6u-whB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0VO-9N-j9j"/>
                     <connections>
                         <outlet property="debugTextLabel" destination="mmH-8z-0BR" id="jJj-I9-rTf"/>
                         <outlet property="loginButton" destination="q9W-pE-hgU" id="yg1-SY-nOQ"/>
@@ -103,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="58" y="-149"/>
+            <point key="canvasLocation" x="-727" y="-745"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="ica-3c-8P9">
@@ -118,9 +119,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="viz-Cc-rx6">
-                                <rect key="frame" x="0.0" y="37" width="375" height="531"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="531"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-qQ-8Ni">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cO-dk-Gcj">
+                                <rect key="frame" x="7" y="0.0" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem image="icon_pin" selectedImage="icon_pin" id="u38-bJ-nvE"/>
+                                    <tabBarItem image="icon_refresh" selectedImage="icon_refresh" id="tk1-RW-fkI"/>
+                                </items>
+                            </tabBar>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GX1-rt-1Vw">
+                                <rect key="frame" x="0.0" y="610" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem image="icon_mapview-selected" selectedImage="icon_mapview-selected" id="Gfc-JK-y1h"/>
+                                    <tabBarItem image="icon_listview-selected" selectedImage="icon_listview-selected" id="qft-i3-66W"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -130,10 +153,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fec-rl-qyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="744.79999999999995" y="-150.67466266866569"/>
+            <point key="canvasLocation" x="766" y="-745"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Q70-Ag-eOr">
+            <objects>
+                <navigationController id="dPs-Km-hvV" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r3n-xO-oMm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LLI-DF-ubO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-17" y="-745"/>
         </scene>
     </scenes>
     <resources>
+        <image name="icon_listview-selected" width="75" height="50"/>
+        <image name="icon_mapview-selected" width="75" height="50"/>
+        <image name="icon_pin" width="24" height="24"/>
+        <image name="icon_refresh" width="24" height="24"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
 </document>
