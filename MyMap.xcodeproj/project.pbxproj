@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A90D50B01EA71EA50086B890 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		A90EE7631E9C7E4F00877DE4 /* MyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90EE7661E9C7E4F00877DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A90EE7681E9C7E4F00877DE4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 			children = (
 				A90EE7661E9C7E4F00877DE4 /* AppDelegate.swift */,
 				A90EE7681E9C7E4F00877DE4 /* MapViewController.swift */,
+				A90D50B01EA71EA50086B890 /* MyPlayground.playground */,
 				A90EE76A1E9C7E4F00877DE4 /* Main.storyboard */,
 				A90EE76F1E9C7E4F00877DE4 /* LaunchScreen.storyboard */,
 				A90EEEEE1E9F0BCF0094CB96 /* LoginViewController.swift */,
