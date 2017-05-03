@@ -22,8 +22,8 @@ class Config: NSObject, NSCoding {
     // MARK: Properties
     
     // default values from 1/12/15
-    var baseImageURLString = "http://image.tmdb.org/t/p/"
-    var secureBaseImageURLString =  "https://image.tmdb.org/t/p/"
+    var baseImageURLString = "http://image.OTM.org/t/p/"
+    var secureBaseImageURLString =  "https://image.OTM.org/t/p/"
     var posterSizes = ["w92", "w154", "w185", "w342", "w500", "w780", "original"]
     var profileSizes = ["w45", "w185", "h632", "original"]
     var dateUpdated: Date? = nil
@@ -81,11 +81,11 @@ class Config: NSObject, NSCoding {
         
         /* 1. Set the parameters */
         let methodParameters = [
-            Constants.TMDBParameterKeys.ApiKey: Constants.TMDBParameterValues.ApiKey
+            Client.OTMParameterValues.ApiKey: Client.OTMParameterValues.ApiKey
         ]
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: appDelegate.tmdbURLFromParameters(methodParameters as [String:AnyObject], withPathExtension: "/configuration"))
+        let request = NSMutableURLRequest(url: appDelegate.OTMURLFromParameters(methodParameters as [String:AnyObject], withPathExtension: "/configuration"))
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         /* 4. Make the request */

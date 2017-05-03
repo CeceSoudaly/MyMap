@@ -59,7 +59,6 @@ class LoginViewController: UIViewController {
             
             /*
              Steps for Authentication...
-             https://www.themoviedb.org/documentation/api/sessions
              
              Step 1: Create a request token
              Step 2: Ask the user for permission via the API ("login")
@@ -69,7 +68,7 @@ class LoginViewController: UIViewController {
              Step 4: Get the user id ;)
              Step 5: Go to the next view!
              */
-            getRequestToken()
+            logIntoUdacity()
         }
     }
     
@@ -82,18 +81,19 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // MARK: TheMovieDB
+    // MARK:
     
-    private func getRequestToken() {
+    private func logIntoUdacity() {
         
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+       // let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        let request = NSMutableURLRequest(url: URL(string: Client.Constants.UdacityBaseURLSecure)!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         print("Your URL: \(request)")
         
-        request.httpBody = "{\"udacity\": {\"username\": \"\(Constants.TMDB.username)\", \"password\": \"\(Constants.TMDB.password)\"}}".data(using: String.Encoding.utf8)
+        request.httpBody = "{\"udacity\": {\"username\": \"\(Client.OTM.username)\", \"password\": \"\(Client.OTM.password)\"}}".data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
         
@@ -147,8 +147,8 @@ class LoginViewController: UIViewController {
             }
             
             /* GUARD: Did Udacity Authentication return an error? */
-            if let _ = parsedResult[Constants.TMDBResponseKeys.StatusCode] as? Int {
-                displayError("TheMovieDB returned an error. See the '\(Constants.TMDBResponseKeys.StatusCode)' and '\(Constants.TMDBResponseKeys.StatusMessage)' in \(parsedResult)")
+            if let _ = parsedResult[Client.OTMResponseKeys.StatusCode] as? Int {
+                displayError("The Udacity returned an error. See the '\(Client.OTMResponseKeys.StatusCode)' and '\(Client.OTMResponseKeys.StatusMessage)' in \(parsedResult)")
                 return
             }
             
@@ -177,7 +177,7 @@ class LoginViewController: UIViewController {
             
             /* GUARD: Is the "sessionID" key in parsedResult? */
             guard let sessionID = parsedResult["session"] as? [String: AnyObject] else {
-                displayError("Cannot find key '\(Constants.TMDBResponseKeys.SessionID)' in \(parsedResult)")
+                displayError("Cannot find key '\(Client.OTMResponseKeys.SessionID)' in \(parsedResult)")
                 return
             }
             
@@ -274,7 +274,7 @@ private extension LoginViewController {
         
         // configure background gradient
         let backgroundGradient = CAGradientLayer()
-        backgroundGradient.colors = [Constants.UI.LoginColorTop, Constants.UI.LoginColorBottom]
+        backgroundGradient.colors = [Client.UI.LoginColorTop, Client.UI.LoginColorBottom]
         backgroundGradient.locations = [0.0, 1.0]
         backgroundGradient.frame = view.frame
         view.layer.insertSublayer(backgroundGradient, at: 0)
@@ -288,10 +288,10 @@ private extension LoginViewController {
         let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
         textField.leftView = textFieldPaddingView
         textField.leftViewMode = .always
-        textField.backgroundColor = Constants.UI.GreyColor
-        textField.textColor = Constants.UI.BlueColor
+        textField.backgroundColor = Client.UI.GreyColor
+        textField.textColor = Client.UI.BlueColor
         textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.white])
-        textField.tintColor = Constants.UI.BlueColor
+        textField.tintColor = Client.UI.BlueColor
         textField.delegate = self
     }
 }

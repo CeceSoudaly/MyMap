@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A90DE6381EB9325700887EBF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DE6371EB9325700887EBF /* StudentLocation.swift */; };
 		A90DE63A1EB939E900887EBF /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DE6391EB939E900887EBF /* Client.swift */; };
+		A90DE63C1EB9504700887EBF /* Convienence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DE63B1EB9504700887EBF /* Convienence.swift */; };
+		A90DE63E1EB950C300887EBF /* OTMAuthorized.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90DE63D1EB950C300887EBF /* OTMAuthorized.swift */; };
 		A90EE7671E9C7E4F00877DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EE7661E9C7E4F00877DE4 /* AppDelegate.swift */; };
 		A90EE7691E9C7E4F00877DE4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EE7681E9C7E4F00877DE4 /* MapViewController.swift */; };
 		A90EE76C1E9C7E4F00877DE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90EE76A1E9C7E4F00877DE4 /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		A90D50B01EA71EA50086B890 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		A90DE6371EB9325700887EBF /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		A90DE6391EB939E900887EBF /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		A90DE63B1EB9504700887EBF /* Convienence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convienence.swift; sourceTree = "<group>"; };
+		A90DE63D1EB950C300887EBF /* OTMAuthorized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMAuthorized.swift; sourceTree = "<group>"; };
 		A90EE7631E9C7E4F00877DE4 /* MyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90EE7661E9C7E4F00877DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A90EE7681E9C7E4F00877DE4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */,
 				A90DE6371EB9325700887EBF /* StudentLocation.swift */,
 				A90DE6391EB939E900887EBF /* Client.swift */,
+				A90DE63B1EB9504700887EBF /* Convienence.swift */,
+				A90DE63D1EB950C300887EBF /* OTMAuthorized.swift */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -287,7 +293,9 @@
 				A90EE7671E9C7E4F00877DE4 /* AppDelegate.swift in Sources */,
 				A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */,
 				A90DE63A1EB939E900887EBF /* Client.swift in Sources */,
+				A90DE63E1EB950C300887EBF /* OTMAuthorized.swift in Sources */,
 				A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */,
+				A90DE63C1EB9504700887EBF /* Convienence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

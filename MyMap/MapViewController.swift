@@ -15,6 +15,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // is set up as the map view's delegate.
     @IBOutlet weak var mapView: MKMapView!
     
+    var StudentLocations: [StudentLocation] = [StudentLocation]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,34 +57,48 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         var annotations = [MKPointAnnotation]()
         
-        for location in StudentLocation.sharedInstance.studentArray {
-            
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
-            let lat = CLLocationDegrees(location.latitude! as Float)
-            let long = CLLocationDegrees(location.longitude! as Float)
-            
-            // The lat and long are used to create a CLLocationCoordinates2D instance.
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            let first = location.firstName! as String
-            let last = location.lastName! as String
-            let mediaURL = location.mediaURL! as String
-            
-            // Here we create the annotation and set its coordiate, title, and subtitle properties
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(first) \(last)"
-            annotation.subtitle = mediaURL
-            
-            // Finally we place the annotation in an array of annotations.
-            annotations.append(annotation)
-            
+        Client.sharedInstance().getStudentLocationData(){ (StudentLocations, error) in
+            if let StudentLocations = StudentLocations {
+                    self.StudentLocations = StudentLocations
+                    
+                    for location in StudentLocations {
+                         //Notice that the float values are being used to create CLLocationDegree values.
+                    // This is a version of the Double type.
+                    let lat = CLLocationDegrees(location.latitude! as Float)
+                    let long = CLLocationDegrees(location.longitude! as Float)
+        
+                    // The lat and long are used to create a CLLocationCoordinates2D instance.
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        
+                    let first = location.firstName! as String
+                    let last = location.lastName! as String
+                    let mediaURL = location.mediaURL! as String
+        
+                    // Here we create the annotation and set its coordiate, title, and subtitle properties
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.title = "\(first) \(last)"
+                    annotation.subtitle = mediaURL
+                    
+                    // Finally we place the annotation in an array of annotations.
+                    annotations.append(annotation)
+                    
+                }
+                
+                print("annotations>>> ",annotations.count)
+                // When the array is complete, we add the annotations to the map.
+               // self.mapView.addAnnotations(annotations)
+                
+            } else {
+                print(error)
+            }
         }
+        
         
         // When the array is complete, we add the annotations to the map.
         mapView.addAnnotations(annotations)
     }
+ 
   
     func showAlert(caller: UIViewController, error: NSError) {
         print((error.domain),(error.localizedDescription))

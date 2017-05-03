@@ -36,12 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
-    func tmdbURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+    func OTMURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
-        components.scheme = Constants.TMDB.ApiScheme
-        components.host = Constants.TMDB.ApiHost
-        components.path = Constants.TMDB.ApiPath + (withPathExtension ?? "")
+        components.scheme = Client.OTM.ApiScheme
+        components.host = Client.OTM.ApiHost
+        components.path = Client.OTM.ApiPath + (withPathExtension ?? "")
         components.queryItems = [URLQueryItem]()
         
         for (key, value) in parameters {

@@ -59,14 +59,14 @@ class Client : NSObject {
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler as! (AnyObject?, NSError?) -> Void)
+            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler )
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             
             if let data = data {
                 
                 var newData: NSData
-                var rangeStartByte = 0  // rangeStartByte is equivalent to "currentByte" from question
+                let rangeStartByte = 0  // rangeStartByte is equivalent to "currentByte" from question
                 let maxSubdataLength = 5
                 //  let dataLength = sourceString.lengthOfBytes(using: String.Encoding.utf8)
                 
@@ -78,7 +78,7 @@ class Client : NSObject {
                 } else {
                     newData = data as NSData
                 }
-                Client.parseJSONWithCompletionHandler(data: newData, completionHandler: completionHandler as! (AnyObject?, NSError?) -> Void)
+                Client.parseJSONWithCompletionHandler(data: newData, completionHandler: completionHandler )
             }
         }
         
@@ -116,16 +116,16 @@ class Client : NSObject {
             // Do nothing
         }
         
-        print(request.allHTTPHeaderFields)
+        print(request.allHTTPHeaderFields as Any)
         print(NSString(data: request.httpBody!, encoding:String.Encoding.utf8.rawValue)!)
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler as! (AnyObject?, NSError?) -> Void)
+            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler )
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             
-            if let data = data {
+            if data != nil {
                 
                 var newData: NSData
                 
@@ -153,7 +153,7 @@ class Client : NSObject {
         /* 1. Set the parameters */
         
         /* 2/3. Build the URL and configure the request */
-        var baseURLSecure = "https://"
+        let baseURLSecure = "https://"
         //        switch method {
         //        case OTMClient.Methods.UdacityPostSession, OTMClient.Methods.UdacityDeleteSession:
         //            baseURLSecure = Constants.UdacityBaseURLSecure
@@ -333,6 +333,8 @@ class Client : NSObject {
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             let studentsLocations = StudentLocation.arrayFromResults(results: parsedResult as! [[String : AnyObject]])
+            print("studentsLocations>>>> ", studentsLocations.count)
+            
             completionHandlerForMap(studentsLocations, nil)
             
             
@@ -342,7 +344,6 @@ class Client : NSObject {
         task.resume()
         
         return task
-        
         
     }
     

@@ -31,16 +31,16 @@ class StudentLocation: NSObject {
     // Construct a StudentLocation from a dictionary
     init(dictionary: [String : AnyObject]) {
         
-        objectId = dictionary[Constants.JSONResponseKeys.objectId] as? String
-        uniqueKey = dictionary[Constants.JSONResponseKeys.uniqueKey] as? String
-        firstName = dictionary[Constants.JSONResponseKeys.firstName] as? String
-        lastName = dictionary[Constants.JSONResponseKeys.lastName] as? String
-        mapString = dictionary[Constants.JSONResponseKeys.mapString] as? String
-        mediaURL = dictionary[Constants.JSONResponseKeys.mediaURL] as? String
-        longitude = dictionary[Constants.JSONResponseKeys.longitude] as? Float
-        latitude = dictionary[Constants.JSONResponseKeys.latitude] as? Float
-        createdAt = dictionary[Constants.JSONResponseKeys.createdAt] as? String
-        updatedAt = dictionary[Constants.JSONResponseKeys.updatedAt] as? String
+        objectId = dictionary[Client.JSONResponseKeys.objectId] as? String
+        uniqueKey = dictionary[Client.JSONResponseKeys.uniqueKey] as? String
+        firstName = dictionary[Client.JSONResponseKeys.firstName] as? String
+        lastName = dictionary[Client.JSONResponseKeys.lastName] as? String
+        mapString = dictionary[Client.JSONResponseKeys.mapString] as? String
+        mediaURL = dictionary[Client.JSONResponseKeys.mediaURL] as? String
+        longitude = dictionary[Client.JSONResponseKeys.longitude] as? Float
+        latitude = dictionary[Client.JSONResponseKeys.latitude] as? Float
+        createdAt = dictionary[Client.JSONResponseKeys.createdAt] as? String
+        updatedAt = dictionary[Client.JSONResponseKeys.updatedAt] as? String
     }
     
     override init() {

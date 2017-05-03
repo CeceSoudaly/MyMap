@@ -9,10 +9,10 @@
 
 import UIKit
 
-struct Constants {
+ extension Client {
     
-    // MARK: TMDB
-    struct TMDB {
+    // MARK: OTM
+    struct OTM{
         static let ApiScheme = "https"
         static let ApiHost = "www.udacity.com"
         static let ApiPath = "/3"
@@ -20,8 +20,8 @@ struct Constants {
         static let password = "Apple.2017"
     }
     
-    // MARK: TMDB Parameter Keys
-    struct TMDBParameterKeys {
+    // MARK: OTM Parameter Keys
+    struct OTMParameterKeys {
         static let ApiKey = "api_key"
         static let RequestToken = "request_token"
         static let SessionID = "session"
@@ -29,13 +29,13 @@ struct Constants {
         static let Password = "password"
     }
     
-    // MARK: TMDB Parameter Values
-    struct TMDBParameterValues {
+    // MARK: OTM Parameter Values
+    struct OTMParameterValues {
         static let ApiKey = "28c7f7d8905b411ff79583ff2ce2f4e8"
     }
     
-    // MARK: TMDB Response Keys
-    struct TMDBResponseKeys {
+    // MARK: OTM Response Keys
+    struct OTMResponseKeys {
         static let Title = "title"
         static let ID = "id"
         static let PosterPath = "poster_path"
@@ -75,7 +75,7 @@ struct Constants {
         static let FBSuffix : String = "onthemap"
         
         // MARK: URLs
-        static let UdacityBaseURLSecure : String = "https://www.udacity.com/api/"
+        static let UdacityBaseURLSecure : String = "https://www.udacity.com/api/session"
         static let ParseBaseURLSecure : String = "https://api.parse.com/1/classes/StudentLocation"
     }
     
@@ -91,6 +91,8 @@ struct Constants {
         static let ParsePostStudentLocation = ""
         
     }
+    
+    
     
     // MARK: URL Keys
     struct URLKeys {
