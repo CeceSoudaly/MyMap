@@ -69,6 +69,7 @@ import UIKit
         // MARK: Parse Authorization
         static let AppID : String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let RESTApiKey : String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        //
         
         // MARK: Facebook Authorization
         static let FBAppID : String = "365362206864879"
@@ -76,7 +77,8 @@ import UIKit
         
         // MARK: URLs
         static let UdacityBaseURLSecure : String = "https://www.udacity.com/api/session"
-        static let ParseBaseURLSecure : String = "https://api.parse.com/1/classes/StudentLocation"
+        static let ParseBaseURLSecure : String = "https://parse.udacity.com/parse/classes/StudentLocation"
+        //https://parse.udacity.com/parse/classes/StudentLocation
     }
     
     // MARK: Methods

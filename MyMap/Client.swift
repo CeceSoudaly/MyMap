@@ -287,65 +287,65 @@ class Client : NSObject {
     }
     
     
-    func getStudentLocationData(_ completionHandlerForMap: @escaping (_ result: [StudentLocation]?, _ error: NSError?) -> Void) -> URLSessionTask {
-        
-        let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        let session = URLSession.shared
-        
-        var parsedResult: AnyObject!
-        
-        
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil { // Handle error...
-                return
-            }
-            
-            let parsedData = try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
-            
-            //BUILD THE ARRAY
-            parsedResult = parsedData.value(forKey: "results") as! [[String: AnyObject]] as AnyObject!
-            
-            func sendError(_ error: String) {
-                print(error)
-                let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForMap(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
-            }
-            
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            //            guard let data = data else {
-            //                sendError("No data was returned by the request!")
-            //                return
-            //            }
-            
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            let studentsLocations = StudentLocation.arrayFromResults(results: parsedResult as! [[String : AnyObject]])
-            print("studentsLocations>>>> ", studentsLocations.count)
-            
-            completionHandlerForMap(studentsLocations, nil)
-            
-            
-            
-        }
-        
-        task.resume()
-        
-        return task
-        
-    }
+//    func getStudentLocationData(_ completionHandlerForMap: @escaping (_ result: [StudentLocation]?, _ error: NSError?) -> Void) -> URLSessionTask {
+//        
+//        let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+//        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+//        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+//        let session = URLSession.shared
+//        
+//        var parsedResult: AnyObject!
+//        
+//        
+//        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+//            if error != nil { // Handle error...
+//                return
+//            }
+//            
+//            let parsedData = try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+//            
+//            //BUILD THE ARRAY
+//            parsedResult = parsedData.value(forKey: "results") as! [[String: AnyObject]] as AnyObject!
+//            
+//            func sendError(_ error: String) {
+//                print(error)
+//                let userInfo = [NSLocalizedDescriptionKey : error]
+//                completionHandlerForMap(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+//            }
+//            
+//            /* GUARD: Was there an error? */
+//            guard (error == nil) else {
+//                sendError("There was an error with your request: \(error)")
+//                return
+//            }
+//            
+//            /* GUARD: Did we get a successful 2XX response? */
+//            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+//                sendError("Your request returned a status code other than 2xx!")
+//                return
+//            }
+//            
+//            /* GUARD: Was there any data returned? */
+//            //            guard let data = data else {
+//            //                sendError("No data was returned by the request!")
+//            //                return
+//            //            }
+//            
+//            /* 5/6. Parse the data and use the data (happens in completion handler) */
+//            let studentsLocations = StudentLocation.arrayFromResults(results: parsedResult as! [[String : AnyObject]])
+//            print("studentsLocations>>>> ", studentsLocations.count)
+//            
+//            completionHandlerForMap(studentsLocations, nil)
+//            
+//        }
+//        
+//        task.resume()
+//        
+//        return task
+//        
+//    }
+    
+
     
     // MARK: Shared Instance
     
