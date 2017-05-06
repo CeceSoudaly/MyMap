@@ -56,19 +56,7 @@ class LoginViewController: UIViewController {
             debugTextLabel.text = "Username or Password Empty."
         } else {
            setUIEnabled(false)
-            
-            /*
-             Steps for Authentication...
-             
-             Step 1: Create a request token
-             Step 2: Ask the user for permission via the API ("login")
-             Step 3: Create a session ID
-             
-             Extra Steps...
-             Step 4: Get the user id ;)
-             Step 5: Go to the next view!
-             */
-            logIntoUdacity()
+           logIntoUdacity()
         }
     }
     
@@ -91,9 +79,10 @@ class LoginViewController: UIViewController {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        print("Your URL: \(request)")
+        print("Your usernameTextField.text: \(usernameTextField.text)")
+        print("Your passwordTextField.text): \(passwordTextField.text))")
         
-        request.httpBody = "{\"udacity\": {\"username\": \"\(Client.OTM.username)\", \"password\": \"\(Client.OTM.password)\"}}".data(using: String.Encoding.utf8)
+        request.httpBody = "{\"udacity\": {\"username\": \"\(usernameTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
         

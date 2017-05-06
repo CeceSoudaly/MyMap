@@ -13,11 +13,7 @@ import Foundation
 
 extension Client {
     
-    
-    
-    
-    
-    // MARK: PARSE - GETting StudentLocations
+     // MARK: PARSE - GETting StudentLocations
     
     func getStudentLocations(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) -> Void {
         
@@ -43,8 +39,9 @@ extension Client {
                 if let results = JSONResult?["results"] as? [[String : AnyObject]] {
                     
                     let studentLocations = StudentLocation.sharedInstance
-                    studentLocations.studentArray = StudentLocation.arrayFromResults(results: results)
-                    
+                    studentLocations.studentArray  = StudentLocation.arrayFromResults(results: results)
+                    studentLocations.studentArray.filter{ $0 != nil }.map{ $0 }
+
                     completionHandler(true, nil)
                     
                 } else {

@@ -16,8 +16,8 @@ import UIKit
         static let ApiScheme = "https"
         static let ApiHost = "www.udacity.com"
         static let ApiPath = "/3"
-        static let username = "ccsoudal@yahoo.com"
-        static let password = "Apple.2017"
+        static let username = "youremail"
+        static let password = "yourpassword"
     }
     
     // MARK: OTM Parameter Keys
