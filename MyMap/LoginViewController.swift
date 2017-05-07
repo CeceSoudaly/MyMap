@@ -64,7 +64,8 @@ class LoginViewController: UIViewController {
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+//            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+             let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
         }
     }

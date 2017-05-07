@@ -9,7 +9,7 @@
 import UIKit
 
 
-class StudentsLocationTableVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
