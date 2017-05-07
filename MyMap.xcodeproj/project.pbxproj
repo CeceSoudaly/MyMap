@@ -22,6 +22,7 @@
 		A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EEEF01E9F0C750094CB96 /* Constants.swift */; };
 		A90FD0B71EA04C310087DFD2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B61EA04C310087DFD2 /* Config.swift */; };
 		A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */; };
+		A9102F641EBE9211003BAEAB /* StudentsLocationTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102F631EBE9211003BAEAB /* StudentsLocationTableVC.swift */; };
 		A911DC411EBD91B400A02866 /* StudentLocationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		A90EEEF01E9F0C750094CB96 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A90FD0B61EA04C310087DFD2 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		A9102F631EBE9211003BAEAB /* StudentsLocationTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsLocationTableVC.swift; sourceTree = "<group>"; };
 		A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				A90DE63B1EB9504700887EBF /* Convienence.swift */,
 				A90DE63D1EB950C300887EBF /* OTMAuthorized.swift */,
 				A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */,
+				A9102F631EBE9211003BAEAB /* StudentsLocationTableVC.swift */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */,
 				A90DE63A1EB939E900887EBF /* Client.swift in Sources */,
 				A90DE63E1EB950C300887EBF /* OTMAuthorized.swift in Sources */,
+				A9102F641EBE9211003BAEAB /* StudentsLocationTableVC.swift in Sources */,
 				A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */,
 				A90DE63C1EB9504700887EBF /* Convienence.swift in Sources */,
 				A911DC411EBD91B400A02866 /* StudentLocationDetail.swift in Sources */,

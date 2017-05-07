@@ -88,7 +88,6 @@ class LoginViewController: UIViewController {
         
         
         /* 4. Make the request */
-        //let task = session.dataTask(with: request as URLRequest)
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil { // Handle error…
                 return

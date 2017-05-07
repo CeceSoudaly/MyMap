@@ -78,7 +78,6 @@ import UIKit
         // MARK: URLs
         static let UdacityBaseURLSecure : String = "https://www.udacity.com/api/session"
         static let ParseBaseURLSecure : String = "https://parse.udacity.com/parse/classes/StudentLocation"
-        //https://parse.udacity.com/parse/classes/StudentLocation
     }
     
     // MARK: Methods
