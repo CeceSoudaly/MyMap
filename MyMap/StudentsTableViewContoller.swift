@@ -32,15 +32,9 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //get the save Memes
-        
-//        let object = UIApplication.shared.delegate
-//        let appDelegate = object as! AppDelegate
-//
+
         StudentLocations = StudentLocation.sharedInstance.studentArray
-        print("StudentLocations >>>>>>",StudentLocations)
-        
+//        print("StudentLocations >>>>>>",StudentLocations)
         tableView.reloadData()
 //        self.tabBarController?.tabBar.isHidden = false
     }
@@ -64,8 +58,8 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
        let first = studentLocation.firstName! as String
        let last = studentLocation.lastName! as String
        let mediaURL = studentLocation.mediaURL! as String
-        cell.textLabel!.text = "\(first) \(last)"
-        cell.imageView!.image = UIImage(named: "pin")
+       cell.imageView!.image = UIImage(named: "pin")
+       cell.textLabel!.text = "\(first) \(last)"
        // cell.detailTextLabel!.text = mediaURL
        cell.imageView!.contentMode = UIViewContentMode.scaleAspectFit
        return cell

@@ -178,15 +178,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sN2-sx-0AB">
-                                <rect key="frame" x="16" y="64" width="343" height="583"/>
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentCell" id="yOz-2Z-vfs">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOz-2Z-vfs" id="NB8-9o-lJA">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" semanticContentAttribute="forceLeftToRight" tableViewCell="yOz-2Z-vfs" id="NB8-9o-lJA">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="pin" image="icon_pin" translatesAutoresizingMaskIntoConstraints="NO" id="6wr-Gm-8BP">
+                                                    <rect key="frame" x="0.0" y="-1" width="343" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -197,10 +203,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sN2-sx-0AB" firstAttribute="trailing" secondItem="zh7-TP-GKC" secondAttribute="trailingMargin" id="27B-03-7vz"/>
-                            <constraint firstItem="sN2-sx-0AB" firstAttribute="top" secondItem="7Zg-Xd-Ony" secondAttribute="bottom" id="L1N-TS-b3R"/>
-                            <constraint firstItem="sN2-sx-0AB" firstAttribute="leading" secondItem="zh7-TP-GKC" secondAttribute="leadingMargin" id="tHr-C0-5uP"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="sN2-sx-0AB" secondAttribute="bottom" constant="20" id="u6S-0T-GfI"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="sN2-sx-0AB" secondAttribute="bottom" constant="20" id="Edj-8C-3Vs"/>
+                            <constraint firstItem="sN2-sx-0AB" firstAttribute="leading" secondItem="zh7-TP-GKC" secondAttribute="leadingMargin" id="K2W-lv-Nkq"/>
+                            <constraint firstItem="sN2-sx-0AB" firstAttribute="trailing" secondItem="zh7-TP-GKC" secondAttribute="trailingMargin" id="LUv-x3-8dl"/>
+                            <constraint firstItem="sN2-sx-0AB" firstAttribute="top" secondItem="zh7-TP-GKC" secondAttribute="topMargin" constant="20" id="faQ-4K-wqE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="thq-yy-0ND"/>
