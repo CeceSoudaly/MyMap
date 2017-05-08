@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
-//            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+            //Tab view controller
              let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
         }
@@ -73,8 +73,7 @@ class LoginViewController: UIViewController {
     // MARK:
     
     private func logIntoUdacity() {
-        
-       // let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        // this needs to be refactored to the convience class
         let request = NSMutableURLRequest(url: URL(string: Client.Constants.UdacityBaseURLSecure)!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -83,7 +82,8 @@ class LoginViewController: UIViewController {
         print("Your usernameTextField.text: \(usernameTextField.text)")
         print("Your passwordTextField.text): \(passwordTextField.text))")
         
-        request.httpBody = "{\"udacity\": {\"username\": \"\(usernameTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
+//        request.httpBody = "{\"udacity\": {\"username\": \"\(usernameTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
+          request.httpBody = "{\"udacity\": {\"username\": \"\(Client.JSONBodyKeys.Username)\", \"password\": \"\(Client.JSONBodyKeys.Password)\"}}".data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
         

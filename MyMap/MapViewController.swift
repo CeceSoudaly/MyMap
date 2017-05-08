@@ -27,30 +27,28 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.navigationItem.rightBarButtonItems = [barButtonRefresh, barButtonPin]
         getLocationsForMap ()   // Get locations from Parse and set them on map annotations
         mapView.delegate = self
-       
     }
    
     
     func getLocationsForMap () {
         
         Client.sharedInstance().getStudentLocations(){ (success, error) in
-            
-            if error != nil {
-                DispatchQueue.main.async(execute: {
-                    self.showAlert(caller: self, error: error!)
-                })
-            } else if (success != nil) {
-                print("Got student data")
-                DispatchQueue.main.async() {
-                    
-                    self.setLocationsOnMap()
-                }
-            } else {
-                DispatchQueue.main.async(execute: {
-                    let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not get student data."])
-                    self.showAlert(caller: self, error: error)
-                })
+        if error != nil {
+            DispatchQueue.main.async(execute: {
+                self.showAlert(caller: self, error: error!)
+            })
+        } else if (success != nil) {
+            print("Got student data")
+            DispatchQueue.main.async() {
+                
+                self.setLocationsOnMap()
             }
+        } else {
+            DispatchQueue.main.async(execute: {
+                let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not get student data."])
+                self.showAlert(caller: self, error: error)
+            })
+        }
         }
     }
     
@@ -82,13 +80,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 // Finally we place the annotation in an array of annotations.
                 annotations.append(annotation)
             }
-         
-         
         }
-        
         // When the array is complete, we add the annotations to the map.
         mapView.addAnnotations(annotations)
-    
     }
  
   

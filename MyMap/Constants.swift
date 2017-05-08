@@ -123,8 +123,8 @@ import UIKit
     struct JSONBodyKeys {
         
         static let Udacity = "udacity"
-        static let Username = "username"
-        static let Password = "password"
+        static let Username = "bb"
+        static let Password = "bb"
     }
     
     // MARK: JSON Response Keys
