@@ -83,7 +83,7 @@ class LoginViewController: UIViewController {
         print("Your passwordTextField.text): \(passwordTextField.text))")
         
 //        request.httpBody = "{\"udacity\": {\"username\": \"\(usernameTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
-          request.httpBody = "{\"udacity\": {\"username\": \"\(Client.JSONBodyKeys.Username)\", \"password\": \"\(Client.JSONBodyKeys.Password)\"}}".data(using: String.Encoding.utf8)
+          request.httpBody = "{\"udacity\": {\"username\": \"\(Client.OTM.username)\", \"password\": \"\(Client.OTM.password)\"}}".data(using: String.Encoding.utf8)
         
         let session = URLSession.shared
         

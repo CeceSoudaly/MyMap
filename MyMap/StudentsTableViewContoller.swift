@@ -32,9 +32,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         StudentLocations = StudentLocation.sharedInstance.studentArray
-//        print("StudentLocations >>>>>>",StudentLocations)
         tableView.reloadData()
 //        self.tabBarController?.tabBar.isHidden = false
     }
@@ -60,17 +58,19 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
        let mediaURL = studentLocation.mediaURL! as String
        cell.imageView!.image = UIImage(named: "pin")
        cell.textLabel!.text = "\(first) \(last)"
-       // cell.detailTextLabel!.text = mediaURL
+       cell.detailTextLabel!.text = mediaURL
        cell.imageView!.contentMode = UIViewContentMode.scaleAspectFit
        return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-////        
-////        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-////        detailController.meme = self.allMemes[(indexPath as NSIndexPath).row]
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        print("details.....",IndexPath())
+//        
+////        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "VillainDetailViewController") as! VillainDetailViewController
+////        detailController.villain = self.allVillains[(indexPath as NSIndexPath).row]
 ////        self.navigationController!.pushViewController(detailController, animated: true)
-   }
+//    }
 
     
 }
