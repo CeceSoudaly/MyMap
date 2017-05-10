@@ -17,8 +17,15 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.rightBarButtonItem =   UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(editMeme))
-//        self.tabBarController?.tabBar.isHidden = false
+        
+        let logo = UIImage(named: "icon_mapview-deselected")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
+        navigationItem.rightBarButtonItem =   UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(addLocation))
+        
+        navigationItem.leftBarButtonItem =   UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(addLocation))
+        
+       // self.tabBarController?.tabBar.isHidden = false
          tableView.delegate = self
         
     }
@@ -41,6 +48,10 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+    }
+    
+    func addLocation(){
         
     }
 
