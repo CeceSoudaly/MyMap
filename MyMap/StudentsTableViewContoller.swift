@@ -19,6 +19,8 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
 //        navigationItem.rightBarButtonItem =   UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(editMeme))
 //        self.tabBarController?.tabBar.isHidden = false
+         tableView.delegate = self
+        
     }
     
     func editLocation() {
@@ -63,14 +65,13 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
        return cell
     }
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        print("details.....",IndexPath())
-//        
-////        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "VillainDetailViewController") as! VillainDetailViewController
-////        detailController.villain = self.allVillains[(indexPath as NSIndexPath).row]
-////        self.navigationController!.pushViewController(detailController, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       // Open mediaURL
+        let app = UIApplication.shared
+        if let toOpen = StudentLocation.sharedInstance.studentArray[indexPath.row].mediaURL {
+            app.openURL(NSURL(string: toOpen)! as URL)
+        }
+    }
 
     
 }
