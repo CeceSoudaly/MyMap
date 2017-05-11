@@ -17,13 +17,13 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+   
+        let image = UIImage(named: "icon_pin")?.withRenderingMode(.alwaysOriginal)
+      
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain,target: self, action: #selector(addLocation))
+       
         
-        let logo = UIImage(named: "icon_mapview-deselected")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
         navigationItem.rightBarButtonItem =   UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(addLocation))
-        
-        navigationItem.leftBarButtonItem =   UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(addLocation))
         
        // self.tabBarController?.tabBar.isHidden = false
          tableView.delegate = self
@@ -69,7 +69,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
        let first = studentLocation.firstName! as String
        let last = studentLocation.lastName! as String
        let mediaURL = studentLocation.mediaURL! as String
-       cell.imageView!.image = UIImage(named: "pin")
+       cell.imageView?.image = UIImage(named: "icon_pin")
        cell.textLabel!.text = "\(first) \(last)"
        cell.detailTextLabel!.text = mediaURL
        cell.imageView!.contentMode = UIViewContentMode.scaleAspectFit
