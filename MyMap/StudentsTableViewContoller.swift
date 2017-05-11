@@ -17,13 +17,19 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-        let image = UIImage(named: "icon_pin")?.withRenderingMode(.alwaysOriginal)
-      
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain,target: self, action: #selector(addLocation))
-       
         
-        navigationItem.rightBarButtonItem =   UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(addLocation))
+        let image = UIImage(named: "icon_pin")?.withRenderingMode(.alwaysOriginal)
+       
+       
+        let Nam1BarBtnVar = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(addLocation))
+        let Nam2BarBtnVar = UIBarButtonItem(image: image, style: .plain,target: self, action: #selector(addLocation))
+        
+        self.navigationItem.setRightBarButtonItems([Nam1BarBtnVar, Nam2BarBtnVar], animated: true)
+        
+        let logout = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(addLocation))
+
+        
+         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(addLocation))
         
        // self.tabBarController?.tabBar.isHidden = false
          tableView.delegate = self
