@@ -71,7 +71,7 @@
                                             <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jHf-8c-Hp1"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Response" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmH-8z-0BR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmH-8z-0BR">
                                         <rect key="frame" x="0.0" y="248" width="327" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="kH2-Ba-pxT"/>
@@ -126,15 +126,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </navigationBar>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3cO-dk-Gcj">
-                                <rect key="frame" x="7" y="0.0" width="375" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <tabBarItem image="icon_pin" selectedImage="icon_pin" id="u38-bJ-nvE"/>
-                                    <tabBarItem image="icon_refresh" selectedImage="icon_refresh" id="tk1-RW-fkI"/>
-                                </items>
-                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -267,8 +258,6 @@
     <resources>
         <image name="icon_listview-selected" width="75" height="50"/>
         <image name="icon_mapview-selected" width="75" height="50"/>
-        <image name="icon_pin" width="24" height="24"/>
-        <image name="icon_refresh" width="24" height="24"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
 </document>

@@ -21,15 +21,12 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         let image = UIImage(named: "icon_pin")?.withRenderingMode(.alwaysOriginal)
        
        
-        let Nam1BarBtnVar = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(addLocation))
+        let Nam1BarBtnVar = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
         let Nam2BarBtnVar = UIBarButtonItem(image: image, style: .plain,target: self, action: #selector(addLocation))
         
         self.navigationItem.setRightBarButtonItems([Nam1BarBtnVar, Nam2BarBtnVar], animated: true)
         
-        let logout = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(addLocation))
-
-        
-         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(addLocation))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(logOut))
         
        // self.tabBarController?.tabBar.isHidden = false
          tableView.delegate = self
@@ -59,8 +56,48 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     func addLocation(){
         
+        print("addLocation")
     }
-
+    
+    func logOut(){
+         print("logOut")
+        // Check which auth service was used to log in
+        
+//        if Client.sharedInstance().authServiceUsed == Client.Constants.AuthService.Facebook {
+//            
+//            //FBSDKLoginManager().logOut()
+//            print("Facebook logout")
+//           // dismissViewControllerAnimated(true, completion: nil)
+//            
+//        } else {    // if Udacity was used to log in
+        
+            Client.sharedInstance().deleteSession() { (success, error) in
+                
+                if error != nil {
+                    DispatchQueue.main.async(execute: {
+                        //Convenience.showAlert(self, error: error!)
+                        print("Error",error!)
+                    })
+                } else if success {
+                    print("Session Deleted")
+                    DispatchQueue.main.async {
+                         self.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                    DispatchQueue.main.async(execute: {
+                        let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not delete/logout session"])
+//                        Convenience.showAlert(self, error: error)
+                          print("Could not delete/logout session",error)
+                    })
+                }
+            }
+       
+    }
+    
+    func refresh()
+    {
+        print("refresh")
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return StudentLocations.count

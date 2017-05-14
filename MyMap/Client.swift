@@ -17,7 +17,7 @@ class Client : NSObject {
     var session: URLSession
     
     /* Authentication service */
-    //    var authServiceUsed: AuthService?
+    var authServiceUsed: AuthService?
     
     /* Authentication state */
     var sessionID : String? = nil
@@ -44,6 +44,7 @@ class Client : NSObject {
         } else {
             urlString = baseURLSecure + method
         }
+        
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "GET"
@@ -150,19 +151,7 @@ class Client : NSObject {
     
     func taskForDELETEMethod(method: String, completionHandler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-        /* 1. Set the parameters */
-        
-        /* 2/3. Build the URL and configure the request */
-        let baseURLSecure = "https://"
-        //        switch method {
-        //        case OTMClient.Methods.UdacityPostSession, OTMClient.Methods.UdacityDeleteSession:
-        //            baseURLSecure = Constants.UdacityBaseURLSecure
-        //        default:
-        //            baseURLSecure = Constants.ParseBaseURLSecure
-        //        }
-        let urlString = baseURLSecure + method
-        let url = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(url: url as URL)
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "DELETE"
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
@@ -173,27 +162,13 @@ class Client : NSObject {
             request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
         }
         let session = URLSession.shared
-        
-        /* 4. Make the request */
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            
-            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler)
-            
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            
-            if let data = data {
-                
-                var newData: NSData
-                
-                //                switch method {
-                //                // If requesting method is for Udacity, shift data by 5 characters
-                //                case OTMClient.Methods.UdacityPostSession, OTMClient.Methods.UdacityDeleteSession:
-                //                    newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-                //                default:
-                //                    newData = data as NSData
-                //                }
-                //                OTMClient.parseJSONWithCompletionHandler(data: newData, completionHandler: completionHandler)
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil { // Handle error…
+                return
             }
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range) /* subset response data! */
+            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
         }
         
         /* 7. Start the request */
