@@ -21,14 +21,79 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barButtonPin = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.plain, target: self, action: "pinButtonTouchUp")
-        let barButtonRefresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: "refreshButtonTouchUp")
+        let image = UIImage(named: "icon_pin")?.withRenderingMode(.alwaysOriginal)
         
-        self.navigationItem.rightBarButtonItems = [barButtonRefresh, barButtonPin]
+        
+        let Nam1BarBtnVar = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
+        let Nam2BarBtnVar = UIBarButtonItem(image: image, style: .plain,target: self, action: #selector(addLocation))
+        
+        self.navigationItem.setRightBarButtonItems([Nam1BarBtnVar, Nam2BarBtnVar], animated: true)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(logOut))
+
         getLocationsForMap ()   // Get locations from Parse and set them on map annotations
         mapView.delegate = self
     }
-   
+    func editLocation() {
+        let editController = self.storyboard!.instantiateViewController(withIdentifier: "StudentsTableViewContoller") as! StudentsTableViewContoller
+        
+        self.navigationController!.pushViewController(editController, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func addLocation(){
+        
+        print("addLocation")
+        //LocationDetails
+        
+        performUIUpdatesOnMain {
+            //Tab view controller
+            let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
+            self.navigationController!.pushViewController(detailController, animated: true)
+            self.tabBarController?.tabBar.isHidden = true
+        }
+    }
+    
+    func logOut(){
+        print("logOut")
+        // Check which auth service was used to log in
+        
+        //        if Client.sharedInstance().authServiceUsed == Client.Constants.AuthService.Facebook {
+        //
+        //            //FBSDKLoginManager().logOut()
+        //            print("Facebook logout")
+        //           // dismissViewControllerAnimated(true, completion: nil)
+        //
+        //        } else {    // if Udacity was used to log in
+        
+        Client.sharedInstance().deleteSession() { (success, error) in
+            
+            if error != nil {
+                DispatchQueue.main.async(execute: {
+                    Client.showAlert(caller: self, error: error!)
+                    
+                })
+            } else if success {
+                print("Session Deleted")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                DispatchQueue.main.async(execute: {
+                    let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not delete/logout session"])
+                    Client.showAlert(caller: self, error: error)
+                    
+                })
+            }
+        }
+        
+    }
+    
+    func refresh()
+    {
+        print("refresh")
+    }
+    
     
     func getLocationsForMap () {
         

@@ -14,10 +14,12 @@ class StudentLocationDetailViewContoller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title:"Cancel",style: .plain, target: self, action: #selector(Cancel))
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Cancel",style: .plain, target: self, action: #selector(Cancel))
+        navigationItem.hidesBackButton = true
+        let leftItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: Selector("Cancel"))
+        navigationItem.rightBarButtonItem = leftItem
+        navigationItem.title = "Student's Detail"
+        navigationItem.hidesBackButton = true
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -28,7 +30,10 @@ class StudentLocationDetailViewContoller: UIViewController {
     func  Cancel()
     {
         print("Cancel out")
-        dismiss(animated: true, completion: nil)
+        let editController = self.storyboard!.instantiateViewController(withIdentifier: "StudentsTableViewContoller") as! StudentsTableViewContoller
+        
+        self.navigationController!.pushViewController(editController, animated: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
    
 }

@@ -27,9 +27,20 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         self.navigationItem.setRightBarButtonItems([Nam1BarBtnVar, Nam2BarBtnVar], animated: true)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(logOut))
+        tableView.delegate = self
         
-       // self.tabBarController?.tabBar.isHidden = false
-         tableView.delegate = self
+    }
+    
+    // MARK: Table View Data Source
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        StudentLocations = StudentLocation.sharedInstance.studentArray
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
     }
     
@@ -40,20 +51,6 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    // MARK: Table View Data Source
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        StudentLocations = StudentLocation.sharedInstance.studentArray
-        tableView.reloadData()
-//        self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-    
     func addLocation(){
         
         print("addLocation")
@@ -61,8 +58,9 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         
         performUIUpdatesOnMain {
             //Tab view controller
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController") 
-            self.present(controller, animated: true, completion: nil)
+            let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
+            self.navigationController!.pushViewController(detailController, animated: true)
+            self.tabBarController?.tabBar.isHidden = true
         }
     }
     
