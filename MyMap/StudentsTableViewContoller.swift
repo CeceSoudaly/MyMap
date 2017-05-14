@@ -57,6 +57,13 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     func addLocation(){
         
         print("addLocation")
+        //LocationDetails
+        
+        performUIUpdatesOnMain {
+            //Tab view controller
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController") 
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     func logOut(){

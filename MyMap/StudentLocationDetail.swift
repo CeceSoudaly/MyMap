@@ -7,3 +7,28 @@
 //
 
 import Foundation
+import UIKit
+
+class StudentLocationDetailViewContoller: UIViewController {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title:"Cancel",style: .plain, target: self, action: #selector(Cancel))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title:"Cancel",style: .plain, target: self, action: #selector(Cancel))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+      
+    }
+    
+    func  Cancel()
+    {
+        print("Cancel out")
+        dismiss(animated: true, completion: nil)
+    }
+   
+}
