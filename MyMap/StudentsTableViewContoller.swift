@@ -75,8 +75,8 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                 
                 if error != nil {
                     DispatchQueue.main.async(execute: {
-                        //Convenience.showAlert(self, error: error!)
-                        print("Error",error!)
+                        Client.showAlert(caller: self, error: error!)
+     
                     })
                 } else if success {
                     print("Session Deleted")
@@ -86,8 +86,8 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                 } else {
                     DispatchQueue.main.async(execute: {
                         let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not delete/logout session"])
-//                        Convenience.showAlert(self, error: error)
-                          print("Could not delete/logout session",error)
+                          Client.showAlert(caller: self, error: error)
+
                     })
                 }
             }

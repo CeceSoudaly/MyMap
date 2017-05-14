@@ -124,6 +124,13 @@ extension Client {
     }
 
     
+    class func showAlert(caller: UIViewController, error: NSError) {
+        print((error.domain),(error.localizedDescription))
+        let alert = UIAlertController(title: error.domain, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
+        caller.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: Helpers
     
     // substitute the key for the value that is contained within the method name

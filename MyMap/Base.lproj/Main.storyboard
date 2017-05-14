@@ -219,6 +219,38 @@
             </objects>
             <point key="canvasLocation" x="1045.5999999999999" y="206.44677661169416"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="4gt-5w-Krg">
+            <objects>
+                <viewController storyboardIdentifier="LocationDetails" id="o1C-6b-3qa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G0X-ah-pR2"/>
+                        <viewControllerLayoutGuide type="bottom" id="T0W-NY-XJb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ebL-Mi-4RI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dsS-cF-5BD">
+                                <rect key="frame" x="43" y="60" width="289" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZd-g1-14r">
+                                <rect key="frame" x="60" y="392" width="272" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Find Locaton"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6TH-77-QE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1781.5999999999999" y="198.35082458770617"/>
+        </scene>
         <!--Map-->
         <scene sceneID="Vcl-hh-oDq">
             <objects>
