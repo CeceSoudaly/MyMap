@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
             //Tab view controller
-             let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
         }
     }

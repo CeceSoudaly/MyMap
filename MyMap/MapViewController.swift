@@ -148,6 +148,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         // When the array is complete, we add the annotations to the map.
         mapView.addAnnotations(annotations)
+       
     }
  
   
