@@ -24,6 +24,7 @@
 		A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */; };
 		A9102F641EBE9211003BAEAB /* StudentsTableViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */; };
 		A911DC411EBD91B400A02866 /* StudentLocationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */; };
+		A945B4501ECBFB41004F15F4 /* MapLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A945B44F1ECBFB41004F15F4 /* MapLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsTableViewContoller.swift; sourceTree = "<group>"; };
 		A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationDetail.swift; sourceTree = "<group>"; };
+		A945B44F1ECBFB41004F15F4 /* MapLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				A90DE63D1EB950C300887EBF /* OTMAuthorized.swift */,
 				A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */,
 				A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */,
+				A945B44F1ECBFB41004F15F4 /* MapLocationViewController.swift */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				A9102F641EBE9211003BAEAB /* StudentsTableViewContoller.swift in Sources */,
 				A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */,
 				A90DE63C1EB9504700887EBF /* Convienence.swift in Sources */,
+				A945B4501ECBFB41004F15F4 /* MapLocationViewController.swift in Sources */,
 				A911DC411EBD91B400A02866 /* StudentLocationDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

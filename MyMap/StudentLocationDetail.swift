@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , CLLocationManagerDelegate{
     
@@ -15,11 +16,14 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     @IBOutlet weak var debugLabel: UILabel!
     
-    @IBOutlet weak var locationMap: MKMapView!
+   
 
+   var locationManager: CLLocationManager!
 
-    private var locationManager: CLLocationManager!
-    private var currentLocation: CLLocation?
+   var currentLocation: CLLocation?
+    
+    let homeLocation = CLLocation(latitude: 37.6213, longitude: -122.3790)
+    let regionRadius: CLLocationDistance = 200
     
     
     
@@ -31,16 +35,26 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         navigationItem.title = "Student's Detail"
         navigationItem.hidesBackButton = true
         
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        // Check for Location Services
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
+//        locationManager = CLLocationManager()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        
+//        // Check for Location Services
+//        
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager.requestWhenInUseAuthorization()
+//         }
+//        
+//        DispatchQueue.main.async {
+//            
+//            self.locationManager.startUpdatingLocation()
+//        }
+//        locationMap.delegate = self
+//        print("locationMap>>> ",locationMap)
+//        print("locationMap>>> ",locationMap.showsUserLocation)
+//
+//        locationMap.showsUserLocation = true
+//        centerMapOnLocation(location: homeLocation)
     
     }
     
@@ -49,6 +63,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
       
     }
     
+  
     func  Cancel()
     {
         print("Cancel out")
@@ -68,16 +83,13 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString("524 Ct St, Brooklyn, NY 11231",
-                                      completionHandler: { placemarks, error in
-                                        //
-                                        self.processResponse(withPlacemarks: placemarks, error: error)
+            completionHandler: { placemarks, error in
+            self.processResponse(withPlacemarks: placemarks, error: error)
         })
     }
    
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
-        //         Update View
-        //        geocodeButton.isHidden = false
-        //        activityIndicatorView.stopAnimating()
+
         
         if let error = error {
             print("Unable to Forward Geocode Address (\(error))")
@@ -90,6 +102,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
                 location = placemarks.first?.location
                 
                 print("Your location: (\(location))")
+
             }
             
             if let location = location {
@@ -98,16 +111,17 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
                 debugLabel.text = "\(coordinate.latitude), \(coordinate.longitude)"
                 debugLabel.text = "\(coordinate)"
                 debugLabel.text = "Matching Location Found"
+    
+                
                 // When the array is complete, we add the annotations to the map.
                 //mapLocation.
-                performUIUpdatesOnMain {
+                 performUIUpdatesOnMain {
                     //Tab view controller
                     let mapDetailController = self.storyboard!.instantiateViewController(withIdentifier: "MapDetailViewController")
-                    self.navigationController!.pushViewController(mapDetailController, animated: true)
-                   // self.tabBarController?.tabBar.isHidden = true
+                   self.navigationController!.pushViewController(mapDetailController, animated: true)
+                    self.tabBarController?.tabBar.isHidden = true
                 }
-
-               
+       
                 
             } else {
                 debugLabel.text = "No Matching Location Found"
@@ -116,17 +130,17 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         }
     }
     
-    func locationManager(dlocationManageridUpdateLocations locations: [CLLocation]) {
-        defer { currentLocation = locations.last }
-        
-        if currentLocation == nil {
-            // Zoom to user location
-            if let userLocation = locations.last {
-                let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 2000, 2000)
-                locationMap.setRegion(viewRegion, animated: false)
-
-            }
-        }
-    }
+//    func locationManager(locations: [CLLocation]) {
+//        defer { currentLocation = locations.last }
+//        
+//        if currentLocation == nil {
+//            // Zoom to user location
+//            if let userLocation = locations.last {
+//                let viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 2000, 2000)
+//                locationMap.setRegion(viewRegion, animated: false)
+//
+//            }
+//        }
+//    }
 
 }
