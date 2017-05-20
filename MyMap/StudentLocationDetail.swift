@@ -12,11 +12,13 @@ import CoreLocation
 
 class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , CLLocationManagerDelegate{
     
-    @IBOutlet weak var location: UITextField!
+    var appDelegate: AppDelegate!
+    
+    @IBOutlet weak var locationTextField: UITextField!
     
     @IBOutlet weak var DetailMap: MKMapView!
     
-    @IBOutlet weak var urlEntry: UITextField!
+    @IBOutlet weak var urlEntryTextField: UITextField!
     
     @IBOutlet weak var topView: UIView!
     
@@ -24,9 +26,13 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     @IBOutlet weak var bottomView: UIView!
     
-    @IBOutlet weak var submit: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var findLocationButton: UIButton!
     
     @IBOutlet weak var lableText: UILabel!
+    
+    @IBOutlet var statusLabel: [UILabel]!
     
     var locationManager: CLLocationManager!
     
@@ -43,11 +49,16 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         case Two
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // get the app delegate
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+//        subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
+//        subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
+//        subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
+//        subscribeToNotification(.UIKeyboardDidHide, selector: #selector(keyboardDidHide))
         
         setViewState(viewState: .One)
     }
@@ -57,6 +68,24 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         
     }
     
+    @IBAction func beginEditing(_ sender: Any) {
+        
+        userDidTapView(self)
+        locationTextField.text = ""
+        
+//        if locationTextField.text!.isEmpty {
+//            //debugTextLabel.text = "Username or Password Empty."
+//            
+//        } else {
+//            setUIEnabled(false)
+//            logIntoUdacity()
+//        }
+    }
+    
+    @IBAction func beginUrlEditing(_ sender: Any) {
+        userDidTapView(self)
+        urlEntryTextField.text = ""
+    }
     
     func  Cancel()
     {
@@ -70,10 +99,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     @IBAction func geocodeFinder(_ sender: Any) {
         //        guard let country = location.text! else { return }
         //        guard let street = streetTextField.text else { return }
-        guard let address = location.text else { return }
+        guard let address = locationTextField.text else { return }
         
         print("\(address)")
-        print("Get the Geo location",location.text!)
+        print("Get the Geo location",locationTextField.text!)
         
         let geoCoder = CLGeocoder()
 //        geoCoder.geocodeAddressString("524 Ct St, Brooklyn, NY 11231",
@@ -150,8 +179,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         DetailMap.addAnnotations(annotations)
         DetailMap.setRegion(coordinateRegion, animated: true)
     }
-
-    
     
     func setViewState(viewState: viewState) {
         switch viewState {
@@ -163,8 +190,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             navigationItem.hidesBackButton = true
             DetailMap.delegate = self
             DetailMap.isHidden = true
-            submit.isHidden = true
-            urlEntry.isHidden = true
+            submitButton.isHidden = true
+            urlEntryTextField.isHidden = true
+            findLocationButton.isHidden = false
+           
             
             //            fullView.backgroundColor = UIColor(white:0.8, alpha:1.0)    // set bg color to light gray
             //            cancelButton.setTitleColor(UIColor(red:0.2, green:0.4, blue:0.6, alpha:1.0), forState: .Normal) // set
@@ -179,9 +208,12 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             navigationItem.hidesBackButton = true
             DetailMap.delegate = self
             DetailMap.isHidden = false
-            submit.isHidden = false
-            urlEntry.isHidden = false
-            location.isHidden = true
+            submitButton.isHidden = false
+            urlEntryTextField.isHidden = false
+            locationTextField.isHidden = true
+            findLocationButton.isHidden = true
+            topView.isHidden = true
+            
             
             //            fullView.backgroundColor = UIColor(red:0.2, green:0.4, blue:0.6, alpha:1.0) // set bg color to this bluish tinge
             //            cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal) // set title color to white
@@ -189,6 +221,18 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             
             break
         }
+    }
+    
+    
+    private func resignIfFirstResponder(_ textField: UITextField) {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
+        }
+    }
+    
+    @IBAction func userDidTapView(_ sender: AnyObject) {
+        resignIfFirstResponder(urlEntryTextField)
+        resignIfFirstResponder(locationTextField)
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -218,13 +262,13 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
     }
-    
-    private func resignIfFirstResponder(_ textField: UITextField) {
-        if textField.isFirstResponder {
-            textField.resignFirstResponder()
-        }
+  
+    func subscribeToNotification(_ notification: NSNotification.Name, selector: Selector) {
+        NotificationCenter.default.addObserver(self, selector: selector, name: notification, object: nil)
     }
-
     
+    func unsubscribeFromAllNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
 
 }

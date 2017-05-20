@@ -176,18 +176,18 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" tableViewCell="yOz-2Z-vfs" id="NB8-9o-lJA">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XR0-hl-OgV">
-                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XLA-xW-Mwv">
-                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -236,7 +236,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where are you studying?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMC-9N-6EM">
-                                        <rect key="frame" x="29" y="21" width="306" height="100"/>
+                                        <rect key="frame" x="27" y="8" width="288" height="97"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
@@ -256,12 +256,15 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zg-I9-4gG">
                                         <rect key="frame" x="32" y="228" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Submit"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZd-g1-14r">
                                         <rect key="frame" x="32" y="190" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="Find Locaton">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -281,6 +284,10 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="beginEditing:" destination="o1C-6b-3qa" eventType="editingDidBegin" id="eUJ-ke-ZIW"/>
+                                            <action selector="userDidTapView:" destination="o1C-6b-3qa" eventType="primaryActionTriggered" id="OqF-2d-Yx3"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="urlEntry" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your url" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H5c-aN-ihX">
                                         <rect key="frame" x="36" y="57" width="289" height="30"/>
@@ -288,6 +295,10 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="beginUrlEditing:" destination="o1C-6b-3qa" eventType="editingDidBegin" id="ejS-Dr-gX2"/>
+                                            <action selector="userDidTapView:" destination="o1C-6b-3qa" eventType="primaryActionTriggered" id="GJk-73-TVn"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </view>
@@ -302,12 +313,14 @@
                     <connections>
                         <outlet property="DetailMap" destination="B4d-ic-5Q5" id="VGl-WX-8DF"/>
                         <outlet property="bottomView" destination="jLg-jy-qYg" id="bYL-LS-PuJ"/>
+                        <outlet property="findLocationButton" destination="QZd-g1-14r" id="dWW-S7-Am0"/>
                         <outlet property="lableText" destination="XMC-9N-6EM" id="iVc-Mv-5pC"/>
-                        <outlet property="location" destination="dsS-cF-5BD" id="d0Y-Aw-ILQ"/>
+                        <outlet property="locationTextField" destination="dsS-cF-5BD" id="Noa-mD-Zlv"/>
                         <outlet property="middleView" destination="dRj-2k-p1u" id="4Wn-DC-vTB"/>
-                        <outlet property="submit" destination="3zg-I9-4gG" id="iXX-oI-teN"/>
+                        <outlet property="submitButton" destination="3zg-I9-4gG" id="OX1-bC-1t7"/>
                         <outlet property="topView" destination="4DU-sh-aeD" id="tTd-FI-gSg"/>
-                        <outlet property="urlEntry" destination="H5c-aN-ihX" id="TEm-BO-cc5"/>
+                        <outlet property="urlEntryTextField" destination="H5c-aN-ihX" id="aDT-NL-m3G"/>
+                        <outletCollection property="statusLabel" destination="XMC-9N-6EM" collectionClass="NSMutableArray" id="37s-Gc-heU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6TH-77-QE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -317,7 +330,6 @@
         <!--Map Location View Contoller-->
         <scene sceneID="nRN-jo-wzp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="904-dV-lUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MapDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AnN-EM-HP3" customClass="MapLocationViewContoller" customModule="MyMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D62-gK-skN"/>
@@ -339,6 +351,7 @@
                         <outlet property="locationMap" destination="Jok-Em-R83" id="egu-MN-CIb"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="904-dV-lUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2593" y="958"/>
         </scene>
