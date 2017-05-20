@@ -122,23 +122,12 @@ class Client : NSObject {
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler )
-            
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            
-            if data != nil {
-                
-                var newData: NSData
-                
-                //                switch method {
-                //                // If requesting method is for Udacity, shift data by 5 characters
-                //                case OTMClient.Methods.UdacityPostSession:
-                //                    newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-                //                default:
-                //                    newData = data as NSData
-                //                }
-                //                OTMClient.parseJSONWithCompletionHandler(data: newData, completionHandler: completionHandler as! (AnyObject?, NSError?) -> Void)
+            if error != nil { // Handle error…
+                return
             }
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range) /* subset response data! */
+            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
         }
         
         /* 7. Start the request */

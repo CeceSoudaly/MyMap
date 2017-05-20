@@ -17,45 +17,26 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     @IBOutlet weak var debugLabel: UILabel!
     
    
+    @IBOutlet weak var DetailMap: MKMapView!
 
    var locationManager: CLLocationManager!
 
    var currentLocation: CLLocation?
+  
+    var studentLocation = StudentLocation.sharedInstance
     
-    let homeLocation = CLLocation(latitude: 37.6213, longitude: -122.3790)
-    let regionRadius: CLLocationDistance = 200
+    enum viewState {
+        case One
+        case Two
+    }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
-        let leftItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: Selector("Cancel"))
-        navigationItem.rightBarButtonItem = leftItem
-        navigationItem.title = "Student's Detail"
-        navigationItem.hidesBackButton = true
-        
-//        locationManager = CLLocationManager()
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        
-//        // Check for Location Services
-//        
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager.requestWhenInUseAuthorization()
-//         }
-//        
-//        DispatchQueue.main.async {
-//            
-//            self.locationManager.startUpdatingLocation()
-//        }
-//        locationMap.delegate = self
-//        print("locationMap>>> ",locationMap)
-//        print("locationMap>>> ",locationMap.showsUserLocation)
-//
-//        locationMap.showsUserLocation = true
-//        centerMapOnLocation(location: homeLocation)
-    
+      
+       
+        setViewState(viewState: .One)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -117,9 +98,16 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
                 //mapLocation.
                  performUIUpdatesOnMain {
                     //Tab view controller
-                    let mapDetailController = self.storyboard!.instantiateViewController(withIdentifier: "MapDetailViewController")
-                   self.navigationController!.pushViewController(mapDetailController, animated: true)
-                    self.tabBarController?.tabBar.isHidden = true
+                    let viewControllerB = MapLocationViewContoller()
+                    viewControllerB.currentLocation = location
+
+                    self.navigationController?.pushViewController(viewControllerB, animated: true)
+                   
+                    
+//                    let mapDetailController = self.storyboard!.instantiateViewController(withIdentifier: "MapDetail")
+//                    
+//                   self.navigationController!.pushViewController(mapDetailController, animated: true)
+//                    self.tabBarController?.tabBar.isHidden = true
                 }
        
                 
@@ -143,4 +131,39 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
 //        }
 //    }
 
+    
+    func setViewState(viewState: viewState) {
+        switch viewState {
+        case .One:
+        navigationItem.hidesBackButton = true
+        let leftItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: Selector("Cancel"))
+        navigationItem.rightBarButtonItem = leftItem
+        navigationItem.title = "Student's Detail"
+        navigationItem.hidesBackButton = true
+        DetailMap.delegate = self
+        DetailMap.isHidden = true
+        
+//            fullView.backgroundColor = UIColor(white:0.8, alpha:1.0)    // set bg color to light gray
+//            cancelButton.setTitleColor(UIColor(red:0.2, green:0.4, blue:0.6, alpha:1.0), forState: .Normal) // set title color to this bluish tinge
+//            topView1.hidden     = false
+//            middleView1.hidden  = false
+//            bottomView1.hidden  = false
+//            mapView.hidden      = true
+//            topView2.hidden     = true
+//            bottomView2.hidden  = true
+//            activityIndicator.hidden = true
+              break
+        case .Two:
+//            fullView.backgroundColor = UIColor(red:0.2, green:0.4, blue:0.6, alpha:1.0) // set bg color to this bluish tinge
+//            cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal) // set title color to white
+//            topView1.hidden     = true
+//            middleView1.hidden  = true
+//            bottomView1.hidden  = true
+//            mapView.hidden      = false
+//            topView2.hidden     = false
+//            bottomView2.hidden  = false
+//            activityIndicator.hidden = true
+            break
+        }
+    }
 }
