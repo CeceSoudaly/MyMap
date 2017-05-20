@@ -9,11 +9,13 @@
 import UIKit
 import Foundation
 
+
 // MARK: - Client (Convenient Resource Methods)
 
 extension Client {
     
      // MARK: PARSE - GETting StudentLocations
+   
     
     func getStudentLocations(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) -> Void {
         
@@ -141,5 +143,8 @@ extension Client {
             return nil
         }
     }
+    
+    
+        
   
 }

@@ -23,6 +23,8 @@ class Client : NSObject {
     var sessionID : String? = nil
     var userID : Int? = nil
     
+
+    
     // MARK: Initializers
     
     override init() {
@@ -249,8 +251,8 @@ class Client : NSObject {
         
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joined(separator: "&")
     }
-
     
+      
     // MARK: Shared Instance
     
     class func sharedInstance() -> Client {
