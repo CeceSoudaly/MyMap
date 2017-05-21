@@ -56,6 +56,15 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         print("addLocation")
         //LocationDetails
         
+//        let alert = UIAlertController(title: "UIAlertController", message: "You are about do you want to add more location?", preferredStyle: UIAlertControllerStyle.alert)
+//
+//        // add the actions (buttons)
+//        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: nil))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+//
+//        // show the alert
+//        self.present(alert, animated: true, completion: nil)
+
         performUIUpdatesOnMain {
             //Tab view controller
             let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")

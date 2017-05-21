@@ -260,6 +260,9 @@
                                         <state key="normal" title="Submit">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="submitLocalnUrl:" destination="o1C-6b-3qa" eventType="primaryActionTriggered" id="kSI-u9-R9c"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZd-g1-14r">
                                         <rect key="frame" x="32" y="190" width="289" height="30"/>

@@ -97,17 +97,13 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     }
     
     @IBAction func geocodeFinder(_ sender: Any) {
-        //        guard let country = location.text! else { return }
-        //        guard let street = streetTextField.text else { return }
+
         guard let address = locationTextField.text else { return }
         
         print("\(address)")
         print("Get the Geo location",locationTextField.text!)
         
         let geoCoder = CLGeocoder()
-//        geoCoder.geocodeAddressString("524 Ct St, Brooklyn, NY 11231",
-//                                      completionHandler: { placemarks, error in
-//                                        self.processResponse(withPlacemarks: placemarks, error: error)
         geoCoder.geocodeAddressString(address,
                     completionHandler: { placemarks, error in
                     self.processResponse(withPlacemarks: placemarks, error: error)
@@ -132,15 +128,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             }
             
             if let location = location {
-                let coordinate = location.coordinate
-                print("Your coordinate  : (\(coordinate))")
-//                debugLabel.text = "\(coordinate.latitude), \(coordinate.longitude)"
-//                debugLabel.text = "\(coordinate)"
-//                debugLabel.text = "Matching Location Found"
                 
-                
-                // When the array is complete, we add the annotations to the map.
-                //mapLocation.
                 centerMapOnLocation(location: location)
                 setViewState(viewState: .Two)
        
@@ -179,6 +167,31 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         DetailMap.addAnnotations(annotations)
         DetailMap.setRegion(coordinateRegion, animated: true)
     }
+    
+    @IBAction func submitLocalnUrl(_ sender: Any) {
+        
+        //Post the url 
+        
+        Client.sharedInstance().postStudentLocation(studentLocation: studentLocation) { (success, error) in
+            
+            if error != nil {
+                DispatchQueue.main.async(execute: {
+                    Client.showAlert(caller: self, error: error!)
+                })
+            } else if success {
+                print("StudentLocation posted")
+                DispatchQueue.main.async() {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                DispatchQueue.main.async(execute: {
+                    let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not post StudentLocation."])
+                    Client.showAlert(caller: self, error: error)
+                })
+            }
+        }
+    }
+    
     
     func setViewState(viewState: viewState) {
         switch viewState {
