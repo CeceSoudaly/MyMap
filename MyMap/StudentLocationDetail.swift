@@ -55,6 +55,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         // get the app delegate
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         
+        print("unique ID  >>>", appDelegate.sessionID);
+        
 //        subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
 //        subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
 //        subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
@@ -162,6 +164,19 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         let annotation = MKPointAnnotation()
         annotation.coordinate = location.coordinate
         
+        //set students information
+        //Post the url
+        //Set the student's information
+        studentLocation.firstName = "FirstName"
+        studentLocation.lastName = "LastName"
+        studentLocation.uniqueKey = "DAGjDO9B0Q"
+        studentLocation.mapString = "MapTest"
+        studentLocation.mediaURL = "https://udacity.com"
+        let latitude = (Float)(location.coordinate.latitude)
+        studentLocation.latitude = latitude
+        var longitude = (Float)(location.coordinate.longitude)
+        studentLocation.longitude = longitude
+        
         // Finally we place the annotation in an array of annotations.
         annotations.append(annotation)
         DetailMap.addAnnotations(annotations)
@@ -170,7 +185,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     @IBAction func submitLocalnUrl(_ sender: Any) {
         
-        //Post the url 
         
         Client.sharedInstance().postStudentLocation(studentLocation: studentLocation) { (success, error) in
             

@@ -148,18 +148,19 @@ extension Client {
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let method : String = Methods.ParsePostStudentLocation
         let headers : [String:String] = [
-            Client.HeaderKeys.ParseAppID: Client.Constants.AppID,
-            Client.HeaderKeys.ParseRESTAPIKey: Client.Constants.RESTApiKey,
+            Client.Constants.AppID: Client.HeaderKeys.ParseAppID,
+            Client.Constants.RESTApiKey: Client.HeaderKeys.ParseRESTAPIKey,
             "application/json": "Content-Type"
         ]
+        
         let jsonBody : [String:AnyObject] = [
-            Client.JSONResponseKeys.uniqueKey: "\(studentLocation.uniqueKey!)" as AnyObject,
-            Client.JSONResponseKeys.firstName: "\(studentLocation.firstName!)" as AnyObject,
-            Client.JSONResponseKeys.lastName: "\(studentLocation.lastName!)" as AnyObject,
-            Client.JSONResponseKeys.mapString: "\(studentLocation.mapString!)" as AnyObject,
-            Client.JSONResponseKeys.mediaURL: "\(studentLocation.mediaURL!)" as AnyObject,
-            Client.JSONResponseKeys.latitude:   (studentLocation.latitude! as AnyObject),
-            Client.JSONResponseKeys.longitude:  (studentLocation.longitude! as AnyObject)
+        Client.JSONResponseKeys.uniqueKey: "\(studentLocation.uniqueKey!)" as AnyObject,
+        Client.JSONResponseKeys.firstName: "\(studentLocation.firstName!)" as AnyObject,
+        Client.JSONResponseKeys.lastName: "\(studentLocation.lastName!)" as AnyObject,
+        Client.JSONResponseKeys.mapString: "\(studentLocation.mapString!)" as AnyObject,
+        Client.JSONResponseKeys.mediaURL: "\(studentLocation.mediaURL!)" as AnyObject,
+        Client.JSONResponseKeys.latitude:   (studentLocation.latitude! as AnyObject),
+        Client.JSONResponseKeys.longitude:  (studentLocation.longitude! as AnyObject)
         ]
         
         /* 2. Make the request */

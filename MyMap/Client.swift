@@ -104,8 +104,9 @@ class Client : NSObject {
         request.httpMethod = "POST"
         if let headers = headers {
             for (key, value) in headers {
-                request.addValue(value, forHTTPHeaderField: key)
+                request.addValue(key, forHTTPHeaderField: value)
             }
+    
         } else {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -127,9 +128,42 @@ class Client : NSObject {
             if error != nil { // Handle error…
                 return
             }
+            
             let range = Range(5..<data!.count)
             let newData = data?.subdata(in: range) /* subset response data! */
             print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+            
+            guard (error == nil) else {
+                print("Something went wrong with your POST request: \(String(describing: error))")
+                return
+            }
+
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                print("Your status code does not conform to 2xx.")
+                return
+            }
+            guard let data = data else {
+                print("The request returned no data.")
+                return
+            }
+            print(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!)
+
+            var parsedResult: [String:AnyObject]!
+
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
+            } catch {
+                print ("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            
+            guard let objectId = parsedResult["objectId"] as? String else {
+                print ("There is no objectId")
+                return
+            }
+            
+            print("Success and your objectID: \(objectId)")
+            
         }
         
         /* 7. Start the request */
