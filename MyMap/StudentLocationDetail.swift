@@ -12,8 +12,6 @@ import CoreLocation
 
 class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , CLLocationManagerDelegate{
     
-    var appDelegate: AppDelegate!
-    
     @IBOutlet weak var locationTextField: UITextField!
     
     @IBOutlet weak var DetailMap: MKMapView!
@@ -53,9 +51,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         super.viewDidLoad()
         
         // get the app delegate
-        appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        print("unique ID  >>>", appDelegate.sessionID);
+    
         
 //        subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
 //        subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
@@ -114,10 +110,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
         
-        
         if let error = error {
             print("Unable to Forward Geocode Address (\(error))")
-//            debugLabel.text = "Unable to Find Location for Address"
             
         } else {
             var location: CLLocation?
@@ -136,7 +130,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
        
                 
             } else {
-//                debugLabel.text = "No Matching Location Found"
+                Client.showAlert(caller: self, error: error! as NSError)
                 print("No Matching Location Found.")
             }
         }
@@ -167,8 +161,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         //set students information
         //Post the url
         //Set the student's information
-        studentLocation.firstName = "FirstName"
-        studentLocation.lastName = "LastName"
+        studentLocation.firstName = "Jane"
+        studentLocation.lastName = "Smith"
         studentLocation.uniqueKey = "DAGjDO9B0Q"
         studentLocation.mapString = "MapTest"
         studentLocation.mediaURL = "https://udacity.com"
@@ -195,7 +189,14 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             } else if success {
                 print("StudentLocation posted")
                 DispatchQueue.main.async() {
-                    self.dismiss(animated: true, completion: nil)
+//                    self.dismiss(animated: true, completion: nil)
+                    
+                    performUIUpdatesOnMain {
+                         //Tab view controller
+                        let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
+                        self.present(controller, animated: true, completion: nil)
+                    }
+                    
                 }
             } else {
                 DispatchQueue.main.async(execute: {

@@ -161,8 +161,9 @@ class Client : NSObject {
                 print ("There is no objectId")
                 return
             }
-            
+        
             print("Success and your objectID: \(objectId)")
+            completionHandler(true as AnyObject?, nil)
             
         }
         
