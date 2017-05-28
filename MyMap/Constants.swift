@@ -16,8 +16,9 @@ import UIKit
         static let ApiScheme = "https"
         static let ApiHost = "www.udacity.com"
         static let ApiPath = "/3"
-        static let username = "vvv"
-        static let password = "www"
+        static let username = "xxx"
+        static let password = "xxx"
+        //4660628637
     }
     
     // MARK: OTM Parameter Keys
@@ -123,8 +124,8 @@ import UIKit
     struct JSONBodyKeys {
         
         static let Udacity = "udacity"
-        static let Username = "mm"
-        static let Password = "ll"
+        static let Username = "username"
+        static let Password = "password"
     }
     
     // MARK: JSON Response Keys
