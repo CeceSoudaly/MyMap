@@ -78,116 +78,31 @@ class LoginViewController: UIViewController {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
+
+        usernameTextField.text = Client.OTM.username
+        passwordTextField.text = Client.OTM.password
         print("Your usernameTextField.text: \(usernameTextField.text)")
         print("Your passwordTextField.text): \(passwordTextField.text))")
-        
-//        request.httpBody = "{\"udacity\": {\"username\": \"\(usernameTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
-          request.httpBody = "{\"udacity\": {\"username\": \"\(Client.OTM.username)\", \"password\": \"\(Client.OTM.password)\"}}".data(using: String.Encoding.utf8)
-        
-        let session = URLSession.shared
-        
-        
-        /* 4. Make the request */
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil { // Handle error…
-                return
+        Client.sharedInstance().postSession(username: usernameTextField.text!, password: passwordTextField.text!) { (success, error) in
+            if success == true {
+                print("Logged in")
+                DispatchQueue.main.async(execute: {
+//                    self.completeLogin(Client.AuthService.Udacity)
+                    self.completeLogin()
+                })
+            } else {
+                DispatchQueue.main.async(execute: {
+                    Client.showAlert(caller: self, error: error!)
+                })
             }
-            
-            // if an error occurs, print it and re-enable the UI
-            func displayError(_ error: String) {
-                print(error)
-                performUIUpdatesOnMain {
-                    self.setUIEnabled(true)
-                    self.debugTextLabel.text = "Login Failed."
-                }
-            }
-            
-            let range = Range(5 ..< data!.count)
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-            
-            
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                displayError("There was an error with your request: \(error)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                displayError("Your request returned a status code other than 2xx!")
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            guard newData != nil else {
-                displayError("No data was returned by the request!")
-                return
-            }
-            
-            /* 5. Parse the data */
-            let parsedResult: [String:AnyObject]!
-            do {
-                parsedResult = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as! [String:AnyObject]
-            } catch {
-                displayError("Could not parse the data as JSON: '\(newData)'")
-                return
-            }
-            
-            /* GUARD: Did Udacity Authentication return an error? */
-            if let _ = parsedResult[Client.OTMResponseKeys.StatusCode] as? Int {
-                displayError("The Udacity returned an error. See the '\(Client.OTMResponseKeys.StatusCode)' and '\(Client.OTMResponseKeys.StatusMessage)' in \(parsedResult)")
-                return
-            }
-            
-            
-            if let jsonResult = parsedResult["account"] as? [String: AnyObject] {
-                print(" ")
-                print("HERE IS MY PARSED KEY + ID ONLY:--------------------------------------------------------------------")
-                let userID = jsonResult["key"]
-                self.appDelegate.sessionID = userID! as! String
-                print("Account: \(self.appDelegate.sessionID)")
-                
-                let justId = jsonResult["id"]
-                print("Account: \(userID)")
-                print("justId: \(justId)")
-            }
-            
-            if let jsonResult = parsedResult["session"] as? [String: AnyObject] {
-                print(" ")
-                print("HERE IS MY PARSED KEY + ID ONLY:--------------------------------------------------------------------")
-                let expiration = jsonResult["expiration"]
-                let sessionID = jsonResult["id"]
-                print("Account: \(expiration)")
-                print("session: \(sessionID)")
-            }
-            
-            
-            /* GUARD: Is the "sessionID" key in parsedResult? */
-            guard let sessionID = parsedResult["session"] as? [String: AnyObject] else {
-                displayError("Cannot find key '\(Client.OTMResponseKeys.SessionID)' in \(parsedResult)")
-                return
-            }
-            
-            
-            print("sessionID: \(sessionID)")
-            performUIUpdatesOnMain {
-               self.setUIEnabled(true)
-                self.debugTextLabel.text = "Login Successful."
-            }
-            
-            /* 6. Use the data! */
-//            self.appDelegate.userID = userID
-            self.completeLogin()
         }
         
-        task.resume()
+ 
     }
     
-    
    }
-
+ 
 // MARK: - LoginViewController: UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {

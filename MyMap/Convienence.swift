@@ -125,23 +125,31 @@ extension Client {
         task.resume()
     }
 
-    func postSession(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: String.Encoding.utf8)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil { // Handle error…
-                return
+    func postSession(username: String, password: String,completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
+        
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let method : String = Methods.UdacityPostSession
+      
+        let jsonBody : [String:String] = [
+                Client.JSONBodyKeys.Username: "\(username)",
+                Client.JSONBodyKeys.Password: "\(password)"
+        ]
+
+
+        /*2. Make the request*/
+        taskForPOSTMethod(method: method, baseURLSecure: Client.Constants.UdacityBaseURLSecure, headers: nil, jsonBody: jsonBody as [String : AnyObject]?) { JSONResult, error in
+
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print("Phooey!")
+                completionHandler(false, error)
+            } else {
+
+                completionHandler(true, nil)
             }
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
         }
-        task.resume()
     }
+    
     
     func postStudentLocation(studentLocation: StudentLocation, completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         
@@ -179,7 +187,7 @@ extension Client {
             }
         }
     }
-    
+        
     class func showAlert(caller: UIViewController, error: NSError) {
         print((error.domain),(error.localizedDescription))
         let alert = UIAlertController(title: error.domain, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)

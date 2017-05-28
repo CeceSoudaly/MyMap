@@ -161,8 +161,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         //set students information
         //Post the url
         //Set the student's information
-        studentLocation.firstName = "Jane"
-        studentLocation.lastName = "Smith"
+        studentLocation.firstName = "Jane2"
+        studentLocation.lastName = "Smith2"
         studentLocation.uniqueKey = "DAGjDO9B0Q"
         studentLocation.mapString = "MapTest"
         studentLocation.mediaURL = "https://udacity.com"

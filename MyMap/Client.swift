@@ -96,12 +96,10 @@ class Client : NSObject {
     func taskForPOSTMethod(method: String, baseURLSecure: String, headers: [String:String]?, jsonBody: [String:AnyObject]?, completionHandler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
-        
         /* 2/3. Build the URL and configure the request */
-        let urlString = baseURLSecure + method
-        let url = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(url: url as URL)
+        let request = NSMutableURLRequest(url: URL(string: Client.Constants.UdacityBaseURLSecure)!)
         request.httpMethod = "POST"
+
         if let headers = headers {
             for (key, value) in headers {
                 request.addValue(key, forHTTPHeaderField: value)
@@ -111,23 +109,21 @@ class Client : NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
-        
-        if let jsonBody = jsonBody {
-            do {
-                request.httpBody = try! JSONSerialization.data(withJSONObject: jsonBody, options: .prettyPrinted)
-            }
-        } else {
-            // Do nothing
-        }
-        
+      
+        request.httpBody = "{\"udacity\": {\"username\": \"\(Client.OTM.username)\", \"password\": \"\(Client.OTM.password)\"}}".data(using: String.Encoding.utf8)
+    
         print(request.allHTTPHeaderFields as Any)
         print(NSString(data: request.httpBody!, encoding:String.Encoding.utf8.rawValue)!)
+      
+        let session = URLSession.shared
+ 
+        //
         /* 4. Make the request */
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil { // Handle error…
                 return
             }
+
             
             let range = Range(5..<data!.count)
             let newData = data?.subdata(in: range) /* subset response data! */
@@ -137,34 +133,65 @@ class Client : NSObject {
                 print("Something went wrong with your POST request: \(String(describing: error))")
                 return
             }
-
+            
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("Your status code does not conform to 2xx.")
                 return
             }
+            
             guard let data = data else {
                 print("The request returned no data.")
                 return
             }
+            
             print(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!)
-
-            var parsedResult: [String:AnyObject]!
-
-            do {
-                parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
-            } catch {
-                print ("Could not parse the data as JSON: '\(data)'")
-                return
-            }
-            
-            guard let objectId = parsedResult["objectId"] as? String else {
-                print ("There is no objectId")
-                return
-            }
         
-            print("Success and your objectID: \(objectId)")
-            completionHandler(true as AnyObject?, nil)
+            /* 5. Parse the data */
+            let parsedResult: [String:AnyObject]!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as! [String:AnyObject]
+            } catch {
+                print("Could not parse the data as JSON: '\(newData)'")
+                return
+            }
             
+            /* GUARD: Did Udacity Authentication return an error? */
+            if let _ = parsedResult[Client.OTMResponseKeys.StatusCode] as? Int {
+                print("The Udacity returned an error. See the '\(Client.OTMResponseKeys.StatusCode)' and '\(Client.OTMResponseKeys.StatusMessage)' in \(parsedResult)")
+                return
+            }
+            
+            if let jsonResult = parsedResult["account"] as? [String: AnyObject] {
+                print(" ")
+                print("HERE IS MY PARSED KEY + ID ONLY:--------------------------------------------------------------------")
+                let userID = jsonResult["key"]
+                //                    self.appDelegate.sessionID = userID! as! String
+                //                    print("Account: \(self.appDelegate.sessionID)")
+                
+                let justId = jsonResult["id"]
+                print("Account: \(userID)")
+                print("justId: \(justId)")
+            }
+            
+            if let jsonResult = parsedResult["session"] as? [String: AnyObject] {
+                print(" ")
+                print("HERE IS MY PARSED KEY + ID ONLY:--------------------------------------------------------------------")
+                let expiration = jsonResult["expiration"]
+                let sessionID = jsonResult["id"]
+                print("Account: \(expiration)")
+                print("session: \(sessionID)")
+            }
+            
+            
+            /* GUARD: Is the "sessionID" key in parsedResult? */
+            guard let sessionID = parsedResult["session"] as? [String: AnyObject] else {
+                print("Cannot find key '\(Client.OTMResponseKeys.SessionID)' in \(parsedResult)")
+                return
+            }
+            
+            print("sessionID: \(sessionID)")
+            completionHandler(true as AnyObject?, nil)
+        
         }
         
         /* 7. Start the request */
@@ -241,7 +268,7 @@ class Client : NSObject {
             return
         }
     }
-    
+  
     /* Helper: Substitute the key for the value that is contained within the method name */
     //    class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
     //        if method.rangeOfString("{\(key)}") != nil {
