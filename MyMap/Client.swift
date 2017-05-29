@@ -97,7 +97,7 @@ class Client : NSObject {
         
         /* 1. Set the parameters */
         /* 2/3. Build the URL and configure the request */
-        let request = NSMutableURLRequest(url: URL(string: Client.Constants.UdacityBaseURLSecure)!)
+        let request = NSMutableURLRequest(url: URL(string: baseURLSecure)!)
         request.httpMethod = "POST"
 
         if let headers = headers {
@@ -150,8 +150,9 @@ class Client : NSObject {
             let parsedResult: [String:AnyObject]!
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as! [String:AnyObject]
+                
             } catch {
-                print("Could not parse the data as JSON: '\(newData)'")
+                print("Could not parse the data as JSON: '\(String(describing: newData))'")
                 return
             }
             
@@ -169,8 +170,8 @@ class Client : NSObject {
                 //                    print("Account: \(self.appDelegate.sessionID)")
                 
                 let justId = jsonResult["id"]
-                print("Account: \(userID)")
-                print("justId: \(justId)")
+                print("Account: \(String(describing: userID))")
+                print("justId: \(String(describing: justId))")
             }
             
             if let jsonResult = parsedResult["session"] as? [String: AnyObject] {
@@ -178,8 +179,8 @@ class Client : NSObject {
                 print("HERE IS MY PARSED KEY + ID ONLY:--------------------------------------------------------------------")
                 let expiration = jsonResult["expiration"]
                 let sessionID = jsonResult["id"]
-                print("Account: \(expiration)")
-                print("session: \(sessionID)")
+                print("Account: \(String(describing: expiration))")
+                print("session: \(String(describing: sessionID))")
             }
             
             

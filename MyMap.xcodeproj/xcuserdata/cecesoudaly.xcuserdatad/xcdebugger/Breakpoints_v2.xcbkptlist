@@ -19,5 +19,325 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Client.swift"
+            timestampString = "517728222.95408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Client.swift"
+            timestampString = "517728222.95408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Client.swift"
+            timestampString = "517728222.95408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Client.swift"
+                  timestampString = "517729313.40982"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "3508">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.(taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Client.swift"
+                  timestampString = "517729313.410998"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Client.swift"
+            timestampString = "517728222.95408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.(taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Client.swift"
+                  timestampString = "517729313.413699"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "1186">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.(taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Client.swift"
+                  timestampString = "517729313.414881"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "1478">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Client.swift"
+            timestampString = "517729312.322191"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.(taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Client.swift"
+                  timestampString = "517729313.417657"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "5883">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.(taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Client.swift"
+                  timestampString = "517729313.418827"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "6326">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Convienence.swift"
+            timestampString = "517727962.238901"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "postStudentLocation(studentLocation:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.postStudentLocation (studentLocation : MyMap.StudentLocation, completionHandler : (Swift.Bool, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Convienence.swift"
+                  timestampString = "517729313.42175"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "4723">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.Client.(postStudentLocation (studentLocation : MyMap.StudentLocation, completionHandler : (Swift.Bool, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/Convienence.swift"
+                  timestampString = "517729313.422928"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "27">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Convienence.swift"
+            timestampString = "517728037.91721"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "postStudentLocation(studentLocation:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/StudentLocationDetail.swift"
+            timestampString = "517728049.605187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "submitLocalnUrl(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.StudentLocationDetailViewContoller.submitLocalnUrl (Any) -&gt; ()"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/StudentLocationDetail.swift"
+                  timestampString = "517729313.428095"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.StudentLocationDetailViewContoller.(submitLocalnUrl (Any) -&gt; ()).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Documents/MyMap/MyMap/MyMap/StudentLocationDetail.swift"
+                  timestampString = "517729313.429226"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Client.swift"
+            timestampString = "517728411.886793"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMap/Client.swift"
+            timestampString = "517728653.290465"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
