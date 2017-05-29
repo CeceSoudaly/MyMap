@@ -18,12 +18,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     @IBOutlet weak var urlEntryTextField: UITextField!
     
-    @IBOutlet weak var topView: UIView!
-    
-    @IBOutlet weak var middleView: UIView!
-    
-    @IBOutlet weak var bottomView: UIView!
-    
     @IBOutlet weak var submitButton: UIButton!
     
     @IBOutlet weak var findLocationButton: UIButton!
@@ -59,6 +53,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
 //        subscribeToNotification(.UIKeyboardDidHide, selector: #selector(keyboardDidHide))
         
         setViewState(viewState: .One)
+    }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.DetailMap.frame = self.view.bounds;
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -240,7 +238,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             urlEntryTextField.isHidden = false
             locationTextField.isHidden = true
             findLocationButton.isHidden = true
-            topView.isHidden = true
+            lableText.isHidden = true
             
             
             //            fullView.backgroundColor = UIColor(red:0.2, green:0.4, blue:0.6, alpha:1.0) // set bg color to this bluish tinge
