@@ -123,9 +123,9 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
        /* Get cell type */
        let studentLocation = StudentLocation.sharedInstance.studentArray[indexPath.row]
        /* Set cell defaults */
-        var first = "[NO_FIRSTNAME]"
-        var last  = "[NO_LASTNAME]"
-        var mediaURL  = "[NO_URL]"
+        var first = "[NO_FIRSTNAME11]"
+        var last  = "[NO_LASTNAME22]"
+        var mediaURL  = "[NO_URL33]"
         
         if(studentLocation.firstName != nil){
            first = studentLocation.firstName! as String

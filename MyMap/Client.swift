@@ -110,7 +110,13 @@ class Client : NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
       
-        request.httpBody = "{\"udacity\": {\"username\": \"\(Client.OTM.username)\", \"password\": \"\(Client.OTM.password)\"}}".data(using: String.Encoding.utf8)
+        if(!baseURLSecure.isEmpty && baseURLSecure == Client.Constants.ParseBaseURLSecure)
+        {
+            request.httpBody = try! JSONSerialization.data(withJSONObject: jsonBody, options: .prettyPrinted)
+        }else
+        {
+            request.httpBody = "{\"udacity\": {\"username\": \"\(Client.OTM.username)\", \"password\": \"\(Client.OTM.password)\"}}".data(using: String.Encoding.utf8)
+        }
     
         print(request.allHTTPHeaderFields as Any)
         print(NSString(data: request.httpBody!, encoding:String.Encoding.utf8.rawValue)!)
@@ -145,52 +151,7 @@ class Client : NSObject {
             }
             
             print(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!)
-        
-            /* 5. Parse the data */
-            let parsedResult: [String:AnyObject]!
-            do {
-                parsedResult = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as! [String:AnyObject]
-                
-            } catch {
-                print("Could not parse the data as JSON: '\(String(describing: newData))'")
-                return
-            }
-            
-            /* GUARD: Did Udacity Authentication return an error? */
-            if let _ = parsedResult[Client.OTMResponseKeys.StatusCode] as? Int {
-                print("The Udacity returned an error. See the '\(Client.OTMResponseKeys.StatusCode)' and '\(Client.OTMResponseKeys.StatusMessage)' in \(parsedResult)")
-                return
-            }
-            
-            if let jsonResult = parsedResult["account"] as? [String: AnyObject] {
-                print(" ")
-                print("HERE IS MY PARSED KEY + ID ONLY:--------------------------------------------------------------------")
-                let userID = jsonResult["key"]
-                //                    self.appDelegate.sessionID = userID! as! String
-                //                    print("Account: \(self.appDelegate.sessionID)")
-                
-                let justId = jsonResult["id"]
-                print("Account: \(String(describing: userID))")
-                print("justId: \(String(describing: justId))")
-            }
-            
-            if let jsonResult = parsedResult["session"] as? [String: AnyObject] {
-                print(" ")
-                print("HERE IS MY PARSED KEY + ID ONLY:--------------------------------------------------------------------")
-                let expiration = jsonResult["expiration"]
-                let sessionID = jsonResult["id"]
-                print("Account: \(String(describing: expiration))")
-                print("session: \(String(describing: sessionID))")
-            }
-            
-            
-            /* GUARD: Is the "sessionID" key in parsedResult? */
-            guard let sessionID = parsedResult["session"] as? [String: AnyObject] else {
-                print("Cannot find key '\(Client.OTMResponseKeys.SessionID)' in \(parsedResult)")
-                return
-            }
-            
-            print("sessionID: \(sessionID)")
+
             completionHandler(true as AnyObject?, nil)
         
         }
@@ -200,10 +161,9 @@ class Client : NSObject {
         
         return task
     }
-    
+ 
     // MARK: DELETE
-    
-    func taskForDELETEMethod(method: String, completionHandler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+      func taskForDELETEMethod(method: String, completionHandler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "DELETE"
