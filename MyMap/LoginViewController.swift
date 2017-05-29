@@ -22,19 +22,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var debugTextLabel: UILabel!
     @IBOutlet weak var udacityImageView: UIImageView!
     
     // MARK: Life Cycle
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // get the app delegate
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        configureUI()
-        
+//        configureUI()
+     
         subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
         subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
         subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
@@ -53,7 +52,10 @@ class LoginViewController: UIViewController {
         userDidTapView(self)
         
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            debugTextLabel.text = "Username or Password Empty."
+            //todo: needs a popup message
+            print("Username or Password Empty.")
+
+            
         } else {
            setUIEnabled(false)
            logIntoUdacity()
@@ -62,7 +64,6 @@ class LoginViewController: UIViewController {
     
     private func completeLogin() {
         performUIUpdatesOnMain {
-            self.debugTextLabel.text = ""
             self.setUIEnabled(true)
             //Tab view controller
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
@@ -70,8 +71,16 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // MARK:
+    @IBAction func beginEditingUserName(_ sender: Any) {
+        
+        usernameTextField.text = ""
+    }
     
+    @IBAction func beginEditingPassword(_ sender: Any) {
+        passwordTextField.text = ""
+    }
+    
+    // MARK:    
     private func logIntoUdacity() {
         // this needs to be refactored to the convience class
         let request = NSMutableURLRequest(url: URL(string: Client.Constants.UdacityBaseURLSecure)!)
@@ -82,8 +91,8 @@ class LoginViewController: UIViewController {
 
         usernameTextField.text = Client.OTM.username
         passwordTextField.text = Client.OTM.password
-        print("Your usernameTextField.text: \(usernameTextField.text)")
-        print("Your passwordTextField.text): \(passwordTextField.text))")
+        print("Your usernameTextField.text: \(String(describing: usernameTextField.text))")
+        print("Your passwordTextField.text): \(String(describing: passwordTextField.text)))")
         Client.sharedInstance().postSession(username: usernameTextField.text!, password: passwordTextField.text!) { (success, error) in
             if success == true {
                 print("Logged in")
@@ -97,8 +106,7 @@ class LoginViewController: UIViewController {
                 })
             }
         }
-        
- 
+  
     }
     
    }
@@ -150,10 +158,15 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    @IBAction func userDidTapView(_ sender: AnyObject) {
+   func userDidTapView(_ sender: AnyObject) {
         resignIfFirstResponder(usernameTextField)
         resignIfFirstResponder(passwordTextField)
     }
+    
+    
+    
+    
+    
 }
 // MARK: - LoginViewController (Configure UI)
 
@@ -163,8 +176,6 @@ private extension LoginViewController {
         usernameTextField.isEnabled = enabled
         passwordTextField.isEnabled = enabled
         loginButton.isEnabled = enabled
-        debugTextLabel.text = ""
-        debugTextLabel.isEnabled = enabled
     
         // adjust login button alpha
         if enabled {

@@ -123,15 +123,26 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
        /* Get cell type */
        let studentLocation = StudentLocation.sharedInstance.studentArray[indexPath.row]
        /* Set cell defaults */
-    if(studentLocation.firstName != nil && studentLocation.lastName != nil){
-           let first = studentLocation.firstName! as String
-           let last = studentLocation.lastName! as String
-           let mediaURL = studentLocation.mediaURL! as String
-           cell.imageView?.image = UIImage(named: "icon_pin")
-           cell.textLabel!.text = "\(first) \(last)"
-           cell.detailTextLabel!.text = mediaURL
-           cell.imageView!.contentMode = UIViewContentMode.scaleAspectFit
-    }
+        var first = "[NO_FIRSTNAME]"
+        var last  = "[NO_LASTNAME]"
+        var mediaURL  = "[NO_URL]"
+        
+        if(studentLocation.firstName != nil){
+           first = studentLocation.firstName! as String
+        }
+        
+        if(studentLocation.firstName != nil && studentLocation.lastName != nil){
+            last = studentLocation.lastName! as String
+        }
+        
+        if(studentLocation.firstName != nil && studentLocation.lastName != nil){
+            mediaURL = studentLocation.mediaURL! as String
+        }
+
+        cell.imageView?.image = UIImage(named: "icon_pin")
+        cell.textLabel!.text = "\(first) \(last)"
+        cell.detailTextLabel!.text = mediaURL
+        cell.imageView!.contentMode = UIViewContentMode.scaleAspectFit
        return cell
     }
 
