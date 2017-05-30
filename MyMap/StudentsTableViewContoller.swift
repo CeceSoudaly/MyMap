@@ -54,23 +54,26 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     func addLocation(){
         
         print("addLocation")
-        //LocationDetails
+        let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
         
-//        let alert = UIAlertController(title: "UIAlertController", message: "You are about do you want to add more location?", preferredStyle: UIAlertControllerStyle.alert)
-//
-//        // add the actions (buttons)
-//        alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: nil))
-//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-//
-//        // show the alert
-//        self.present(alert, animated: true, completion: nil)
-
-        performUIUpdatesOnMain {
-            //Tab view controller
-            let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
-            self.navigationController!.pushViewController(detailController, animated: true)
-            self.tabBarController?.tabBar.isHidden = true
-        }
+        
+        refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
+            print("Handle Ok logic here")
+            performUIUpdatesOnMain {
+                //Tab view controller
+                let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
+                self.navigationController!.pushViewController(detailController, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
+            }
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
+        // show the alert
+       
     }
     
     func logOut(){
