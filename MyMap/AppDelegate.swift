@@ -30,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func resetAppToFirstController() {
+        self.window?.rootViewController = LoginViewController(nibName: nil, bundle: nil)
+        
+    }
 }
 
 // MARK: Create URL from Parameters
