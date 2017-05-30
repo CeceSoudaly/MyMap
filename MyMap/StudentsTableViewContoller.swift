@@ -114,6 +114,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     func refresh()
     {
         print("refresh")
+        tableView!.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

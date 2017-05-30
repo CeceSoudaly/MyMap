@@ -38,6 +38,7 @@ class LoginViewController: UIViewController {
         subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
         subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
         subscribeToNotification(.UIKeyboardDidHide, selector: #selector(keyboardDidHide))
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,10 +75,12 @@ class LoginViewController: UIViewController {
     @IBAction func beginEditingUserName(_ sender: Any) {
         
         usernameTextField.text = ""
+        self.usernameTextField.delegate = self
     }
     
     @IBAction func beginEditingPassword(_ sender: Any) {
         passwordTextField.text = ""
+        self.passwordTextField.delegate = self
     }
     
     // MARK:    
