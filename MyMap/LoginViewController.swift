@@ -31,9 +31,7 @@ class LoginViewController: UIViewController {
         
         // get the app delegate
         appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-//        configureUI()
-     
+ 
         subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
         subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
         subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
@@ -187,31 +185,7 @@ private extension LoginViewController {
            loginButton.alpha = 0.5
         }
     }
-   
-    func configureUI() {
-        
-        // configure background gradient
-        let backgroundGradient = CAGradientLayer()
-        backgroundGradient.colors = [Client.UI.LoginColorTop, Client.UI.LoginColorBottom]
-        backgroundGradient.locations = [0.0, 1.0]
-        backgroundGradient.frame = view.frame
-        view.layer.insertSublayer(backgroundGradient, at: 0)
-        
-        configureTextField(usernameTextField)
-        configureTextField(passwordTextField)
-    }
 
-    func configureTextField(_ textField: UITextField) {
-        let textFieldPaddingViewFrame = CGRect(x: 0.0, y: 0.0, width: 13.0, height: 0.0)
-        let textFieldPaddingView = UIView(frame: textFieldPaddingViewFrame)
-        textField.leftView = textFieldPaddingView
-        textField.leftViewMode = .always
-        textField.backgroundColor = Client.UI.GreyColor
-        textField.textColor = Client.UI.BlueColor
-        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.white])
-        textField.tintColor = Client.UI.BlueColor
-        textField.delegate = self
-    }
 }
 
 // MARK: - LoginViewController (Notifications)

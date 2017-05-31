@@ -44,9 +44,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // get the app delegate
-    
-        
 //        subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
 //        subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
 //        subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
@@ -218,12 +215,9 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             DetailMap.isHidden = true
             submitButton.isHidden = true
             urlEntryTextField.isHidden = true
+            locationTextField.isHidden = false
             findLocationButton.isHidden = false
-           
-            
-            //            fullView.backgroundColor = UIColor(white:0.8, alpha:1.0)    // set bg color to light gray
-            //            cancelButton.setTitleColor(UIColor(red:0.2, green:0.4, blue:0.6, alpha:1.0), forState: .Normal) // set
-            //            activityIndicator.hidden = true
+       
             break
         case .Two:
             
@@ -239,11 +233,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             locationTextField.isHidden = true
             findLocationButton.isHidden = true
             lableText.isHidden = true
-            
-            
-            //            fullView.backgroundColor = UIColor(red:0.2, green:0.4, blue:0.6, alpha:1.0) // set bg color to this bluish tinge
-            //            cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal) // set title color to white
-            //            activityIndicator.hidden = true
             
             break
         }

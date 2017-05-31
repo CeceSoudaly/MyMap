@@ -15,7 +15,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // is set up as the map view's delegate.
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITabBarItem!
-    
+    var activityIndicator = UIActivityIndicatorView()
     var StudentLocations: [StudentLocation] = [StudentLocation]()
     
     override func viewDidLoad() {
@@ -92,8 +92,41 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func refresh()
     {
         print("refresh")
+        let spinner = startActivityIndicatorView()
+       
+            for annotation : MKAnnotation in self.mapView.annotations {
+                self.mapView.removeAnnotation(annotation)
+            }
+            
+            self.getLocationsForMap()
+     
+        stopActivityIndicatorView(activityView: spinner)
     }
     
+    func startActivityIndicatorView() -> UIActivityIndicatorView {
+        let x = (self.view.frame.width / 2)
+        let y = (self.view.frame.height / 2) - (self.navigationController?.navigationBar.frame.height)!
+        
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView.frame = CGRect(x: 200, y: 120, width: 200, height: 200)
+        activityView.center = CGPoint(x: x, y: y)
+        activityView.color = .blue
+        activityView.startAnimating()
+        self.view.addSubview(activityView)
+        
+        return activityView
+    }
+    
+    func stopActivityIndicatorView(activityView: UIActivityIndicatorView) {
+        DispatchQueue.main.async() {
+            activityView.removeFromSuperview()
+        }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.mapView.frame = self.view.bounds;
+    }
     
     func getLocationsForMap () {
         
