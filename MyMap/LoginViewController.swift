@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import FBSDKCoreKit
+import FBSDKShareKit
+import FBSDKLoginKit
 
-
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // MARK: Properties
     
@@ -23,6 +25,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var udacityImageView: UIImageView!
+
     
     // MARK: Life Cycle
  
@@ -31,17 +34,60 @@ class LoginViewController: UIViewController {
         
         // get the app delegate
         appDelegate = UIApplication.shared.delegate as! AppDelegate
- 
+        
+        
         subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
         subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
         subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
         subscribeToNotification(.UIKeyboardDidHide, selector: #selector(keyboardDidHide))
+        
+        print("FBSDKAccessToken.currentAccessToken() ",FBSDKAccessToken.current() )
+        
+        if (FBSDKAccessToken.current() != nil)
+        {
+            // User is already logged in, do work such as go to next view controller.
+        }
+        else
+        {
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            self.view.addSubview(loginView)
+            let newcenter =  CGPoint(x: self.view.center.x, y: 450)
+            loginView.center = newcenter
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.delegate = self
+        }
+        
+        
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromAllNotifications()
+    }
+    
+    @IBAction func loginFacebookAction(sender: AnyObject) {//action of the custom button in the storyboard
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                if(fbloginresult.grantedPermissions.contains("email"))
+                {
+                    self.getFBUserData()
+                }
+            }
+        }
+    }
+    
+    func getFBUserData(){
+        if((FBSDKAccessToken.current()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    //everything works print the user data
+                    print("Hello....log into facebook here")
+                }
+            })
+        }
     }
     
     // MARK: Login
@@ -60,6 +106,33 @@ class LoginViewController: UIViewController {
            logIntoUdacity()
         }
     }
+
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print("User Logged In")
+        if ((error) != nil)
+        {
+            // Process error
+            print("what type of Error are you getting? ",error)
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+             print("what type result? ",result)
+        }
+        else {
+            // If you ask for multiple permissions at once, you
+            // should check if specific permissions missing
+            if result.grantedPermissions.contains("email")
+            {
+                // Do work
+                print("what type result.grantedPermissions? ",result.grantedPermissions)
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("User Logged Out")
+    }
     
     private func completeLogin() {
         performUIUpdatesOnMain {
@@ -69,6 +142,7 @@ class LoginViewController: UIViewController {
             self.present(controller, animated: true, completion: nil)
         }
     }
+    
     
     @IBAction func beginEditingUserName(_ sender: Any) {
         
@@ -84,11 +158,6 @@ class LoginViewController: UIViewController {
     // MARK:    
     private func logIntoUdacity() {
         // this needs to be refactored to the convience class
-        let request = NSMutableURLRequest(url: URL(string: Client.Constants.UdacityBaseURLSecure)!)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
 
         usernameTextField.text = Client.OTM.username
         passwordTextField.text = Client.OTM.password
@@ -111,7 +180,28 @@ class LoginViewController: UIViewController {
     }
     
    }
- 
+
+//func loginButtonFB(loginFacebookButton: loginFBbutton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+//    if ((error) != nil) {
+//        print("Failed Facebook login")
+//        dispatch_get_main_queue().async(execute: {
+////            Convenience.showAlert(self, error: error!)
+//            print(">>>>>> ")
+//        })
+//    } else if result.isCancelled {
+//        print("Cancelled Facebook login")
+//    }
+//    else {
+//        if result.grantedPermissions.contains("email")
+//        {
+////           completeLogin(Client.AuthService.Facebook)
+//            print("Successful Facebook login")
+//        }
+//    }
+//}
+
+
+
 // MARK: - LoginViewController: UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {

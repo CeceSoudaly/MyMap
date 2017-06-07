@@ -23,6 +23,11 @@
 		A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */; };
 		A9102F641EBE9211003BAEAB /* StudentsTableViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */; };
 		A911DC411EBD91B400A02866 /* StudentLocationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */; };
+		A9B2FFAD1EE358C5000D5F81 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B2FFAC1EE358C5000D5F81 /* Bolts.framework */; };
+		A9B2FFAF1EE3593F000D5F81 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B2FFAE1EE3593F000D5F81 /* FBSDKCoreKit.framework */; };
+		A9B2FFB11EE3596E000D5F81 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B2FFB01EE3596E000D5F81 /* FBSDKLoginKit.framework */; };
+		A9B2FFB31EE35996000D5F81 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B2FFB21EE35996000D5F81 /* FBSDKShareKit.framework */; };
+		A9B2FFB51EE35ABF000D5F81 /* Desktop in Resources */ = {isa = PBXBuildFile; fileRef = A9B2FFB41EE35ABF000D5F81 /* Desktop */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +71,12 @@
 		A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsTableViewContoller.swift; sourceTree = "<group>"; };
 		A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationDetail.swift; sourceTree = "<group>"; };
+		A9B2FFAC1EE358C5000D5F81 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../FacebookSDKs-iOS-4/Bolts.framework"; sourceTree = "<group>"; };
+		A9B2FFAE1EE3593F000D5F81 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../FacebookSDKs-iOS-4/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		A9B2FFB01EE3596E000D5F81 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../FacebookSDKs-iOS-4/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		A9B2FFB21EE35996000D5F81 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../FacebookSDKs-iOS-4/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		A9B2FFB41EE35ABF000D5F81 /* Desktop */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Desktop; path = ../../../Desktop; sourceTree = "<group>"; };
+		A9B2FFBA1EE3C95D000D5F81 /* MyMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyMap.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +84,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9B2FFB31EE35996000D5F81 /* FBSDKShareKit.framework in Frameworks */,
+				A9B2FFAD1EE358C5000D5F81 /* Bolts.framework in Frameworks */,
+				A9B2FFAF1EE3593F000D5F81 /* FBSDKCoreKit.framework in Frameworks */,
+				A9B2FFB11EE3596E000D5F81 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +111,8 @@
 		A90EE75A1E9C7E4F00877DE4 = {
 			isa = PBXGroup;
 			children = (
+				A9B2FFB91EE361D3000D5F81 /* Framework */,
+				A9B2FFB41EE35ABF000D5F81 /* Desktop */,
 				A90EE7651E9C7E4F00877DE4 /* MyMap */,
 				A90EE77A1E9C7E5000877DE4 /* MyMapTests */,
 				A90EE7851E9C7E5000877DE4 /* MyMapUITests */,
@@ -116,6 +133,7 @@
 		A90EE7651E9C7E4F00877DE4 /* MyMap */ = {
 			isa = PBXGroup;
 			children = (
+				A9B2FFBA1EE3C95D000D5F81 /* MyMap.entitlements */,
 				A90EE7661E9C7E4F00877DE4 /* AppDelegate.swift */,
 				A90EE7681E9C7E4F00877DE4 /* MapViewController.swift */,
 				A90D50B01EA71EA50086B890 /* MyPlayground.playground */,
@@ -152,6 +170,17 @@
 				A90EE7881E9C7E5000877DE4 /* Info.plist */,
 			);
 			path = MyMapUITests;
+			sourceTree = "<group>";
+		};
+		A9B2FFB91EE361D3000D5F81 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				A9B2FFB21EE35996000D5F81 /* FBSDKShareKit.framework */,
+				A9B2FFAE1EE3593F000D5F81 /* FBSDKCoreKit.framework */,
+				A9B2FFB01EE3596E000D5F81 /* FBSDKLoginKit.framework */,
+				A9B2FFAC1EE358C5000D5F81 /* Bolts.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +253,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = G3BLNBS74P;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					A90EE7761E9C7E5000877DE4 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -263,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A90EE7711E9C7E4F00877DE4 /* LaunchScreen.storyboard in Resources */,
+				A9B2FFB51EE35ABF000D5F81 /* Desktop in Resources */,
 				A90EE76E1E9C7E4F00877DE4 /* Assets.xcassets in Resources */,
 				A90EE76C1E9C7E4F00877DE4 /* Main.storyboard in Resources */,
 			);
@@ -449,7 +484,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MyMap/MyMap.entitlements;
 				DEVELOPMENT_TEAM = G3BLNBS74P;
+				FRAMEWORK_SEARCH_PATHS = "\"~/Documents/FacebookSDK\"";
 				INFOPLIST_FILE = MyMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CeceMobile.MyMap;
@@ -462,7 +500,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MyMap/MyMap.entitlements;
 				DEVELOPMENT_TEAM = G3BLNBS74P;
+				FRAMEWORK_SEARCH_PATHS = "\"~/Documents/FacebookSDK\"";
 				INFOPLIST_FILE = MyMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CeceMobile.MyMap;

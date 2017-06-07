@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +37,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = LoginViewController(nibName: nil, bundle: nil)
         
     }
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+    }
+    
+    
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // do something
+    }
+    
+    
 }
 
 // MARK: Create URL from Parameters
