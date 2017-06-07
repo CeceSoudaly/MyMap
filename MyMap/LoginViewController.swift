@@ -46,6 +46,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if (FBSDKAccessToken.current() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
+            print("You are already log in....",FBSDKAccessToken.current() );
         }
         else
         {
@@ -110,24 +111,23 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         print("User Logged In")
-        if ((error) != nil)
-        {
-            // Process error
-            print("what type of Error are you getting? ",error)
-        }
-        else if result.isCancelled {
-            // Handle cancellations
-             print("what type result? ",result)
-        }
-        else {
-            // If you ask for multiple permissions at once, you
-            // should check if specific permissions missing
-            if result.grantedPermissions.contains("email")
-            {
-                // Do work
-                print("what type result.grantedPermissions? ",result.grantedPermissions)
-            }
-        }
+        if ((error) != nil) {
+                    print("Failed Facebook login")
+                    DispatchQueue.main.async(execute: {
+                      //  Convenience.showAlert(self, error: error!)
+                        print(">>>>>> ")
+                    })
+                } else if result.isCancelled {
+                    print("Cancelled Facebook login")
+                }
+                else {
+                    if result.grantedPermissions.contains("email")
+                    {
+                       //completeLogin(Client.AuthService.Facebook)
+                       print("Successful Facebook login")
+                    }
+                }
+
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
