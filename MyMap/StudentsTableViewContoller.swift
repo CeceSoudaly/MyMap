@@ -54,7 +54,6 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     func addLocation(){
         
         print("addLocation")
-       
         
         Client.sharedInstance().queryStudentName{ (success, error) in
             
@@ -78,9 +77,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                 })
             }
         }
-        
-        //present(refreshAlert, animated: true, completion: nil)
-        // show the alert
+    
        
     }
     
@@ -115,6 +112,8 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
             
             if(first == "Cece" && last == "Soudaly")
             {
+                print("This person already exist")
+                
                 let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
@@ -130,6 +129,9 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                 refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
                     print("Handle Cancel Logic here")
                 }))
+                
+                self.present(refreshAlert, animated: true, completion: nil)
+                // show the alert
             }
 
         }

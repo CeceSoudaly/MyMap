@@ -99,9 +99,6 @@ class Client : NSObject {
         //E5P98JhTB5
 
         let method : String = Methods.UdacityUserData
-        
-//        let request = NSMutableURLRequest(url: NSURL(string: "https://parse.udacity.com/parse/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%224660628637%22%7D")! as URL)
-//        
         let urlString = "https://parse.udacity.com/parse/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%224660628637%22%7D"
         let url = URL(string: urlString)
         let request = NSMutableURLRequest(url: url!)

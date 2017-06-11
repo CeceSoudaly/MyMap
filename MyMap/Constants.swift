@@ -18,7 +18,6 @@ import UIKit
         static let ApiPath = "/3"
         static let username = "xxx"
         static let password = "xxx"
-        //4660628637
     }
     
     // MARK: OTM Parameter Keys
@@ -79,12 +78,15 @@ import UIKit
         // MARK: URLs
         static let UdacityBaseURLSecure : String = "https://www.udacity.com/api/session"
         static let ParseBaseURLSecure : String = "https://parse.udacity.com/parse/classes/StudentLocation"
+      
     }
     
     // MARK: Methods
     struct Methods {
         // MARK: Udacity
         static let UdacityUserData = "users/{id}"
+        //{"uniqueKey":"1234"}
+        static let UdacityUniqueKey = "{\"uniqueKey\":\"4660628637\"}"
         static let UdacityPostSession = "session"
         static let UdacityDeleteSession = "session"
         
@@ -111,6 +113,7 @@ import UIKit
         static let Skip = "skip"
         static let Where = "where"
         static let Order = "order"
+        static let uniqueKey = "uniqueKey"
         
     }
     

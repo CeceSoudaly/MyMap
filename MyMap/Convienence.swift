@@ -54,23 +54,14 @@ extension Client {
     }
   
     func queryStudentName(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) -> Void {
-    
-//        * 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
 
-//        if let uniqueKey = StudentLocation.sharedInstance.uniqueKey {
-//            method = Client.substituteKeyInMethod(Methods.UdacityUserData, key: URLKeys.UserID, value: uniqueKey)!
-//        } else {
-//            let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot post when logged in with Facebook credentials. Please log in with Udacity credentials."])
-//            completionHandler(false, error)
-//            return
-//        }
-        
-        //where={"uniqueKey":"1234"}
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters: [String: AnyObject] = [
-            Client.ParameterKeys.Where: Client.Methods.UdacityUniqueKey as AnyObject
+            Client.ParameterKeys.Where: Client.Methods.UdacityUniqueKey  as AnyObject
+
         ]
-        let method : String = Client.Methods.UdacityUserData
+
+        let method : String = ""
         let headers : [String:String] = [
             Client.HeaderKeys.ParseAppID: Client.Constants.AppID,
             Client.HeaderKeys.ParseRESTAPIKey: Client.Constants.RESTApiKey
@@ -83,9 +74,7 @@ extension Client {
             if let error = error {
                 completionHandler(false, error)
             } else {
-                
-                print("JSONResult>>>>> ",JSONResult)
-                
+            
                 if let results = JSONResult?["results"] as? [[String : AnyObject]] {
                    
                     let studentLocation = StudentLocation.sharedInstance
