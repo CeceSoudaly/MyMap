@@ -83,9 +83,9 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     func getSingleStudentLocation(){
         
-        var first = "[NO_FIRSTNAME]"
-        var last  = "[NO_LASTNAME]"
-        var mediaURL  = "[NO_URL]"
+        var first = ""
+        var last  = ""
+        var mediaURL  = ""
         
         for location in StudentLocation.sharedInstance.studentArray{
             // Notice that the float values are being used to create CLLocationDegree values.
@@ -110,7 +110,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
              
             }
             
-            if(first == "Cece" && last == "Soudaly")
+            if(!first.isEmpty && !last.isEmpty)
             {
                 print("This person already exist")
                 
