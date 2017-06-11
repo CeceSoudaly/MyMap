@@ -54,26 +54,87 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     func addLocation(){
         
         print("addLocation")
-        let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
+       
         
-        
-        refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
-            performUIUpdatesOnMain {
-                //Tab view controller
-                let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
-                self.navigationController!.pushViewController(detailController, animated: true)
-                self.tabBarController?.tabBar.isHidden = true
+        Client.sharedInstance().queryStudentName{ (success, error) in
+            
+            if error != nil {
+                DispatchQueue.main.async(execute: {
+                    Client.showAlert(caller: self, error: error!)
+                    
+                })
+            } else if success {
+                print("Session found a Student?")
+                DispatchQueue.main.async {
+                    //self.dismiss(animated: true, completion: nil)
+                    //look up students
+                    self.getSingleStudentLocation()
+                }
+            } else {
+                DispatchQueue.main.async(execute: {
+                    let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not find a student"])
+                    Client.showAlert(caller: self, error: error)
+                    
+                })
             }
-        }))
+        }
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
-        }))
-        
-        present(refreshAlert, animated: true, completion: nil)
+        //present(refreshAlert, animated: true, completion: nil)
         // show the alert
        
+    }
+    
+    func getSingleStudentLocation(){
+        
+        var first = "[NO_FIRSTNAME]"
+        var last  = "[NO_LASTNAME]"
+        var mediaURL  = "[NO_URL]"
+        
+        for location in StudentLocation.sharedInstance.studentArray{
+            // Notice that the float values are being used to create CLLocationDegree values.
+            // This is a version of the Double type.
+            if(location.latitude != nil)
+            {
+                
+                if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
+                    first = location.firstName! as String
+                    print("first>>> ",first)
+                }
+                
+                if(!(location.lastName?.isEmpty)! && location.lastName != nil ){
+                    last = location.lastName! as String
+                    print("last>>> ",last)
+                }
+                
+                if( location.mediaURL != nil && !(location.mediaURL?.isEmpty)!){
+                    mediaURL = location.mediaURL! as String
+                    print("mediaURL>>> ",mediaURL)
+                }
+             
+            }
+            
+            if(first == "Cece" && last == "Soudaly")
+            {
+                let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
+                    print("Handle Ok logic here")
+                    performUIUpdatesOnMain {
+                        //Tab view controller
+                        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
+                        self.navigationController!.pushViewController(detailController, animated: true)
+                        self.tabBarController?.tabBar.isHidden = true
+                    }
+                }))
+                
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                    print("Handle Cancel Logic here")
+                }))
+            }
+
+        }
+      
+        
     }
     
     func logOut(){
@@ -131,15 +192,15 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         var last  = "[NO_LASTNAME22]"
         var mediaURL  = "[NO_URL33]"
         
-        if(studentLocation.firstName != nil){
+        if(!(studentLocation.firstName?.isEmpty)! && studentLocation.firstName != nil){
            first = studentLocation.firstName! as String
         }
         
-        if(studentLocation.firstName != nil && studentLocation.lastName != nil){
+        if(!(studentLocation.lastName?.isEmpty)! && studentLocation.lastName != nil){
             last = studentLocation.lastName! as String
         }
         
-        if(studentLocation.firstName != nil && studentLocation.lastName != nil){
+        if( !(studentLocation.mediaURL?.isEmpty)! && studentLocation.mediaURL != nil){
             mediaURL = studentLocation.mediaURL! as String
         }
 

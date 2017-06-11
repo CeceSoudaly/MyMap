@@ -48,6 +48,7 @@ class Client : NSObject {
         }
         
         let url = NSURL(string: urlString)!
+        print("url>>>>>>", url)
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "GET"
         if let headers = headers {
@@ -59,6 +60,7 @@ class Client : NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
+        print("url>>>>>>", request)
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
@@ -90,6 +92,74 @@ class Client : NSObject {
         
         return task
     }
+    
+    
+    func taskForGETMethodStudentd(method: String, baseURLSecure: String, parameters: [String: AnyObject]?, headers: [String:String]?, completionHandler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+        //4660628637
+        //E5P98JhTB5
+
+        let method : String = Methods.UdacityUserData
+        
+//        let request = NSMutableURLRequest(url: NSURL(string: "https://parse.udacity.com/parse/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%224660628637%22%7D")! as URL)
+//        
+        let urlString = "https://parse.udacity.com/parse/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%224660628637%22%7D"
+        let url = URL(string: urlString)
+        let request = NSMutableURLRequest(url: url!)
+        
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+
+        request.httpMethod = "GET"
+        
+        print("url>>>>>>", request)
+        
+        
+        let session = URLSession.shared
+        
+        
+        /* 4. Make the request */
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler )
+            
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            if let error = error {
+                completionHandler(false as AnyObject, error as NSError)
+            } else {
+                
+                if let data = data {
+                    
+                    var newData: NSData
+                    let rangeStartByte = 0  // rangeStartByte is equivalent to "currentByte" from question
+                    let maxSubdataLength = 5
+                    //  let dataLength = sourceString.lengthOfBytes(using: String.Encoding.utf8)
+                    
+                    if method.contains("users") {
+                        let subdataLength = min(maxSubdataLength, data.count - 5)
+                        
+                        newData = data.subdata(in: rangeStartByte ..< (rangeStartByte + subdataLength)) as NSData
+                        
+                    } else {
+                        newData = data as NSData
+                    }
+              
+                    
+                    print("Hello >>>", NSString(data: data, encoding: String.Encoding.utf8.rawValue)!)
+                    
+                    Client.parseJSONWithCompletionHandler(data: data as NSData, completionHandler: completionHandler )
+                    
+                }
+            }
+            
+        }
+        
+        /* 7. Start the request */
+        task.resume()
+        
+        
+        return task
+    }
+    
     
     // MARK: POST
     
@@ -244,7 +314,16 @@ class Client : NSObject {
         
         var parsedResult: AnyObject!
         do {
-            parsedResult = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as AnyObject
+           
+            let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String : Any]
+            
+            print("what you got ??? ",json!)
+       
+            parsedResult = json as AnyObject
+           
+            let posts = parsedResult["posts"] as? [[String: Any]] ?? []
+            print(posts)
+            
             
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]

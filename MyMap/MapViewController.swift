@@ -165,9 +165,23 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 // The lat and long are used to create a CLLocationCoordinates2D instance.
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 
-                let first = location.firstName! as String
-                let last = location.lastName! as String
-                let mediaURL = location.mediaURL! as String
+                var first = "[NO_FIRSTNAME]"
+                var last  = "[NO_LASTNAME]"
+                var mediaURL  = "[NO_URL]"
+                 
+                
+                if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
+                     first = location.firstName! as String
+                }
+                
+                if(!(location.lastName?.isEmpty)! && location.lastName != nil ){
+                     last = location.lastName! as String
+                }
+                
+                if( location.mediaURL != nil && !(location.mediaURL?.isEmpty)!){
+                     mediaURL = location.mediaURL! as String
+                }
+
                 
                 // Here we create the annotation and set its coordiate, title, and subtitle properties
                 let annotation = MKPointAnnotation()

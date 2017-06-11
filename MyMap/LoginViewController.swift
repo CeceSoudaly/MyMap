@@ -123,7 +123,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 else {
                     if result.grantedPermissions.contains("email")
                     {
-                       //completeLogin(Client.AuthService.Facebook)
+                       completeLogin(Client.AuthService.Facebook)
                        print("Successful Facebook login")
                     }
                 }
@@ -134,7 +134,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         print("User Logged Out")
     }
     
-    private func completeLogin() {
+    private func completeLogin(_ loginAs: Client.AuthService) {
         performUIUpdatesOnMain {
             self.setUIEnabled(true)
             //Tab view controller
@@ -157,19 +157,18 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // MARK:    
     private func logIntoUdacity() {
-        // this needs to be refactored to the convience class
-
-        usernameTextField.text = Client.OTM.username
+        // use for testing
+       usernameTextField.text = Client.OTM.username
         passwordTextField.text = Client.OTM.password
+        
         print("Your usernameTextField.text: \(String(describing: usernameTextField.text))")
         print("Your passwordTextField.text): \(String(describing: passwordTextField.text)))")
         Client.sharedInstance().postSession(username: usernameTextField.text!, password: passwordTextField.text!) { (success, error) in
             if success == true {
                 print("Logged in")
                 DispatchQueue.main.async(execute: {
-//                    self.completeLogin(Client.AuthService.Udacity)
-                    self.completeLogin()
-                })
+                    self.completeLogin(Client.AuthService.Udacity)
+               })
             } else {
                 DispatchQueue.main.async(execute: {
                     Client.showAlert(caller: self, error: error!)
@@ -180,26 +179,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
    }
-
-//func loginButtonFB(loginFacebookButton: loginFBbutton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-//    if ((error) != nil) {
-//        print("Failed Facebook login")
-//        dispatch_get_main_queue().async(execute: {
-////            Convenience.showAlert(self, error: error!)
-//            print(">>>>>> ")
-//        })
-//    } else if result.isCancelled {
-//        print("Cancelled Facebook login")
-//    }
-//    else {
-//        if result.grantedPermissions.contains("email")
-//        {
-////           completeLogin(Client.AuthService.Facebook)
-//            print("Successful Facebook login")
-//        }
-//    }
-//}
-
 
 
 // MARK: - LoginViewController: UITextFieldDelegate
@@ -253,11 +232,7 @@ extension LoginViewController: UITextFieldDelegate {
         resignIfFirstResponder(usernameTextField)
         resignIfFirstResponder(passwordTextField)
     }
-    
-    
-    
-    
-    
+   
 }
 // MARK: - LoginViewController (Configure UI)
 

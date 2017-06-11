@@ -54,48 +54,52 @@ extension Client {
     }
   
     func queryStudentName(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) -> Void {
+    
+//        * 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+
+//        if let uniqueKey = StudentLocation.sharedInstance.uniqueKey {
+//            method = Client.substituteKeyInMethod(Methods.UdacityUserData, key: URLKeys.UserID, value: uniqueKey)!
+//        } else {
+//            let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot post when logged in with Facebook credentials. Please log in with Udacity credentials."])
+//            completionHandler(false, error)
+//            return
+//        }
         
+        //where={"uniqueKey":"1234"}
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let method: String
-        if let uniqueKey = StudentLocation.sharedInstance.uniqueKey {
-            method = substituteKeyInMethod(Methods.UdacityUserData, key: URLKeys.UserID, value: uniqueKey)!
-        } else {
-            let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot post when logged in with Facebook credentials. Please log in with Udacity credentials."])
-            completionHandler(false, error)
-            return
-        }
-        
+        let parameters: [String: AnyObject] = [
+            Client.ParameterKeys.Where: Client.Methods.UdacityUniqueKey as AnyObject
+        ]
+        let method : String = Client.Methods.UdacityUserData
+        let headers : [String:String] = [
+            Client.HeaderKeys.ParseAppID: Client.Constants.AppID,
+            Client.HeaderKeys.ParseRESTAPIKey: Client.Constants.RESTApiKey
+        ]
+
         /* 2. Make the request */
-        taskForGETMethod(method: method, baseURLSecure: Client.Constants.UdacityBaseURLSecure, parameters: nil, headers: nil) { JSONResult, error in
+        taskForGETMethod(method: method, baseURLSecure: Client.Constants.ParseBaseURLSecure, parameters: parameters, headers: headers) { JSONResult, error in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 completionHandler(false, error)
             } else {
                 
-                if let result = JSONResult?["user"] as! [String : AnyObject]? {    // If result, store first and last name in sharedinstance object
-                    
+                print("JSONResult>>>>> ",JSONResult)
+                
+                if let results = JSONResult?["results"] as? [[String : AnyObject]] {
+                   
                     let studentLocation = StudentLocation.sharedInstance
-                    if let firstname = result["first_name"] {
-                        print(firstname)
-                        studentLocation.firstName = firstname as? String
-                    }
-                    if let lastname = result["last_name"] {
-                        print(lastname)
-                        studentLocation.lastName = lastname as? String
-                    }
-                    if (studentLocation.firstName != nil) && (studentLocation.lastName != nil) {
-                        completionHandler(true, nil)
-                        print("In queryStudentName -> \(studentLocation.firstName!) \(studentLocation.lastName!)")    // debug
-                    } else {
-                        completionHandler(false, NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not get user's name from server."]))
-                    }
+                    studentLocation.studentArray  = StudentLocation.arrayFromResults(results: results)
+                    studentLocation.studentArray.filter{ $0 != nil }.map{ $0 }
+                     completionHandler(true, nil)
                     
                 } else {
-                    completionHandler(false, NSError(domain: "Client Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse queryStudentName data."]))
+                        completionHandler(false, NSError(domain: "Client Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse queryStudentName data."]))
                 }
+
             }
         }
+        
     }
     
     func deleteSession(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
