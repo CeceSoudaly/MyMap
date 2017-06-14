@@ -77,8 +77,6 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                 })
             }
         }
-    
-       
     }
     
     func getSingleStudentLocation(){
@@ -95,25 +93,20 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                 
                 if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
                     first = location.firstName! as String
-                    print("first>>> ",first)
                 }
                 
                 if(!(location.lastName?.isEmpty)! && location.lastName != nil ){
                     last = location.lastName! as String
-                    print("last>>> ",last)
                 }
                 
                 if( location.mediaURL != nil && !(location.mediaURL?.isEmpty)!){
                     mediaURL = location.mediaURL! as String
-                    print("mediaURL>>> ",mediaURL)
                 }
              
             }
             
             if(!first.isEmpty && !last.isEmpty)
             {
-                print("This person already exist")
-                
                 let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
@@ -133,9 +126,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                 self.present(refreshAlert, animated: true, completion: nil)
                 // show the alert
             }
-
         }
-      
         
     }
     

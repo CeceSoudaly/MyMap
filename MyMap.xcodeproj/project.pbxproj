@@ -27,7 +27,6 @@
 		A9B2FFAF1EE3593F000D5F81 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B2FFAE1EE3593F000D5F81 /* FBSDKCoreKit.framework */; };
 		A9B2FFB11EE3596E000D5F81 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B2FFB01EE3596E000D5F81 /* FBSDKLoginKit.framework */; };
 		A9B2FFB31EE35996000D5F81 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B2FFB21EE35996000D5F81 /* FBSDKShareKit.framework */; };
-		A9B2FFB51EE35ABF000D5F81 /* Desktop in Resources */ = {isa = PBXBuildFile; fileRef = A9B2FFB41EE35ABF000D5F81 /* Desktop */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +74,6 @@
 		A9B2FFAE1EE3593F000D5F81 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../FacebookSDKs-iOS-4/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		A9B2FFB01EE3596E000D5F81 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../FacebookSDKs-iOS-4/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		A9B2FFB21EE35996000D5F81 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../FacebookSDKs-iOS-4/FBSDKShareKit.framework"; sourceTree = "<group>"; };
-		A9B2FFB41EE35ABF000D5F81 /* Desktop */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Desktop; path = ../../../Desktop; sourceTree = "<group>"; };
 		A9B2FFBA1EE3C95D000D5F81 /* MyMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyMap.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				A9B2FFB91EE361D3000D5F81 /* Framework */,
-				A9B2FFB41EE35ABF000D5F81 /* Desktop */,
 				A90EE7651E9C7E4F00877DE4 /* MyMap */,
 				A90EE77A1E9C7E5000877DE4 /* MyMapTests */,
 				A90EE7851E9C7E5000877DE4 /* MyMapUITests */,
@@ -297,7 +294,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A90EE7711E9C7E4F00877DE4 /* LaunchScreen.storyboard in Resources */,
-				A9B2FFB51EE35ABF000D5F81 /* Desktop in Resources */,
 				A90EE76E1E9C7E4F00877DE4 /* Assets.xcassets in Resources */,
 				A90EE76C1E9C7E4F00877DE4 /* Main.storyboard in Resources */,
 			);

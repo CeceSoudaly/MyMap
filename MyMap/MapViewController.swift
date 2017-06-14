@@ -41,19 +41,85 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    
     func addLocation(){
         
         print("addLocation")
-        //LocationDetails
         
-        performUIUpdatesOnMain {
-            //Tab view controller
-            let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
-            self.navigationController!.pushViewController(detailController, animated: true)
-            self.tabBarController?.tabBar.isHidden = true
+        Client.sharedInstance().queryStudentName{ (success, error) in
+            
+            if error != nil {
+                DispatchQueue.main.async(execute: {
+                    Client.showAlert(caller: self, error: error!)
+                    
+                })
+            } else if success {
+                print("Session found a Student?")
+                DispatchQueue.main.async {
+                    //self.dismiss(animated: true, completion: nil)
+                    //look up students
+                    self.getSingleStudentLocation()
+                }
+            } else {
+                DispatchQueue.main.async(execute: {
+                    let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not find a student"])
+                    Client.showAlert(caller: self, error: error)
+                    
+                })
+            }
         }
     }
     
+    func getSingleStudentLocation(){
+        
+        var first = ""
+        var last  = ""
+        var mediaURL  = ""
+        
+        for location in StudentLocation.sharedInstance.studentArray{
+            // Notice that the float values are being used to create CLLocationDegree values.
+            // This is a version of the Double type.
+            if(location.latitude != nil)
+            {
+                
+                if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
+                    first = location.firstName! as String
+                }
+                
+                if(!(location.lastName?.isEmpty)! && location.lastName != nil ){
+                    last = location.lastName! as String
+                }
+                
+                if( location.mediaURL != nil && !(location.mediaURL?.isEmpty)!){
+                    mediaURL = location.mediaURL! as String
+                }
+                
+            }
+            
+            if(!first.isEmpty && !last.isEmpty)
+            {
+                let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
+                    print("Handle Ok logic here")
+                    performUIUpdatesOnMain {
+                        //Tab view controller
+                        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
+                        self.navigationController!.pushViewController(detailController, animated: true)
+                        self.tabBarController?.tabBar.isHidden = true
+                    }
+                }))
+                
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                    print("Handle Cancel Logic here")
+                }))
+                
+                self.present(refreshAlert, animated: true, completion: nil)
+                // show the alert
+            }
+        }
+        
+    }
     func logOut(){
         print("logOut")
         // Check which auth service was used to log in

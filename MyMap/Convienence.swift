@@ -87,9 +87,9 @@ extension Client {
                 }
 
             }
-        }
-        
+        }        
     }
+   
     
     func deleteSession(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)

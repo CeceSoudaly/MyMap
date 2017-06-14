@@ -57,9 +57,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
         }
-        
-        
-        
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
