@@ -34,13 +34,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         // get the app delegate
         appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        
-        subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
-        subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
-        subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
-        subscribeToNotification(.UIKeyboardDidHide, selector: #selector(keyboardDidHide))
-        
+               
         print("FBSDKAccessToken.currentAccessToken() ",FBSDKAccessToken.current() )
         
         if (FBSDKAccessToken.current() != nil)

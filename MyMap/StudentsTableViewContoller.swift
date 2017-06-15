@@ -52,9 +52,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     }
     
     func addLocation(){
-        
-        print("addLocation")
-        
+       
         Client.sharedInstance().queryStudentName{ (success, error) in
             
             if error != nil {
@@ -179,21 +177,22 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell")!
        /* Get cell type */
+    
        let studentLocation = StudentLocation.sharedInstance.studentArray[indexPath.row]
        /* Set cell defaults */
         var first = "[NO_FIRSTNAME11]"
         var last  = "[NO_LASTNAME22]"
         var mediaURL  = "[NO_URL33]"
-        
-        if(!(studentLocation.firstName?.isEmpty)! && studentLocation.firstName != nil){
+    
+        if(studentLocation.firstName != nil && !(studentLocation.firstName?.isEmpty)!){
            first = studentLocation.firstName! as String
         }
         
-        if(!(studentLocation.lastName?.isEmpty)! && studentLocation.lastName != nil){
+        if(studentLocation.lastName != nil) && !(studentLocation.lastName?.isEmpty)! {
             last = studentLocation.lastName! as String
         }
         
-        if( !(studentLocation.mediaURL?.isEmpty)! && studentLocation.mediaURL != nil){
+        if(studentLocation.mediaURL != nil  && !(studentLocation.mediaURL?.isEmpty)! ){
             mediaURL = studentLocation.mediaURL! as String
         }
 

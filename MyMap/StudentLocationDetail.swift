@@ -43,12 +43,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        subscribeToNotification(.UIKeyboardWillShow, selector: #selector(keyboardWillShow))
-        subscribeToNotification(.UIKeyboardWillHide, selector: #selector(keyboardWillHide))
-        subscribeToNotification(.UIKeyboardDidShow, selector: #selector(keyboardDidShow))
-        subscribeToNotification(.UIKeyboardDidHide, selector: #selector(keyboardDidHide))
-        
         setViewState(viewState: .One)
     }
     override func viewWillLayoutSubviews() {
@@ -193,17 +187,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             
             if let placemarks = placemarks, placemarks.count > 0 {
                 location = placemarks.first?.location
-                
-                print("Your location: (\(location))")
-                
             }
             
             if let location = location {
-                
                 centerMapOnLocation(location: location)
-                setViewState(viewState: .Two)
-       
-                
             } else {
                 Client.showAlert(caller: self, error: error! as NSError)
                 print("No Matching Location Found.")
@@ -250,6 +237,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         annotations.append(annotation)
         DetailMap.addAnnotations(annotations)
         DetailMap.setRegion(coordinateRegion, animated: true)
+        
+        setViewState(viewState: .Two)
     }
     
     @IBAction func submitLocalnUrl(_ sender: Any) {
