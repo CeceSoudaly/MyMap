@@ -246,11 +246,8 @@ class Client : NSObject {
         do {
            
             let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String : Any]
-            
-            print("what you got ??? ",json!)
        
             parsedResult = json as AnyObject
-           
             let posts = parsedResult["posts"] as? [[String: Any]] ?? []
             print(posts)
             

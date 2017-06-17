@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FBSDKLoginKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
@@ -124,16 +125,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         print("logOut")
         // Check which auth service was used to log in
         
-        //        if Client.sharedInstance().authServiceUsed == Client.Constants.AuthService.Facebook {
-        //
-        //            //FBSDKLoginManager().logOut()
-        //            print("Facebook logout")
-        //           // dismissViewControllerAnimated(true, completion: nil)
-        //
-        //        } else {    // if Udacity was used to log in
-        
-        Client.sharedInstance().deleteSession() { (success, error) in
+        if (Client.sharedInstance().authServiceUsed == Client.AuthService.Facebook){
+            FBSDKLoginManager().logOut()
+            print("Facebook logout")
             
+            DispatchQueue.main.async {
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            }
+
+        } else {    // if Udacity was used to log in
+
+            Client.sharedInstance().deleteSession() { (success, error) in
+
             if error != nil {
                 DispatchQueue.main.async(execute: {
                     Client.showAlert(caller: self, error: error!)
@@ -150,6 +153,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     Client.showAlert(caller: self, error: error)
                     
                 })
+            }
             }
         }
         

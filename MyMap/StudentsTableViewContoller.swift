@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 
 class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -132,13 +133,16 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
          print("logOut")
         // Check which auth service was used to log in
         
-//        if Client.sharedInstance().authServiceUsed == Client.Constants.AuthService.Facebook {
-//            
-//            //FBSDKLoginManager().logOut()
-//            print("Facebook logout")
-//           // dismissViewControllerAnimated(true, completion: nil)
-//            
-//        } else {    // if Udacity was used to log in
+        if (Client.sharedInstance().authServiceUsed == Client.AuthService.Facebook){
+            
+            FBSDKLoginManager().logOut()
+            print("Facebook logout")
+        
+            DispatchQueue.main.async {
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            }
+            
+        } else {    // if Udacity was used to log in
         
             Client.sharedInstance().deleteSession() { (success, error) in
                 
@@ -160,7 +164,8 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                     })
                 }
             }
-       
+        }
+    
     }
     
     func refresh()

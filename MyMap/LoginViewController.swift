@@ -115,11 +115,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 else {
                     if result.grantedPermissions.contains("email")
                     {
+                        Client.sharedInstance().authServiceUsed  = Client.AuthService.Facebook
                        completeLogin(Client.AuthService.Facebook)
-                       print("Successful Facebook login")
+                       print("Successful Facebook login token",result.token)
                     }
                 }
-
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
