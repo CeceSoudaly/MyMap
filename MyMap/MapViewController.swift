@@ -145,7 +145,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             } else if success {
                 print("Session Deleted")
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                 }
             } else {
                 DispatchQueue.main.async(execute: {
