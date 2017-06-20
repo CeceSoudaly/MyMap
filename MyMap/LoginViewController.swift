@@ -148,12 +148,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // MARK:    
     private func logIntoUdacity() {
-        // use for testing
-       //usernameTextField.text = Client.OTM.username
-       //passwordTextField.text = Client.OTM.password
-        
-        print("Your usernameTextField.text: \(String(describing: usernameTextField.text))")
-        print("Your passwordTextField.text): \(String(describing: passwordTextField.text)))")
+    
         Client.sharedInstance().postSession(username: usernameTextField.text!, password: passwordTextField.text!) { (success, error) in
             if success == true {
                 print("Logged in")

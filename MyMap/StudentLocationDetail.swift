@@ -33,6 +33,9 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     let regionRadius: CLLocationDistance = 300
     
     var keyboardOnScreen = false
+    var first = ""
+    var last  = ""
+    var mediaURL  = ""
     
     var studentLocation = StudentLocation.sharedInstance
     
@@ -112,10 +115,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     }
     
     func getSingleStudentLocation(){
-        
-        var first = ""
-        var last  = ""
-        var mediaURL  = ""
         
         for location in StudentLocation.sharedInstance.studentArray{
             // Notice that the float values are being used to create CLLocationDegree values.
@@ -223,11 +222,11 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         //set students information
         //Post the url
         //Set the student's information
-        studentLocation.firstName = "Jane2"
-        studentLocation.lastName = "Smith2"
+        studentLocation.firstName = first
+        studentLocation.lastName = last
         studentLocation.uniqueKey = "DAGjDO9B0Q"
         studentLocation.mapString = "MapTest"
-        studentLocation.mediaURL = "https://udacity.com"
+        studentLocation.mediaURL = mediaURL
         let latitude = (Float)(location.coordinate.latitude)
         studentLocation.latitude = latitude
         var longitude = (Float)(location.coordinate.longitude)
