@@ -106,6 +106,11 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
             
             if(!first.isEmpty && !last.isEmpty)
             {
+                
+                location.firstName = first
+                print("2>>>>>",first)
+                location.lastName = last
+                
                 let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
                 
                 refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
@@ -122,6 +127,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
                     print("Handle Cancel Logic here")
                 }))
                 
+            
                 self.present(refreshAlert, animated: true, completion: nil)
                 // show the alert
             }

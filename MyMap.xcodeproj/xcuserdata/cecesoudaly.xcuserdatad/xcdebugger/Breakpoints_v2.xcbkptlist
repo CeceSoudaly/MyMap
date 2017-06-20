@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMap/Client.swift"
-            timestampString = "519612560.204161"
+            filePath = "MyMap/StudentLocationDetail.swift"
+            timestampString = "519637145.330824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "centerMapOnLocation(location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMap/Client.swift"
-            timestampString = "519616226.932409"
+            filePath = "MyMap/StudentLocationDetail.swift"
+            timestampString = "519633904.290437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "getSingleStudentLocation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,44 +89,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMap/Client.swift"
-            timestampString = "519616226.932409"
+            filePath = "MyMap/StudentLocationDetail.swift"
+            timestampString = "519637145.330824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "submitLocalnUrl(_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "MyMap.Client.taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask"
+                  symbolName = "MyMap.StudentLocationDetailViewContoller.submitLocalnUrl (Any) -&gt; ()"
                   moduleName = "MyMap"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cecesoudaly/Desktop/MyMap/MyMap/Client.swift"
-                  timestampString = "519616786.834686"
+                  urlString = "file:///Users/cecesoudaly/Desktop/MyMap/MyMap/StudentLocationDetail.swift"
+                  timestampString = "519637146.434013"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121"
-                  offsetFromSymbolStart = "2703">
+                  startingLineNumber = "229"
+                  endingLineNumber = "229"
+                  offsetFromSymbolStart = "912">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "MyMap.Client.taskForPOSTMethod (method : Swift.String, baseURLSecure : Swift.String, headers : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, jsonBody : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completionHandler : (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; __ObjC.URLSessionDataTask"
+                  symbolName = "MyMap.StudentLocationDetailViewContoller.(submitLocalnUrl (Any) -&gt; ()).(closure #1)"
                   moduleName = "MyMap"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cecesoudaly/Desktop/MyMap/MyMap/Client.swift"
-                  timestampString = "519616786.835847"
+                  urlString = "file:///Users/cecesoudaly/Desktop/MyMap/MyMap/StudentLocationDetail.swift"
+                  timestampString = "519637146.435217"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121"
-                  offsetFromSymbolStart = "5818">
+                  startingLineNumber = "231"
+                  endingLineNumber = "231"
+                  offsetFromSymbolStart = "30">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -137,14 +137,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMap/Client.swift"
-            timestampString = "519616226.932409"
+            filePath = "MyMap/StudentLocationDetail.swift"
+            timestampString = "519634204.665187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "taskForPOSTMethod(method:baseURLSecure:headers:jsonBody:completionHandler:)"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "addLocation()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.StudentLocationDetailViewContoller.addLocation () -&gt; ()"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Desktop/MyMap/MyMap/StudentLocationDetail.swift"
+                  timestampString = "519637146.441679"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "165">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyMap.StudentLocationDetailViewContoller.(addLocation () -&gt; ()).(closure #1)"
+                  moduleName = "MyMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cecesoudaly/Desktop/MyMap/MyMap/StudentLocationDetail.swift"
+                  timestampString = "519637146.442865"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -124,8 +124,10 @@ extension Client {
         let method : String = Methods.UdacityPostSession
       
         let jsonBody : [String:String] = [
-                Client.JSONBodyKeys.Username: "\(username)",
-                Client.JSONBodyKeys.Password: "\(password)"
+//                Client.JSONBodyKeys.Username: "\(username)",
+//                Client.JSONBodyKeys.Password: "\(password)"
+            Client.JSONBodyKeys.Username: "\(Client.OTM.username)",
+            Client.JSONBodyKeys.Password: "\(Client.OTM.password)"
         ]
 
 

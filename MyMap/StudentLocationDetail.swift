@@ -123,7 +123,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             {
                 
                 if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
+                    print(location.firstName)
                     first = location.firstName! as String
+                    
+                    print("1 >>>> ",first)
                 }
                 
                 if(!(location.lastName?.isEmpty)! && location.lastName != nil ){
@@ -134,28 +137,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
                     mediaURL = location.mediaURL! as String
                 }
                 
-            }
-            
-            if(!first.isEmpty && !last.isEmpty)
-            {
-                let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
-                
-                refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
-                    print("Handle Ok logic here")
-                    performUIUpdatesOnMain {
-                        //Tab view controller
-                        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "LocationDetailsController")
-                        self.navigationController!.pushViewController(detailController, animated: true)
-                        self.tabBarController?.tabBar.isHidden = true
-                    }
-                }))
-                
-                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-                    print("Handle Cancel Logic here")
-                }))
-                
-                self.present(refreshAlert, animated: true, completion: nil)
-                // show the alert
             }
         }
         
@@ -219,14 +200,15 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         let annotation = MKPointAnnotation()
         annotation.coordinate = location.coordinate
         
+         self.getSingleStudentLocation()
         //set students information
         //Post the url
         //Set the student's information
-        studentLocation.firstName = first
-        studentLocation.lastName = last
+        studentLocation.firstName = "firstname"
+        studentLocation.lastName = "lastname"
         studentLocation.uniqueKey = "DAGjDO9B0Q"
         studentLocation.mapString = "MapTest"
-        studentLocation.mediaURL = mediaURL
+        studentLocation.mediaURL = urlEntryTextField.text!
         let latitude = (Float)(location.coordinate.latitude)
         studentLocation.latitude = latitude
         var longitude = (Float)(location.coordinate.longitude)
@@ -242,7 +224,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     @IBAction func submitLocalnUrl(_ sender: Any) {
         
-        
+        studentLocation.mediaURL = urlEntryTextField.text!
+        print("Hello >>>>",first)
         Client.sharedInstance().postStudentLocation(studentLocation: studentLocation) { (success, error) in
             
             if error != nil {

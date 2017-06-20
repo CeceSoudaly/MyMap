@@ -109,9 +109,7 @@ class Client : NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
-        
-//        let username = jsonBody?[Client.JSONBodyKeys.Username] as! String
-//        let password = jsonBody?[Client.JSONBodyKeys.Password] as! String
+
         
         if(!baseURLSecure.isEmpty && baseURLSecure == Client.Constants.ParseBaseURLSecure)
         {
