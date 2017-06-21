@@ -63,13 +63,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         userDidTapView(self)
         locationTextField.text = ""
         
-//        if locationTextField.text!.isEmpty {
-//            //debugTextLabel.text = "Username or Password Empty."
-//            
-//        } else {
-//            setUIEnabled(false)
-//            logIntoUdacity()
-//        }
     }
     
     @IBAction func beginUrlEditing(_ sender: Any) {
@@ -201,8 +194,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         //set students information
         //Post the url
         //Set the student's information
-        studentLocation.firstName = "firstname"
-        studentLocation.lastName = "lastname"
+        studentLocation.firstName = first
+        studentLocation.lastName = last
         studentLocation.uniqueKey = "DAGjDO9B0Q"
         studentLocation.mapString = "MapTest"
         studentLocation.mediaURL = urlEntryTextField.text!
