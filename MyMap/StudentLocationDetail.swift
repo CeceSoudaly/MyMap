@@ -123,10 +123,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             {
                 
                 if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
-                    print(location.firstName)
                     first = location.firstName! as String
-                    
-                    print("1 >>>> ",first)
                 }
                 
                 if(!(location.lastName?.isEmpty)! && location.lastName != nil ){
@@ -224,8 +221,12 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     @IBAction func submitLocalnUrl(_ sender: Any) {
         
-        studentLocation.mediaURL = urlEntryTextField.text!
-        print("Hello >>>>",first)
+        
+        let StringA = "https://"
+        let StringB = urlEntryTextField.text!
+        let ResultString = "\(StringA)\(StringB)"
+        studentLocation.mediaURL = ResultString
+    
         Client.sharedInstance().postStudentLocation(studentLocation: studentLocation) { (success, error) in
             
             if error != nil {
@@ -235,7 +236,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             } else if success {
                 print("StudentLocation posted")
                 DispatchQueue.main.async() {
-//                    self.dismiss(animated: true, completion: nil)
                     
                     performUIUpdatesOnMain {
                          //Tab view controller

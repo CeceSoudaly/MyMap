@@ -73,35 +73,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func getSingleStudentLocation(){
         
-        var first = ""
-        var last  = ""
-        var mediaURL  = ""
-        
         for location in StudentLocation.sharedInstance.studentArray{
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
-            if(location.latitude != nil)
-            {
-                
-                if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
-                    first = location.firstName! as String
-                }
-                
-                if(!(location.lastName?.isEmpty)! && location.lastName != nil ){
-                    last = location.lastName! as String
-                }
-                
-                if( location.mediaURL != nil && !(location.mediaURL?.isEmpty)!){
-                    mediaURL = location.mediaURL! as String
-                }
-                
-            }
             
-            if(!first.isEmpty && !last.isEmpty)
+            if((!(location.firstName?.isEmpty)! && location.firstName != nil )
+                && (!(location.lastName?.isEmpty)! && location.lastName != nil ))
             {
                 let refreshAlert = UIAlertController(title: nil, message: "You already posted a student location. Do you want to overwrite your current location?", preferredStyle: UIAlertControllerStyle.alert)
                 
-                refreshAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction!) in
+                refreshAlert.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: { (action: UIAlertAction!) in
                     print("Handle Ok logic here")
                     performUIUpdatesOnMain {
                         //Tab view controller
@@ -162,15 +141,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func refresh()
     {
         print("refresh")
-        let spinner = startActivityIndicatorView()
-       
-            for annotation : MKAnnotation in self.mapView.annotations {
-                self.mapView.removeAnnotation(annotation)
-            }
-            
-            self.getLocationsForMap()
-     
-        stopActivityIndicatorView(activityView: spinner)
+        for annotation : MKAnnotation in self.mapView.annotations {
+            self.mapView.removeAnnotation(annotation)
+        }
+
+        self.getLocationsForMap()
     }
     
     func startActivityIndicatorView() -> UIActivityIndicatorView {
