@@ -9,6 +9,7 @@ target 'MyMap' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
+
   target 'MyMapTests' do
     inherit! :search_paths
     # Pods for testing
