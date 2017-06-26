@@ -650,17 +650,7 @@
 				FRAMEWORK_SEARCH_PATHS = "\"~/Documents/FacebookSDK\"";
 				INFOPLIST_FILE = MyMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"$(inherited)",
-					"-framework",
-					"\"Bolts\"",
-					"-framework",
-					"\"FBSDKCoreKit\"",
-					"-framework",
-					"\"FBSDKLoginKit\"",
-					"-framework",
-					"\"FBSDKShareKit\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CeceMobile.MyMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -678,17 +668,7 @@
 				FRAMEWORK_SEARCH_PATHS = "\"~/Documents/FacebookSDK\"";
 				INFOPLIST_FILE = MyMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"$(inherited)",
-					"-framework",
-					"\"Bolts\"",
-					"-framework",
-					"\"FBSDKCoreKit\"",
-					"-framework",
-					"\"FBSDKLoginKit\"",
-					"-framework",
-					"\"FBSDKShareKit\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CeceMobile.MyMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
