@@ -213,7 +213,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 var first = "[NO_FIRSTNAME]"
                 var last  = "[NO_LASTNAME]"
                 var mediaURL  = "[NO_URL]"
-                 
+                
+                print("location",location)
+                print("location.firstName", location.firstName?.isEmpty)
+                print("location.firstName ",location.firstName )
                 
                 if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
                      first = location.firstName! as String
