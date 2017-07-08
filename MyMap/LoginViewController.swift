@@ -93,6 +93,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                        Client.sharedInstance().authServiceUsed  = Client.AuthService.Facebook
                        completeLogin(Client.AuthService.Facebook)
                        print("Successful Facebook login token",result.token)
+                        //0x17407ad00
                     }
                 }
     }
@@ -105,7 +106,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         performUIUpdatesOnMain {
             self.setUIEnabled(true)
             //Tab view controller
-            
+//            var fbAccessToken = FBSDKAccessToken.current().tokenString
+//            print("FBSDKAccessToken >>>>>> ",fbAccessToken )
+//            let studentLocations = StudentLocation.sharedInstance
+//            studentLocations.uniqueKey = fbAccessToken as! String
+//
+//            print(" studentLocations.uniqueKey>>>>>> ", studentLocations.uniqueKey )
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
         }

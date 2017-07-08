@@ -18,7 +18,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var tableView: UITabBarItem!
     var activityIndicator = UIActivityIndicatorView()
     var StudentLocations: [StudentLocation] = [StudentLocation]()
-   
+    var uniqueKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.navigationItem.setRightBarButtonItems([Nam1BarBtnVar, Nam2BarBtnVar], animated: true)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(logOut))
-
-        
+       
         getLocationsForMap ()   // Get locations from Parse and set them on map annotations
         mapView.delegate = self
     }
@@ -49,7 +48,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         print("addLocation")
         
-        Client.sharedInstance().queryStudentName{ (success, error) in
+        Client.sharedInstance().queryStudentName(studentUdacityKey: uniqueKey){ (success, error) in
             
             if error != nil {
                 DispatchQueue.main.async(execute: {

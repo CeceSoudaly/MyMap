@@ -150,8 +150,6 @@ class Client : NSObject {
                 print("The request returned no data.")
                 return
             }
-            //method : String = Methods.ParsePostStudentLocation
-            print("???? ", method.contains(Client.Methods.AddLocation))
             
             if(!method.contains(Client.Methods.AddLocation))
             {

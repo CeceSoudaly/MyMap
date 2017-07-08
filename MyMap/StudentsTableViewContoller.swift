@@ -15,6 +15,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     var StudentLocations: [StudentLocation] = [StudentLocation]()
     
     @IBOutlet weak var tableView: UITableView!
+    var uniqueKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,14 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(logOut))
         tableView.delegate = self
+        
+        let studentLocations = StudentLocation.sharedInstance
+        
+        if(studentLocations.uniqueKey != nil)
+        {
+            uniqueKey = studentLocations.uniqueKey!
+        }
+
         
         
     }
@@ -54,8 +63,8 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     }
     
     func addLocation(){
-       
-        Client.sharedInstance().queryStudentName{ (success, error) in
+      
+        Client.sharedInstance().queryStudentName(studentUdacityKey: uniqueKey){ (success, error) in
             
             if error != nil {
                 DispatchQueue.main.async(execute: {

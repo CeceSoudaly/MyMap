@@ -41,7 +41,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     var first = "[NO_FIRSTNAME]"
     var last  = "[NO_LASTNAME]"
     var mediaURL  = "[NO_URL]"
-    var uniqueKey = "[NO_UNIQUEKEY]"
+    var uniqueKey = ""
+
     
     enum viewState {
         case One
@@ -51,7 +52,13 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewState(viewState: .One)
-        
+
+        let studentLocations = StudentLocation.sharedInstance
+       
+        if(studentLocations.uniqueKey != nil )
+        {
+            uniqueKey = studentLocations.uniqueKey!
+        }
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -83,8 +90,9 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     }
     
     func addLocation(){
-       
-        Client.sharedInstance().queryStudentName{ (success, error) in
+        
+         print(" get student name >>>>> ", uniqueKey )
+        Client.sharedInstance().queryStudentName(studentUdacityKey: uniqueKey){ (success, error) in
             
             if error != nil {
                 DispatchQueue.main.async(execute: {
