@@ -52,19 +52,24 @@ extension Client {
     }
   
     func queryStudentName(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) -> Void {
-
+        
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        
+        let student = StudentLocation.sharedInstance
         let parameters: [String: AnyObject] = [
-            Client.ParameterKeys.Where: Client.Methods.UdacityUniqueKey  as AnyObject
-
+//            Client.ParameterKeys.Where: Client.Methods.UdacityUniqueKey  as AnyObject
+            //"\(studentLocation.uniqueKey!)"
+            //"{\"uniqueKey\":\"4660628637\"}"
+             Client.ParameterKeys.Where: "{\"uniqueKey\":\"\(student.uniqueKey!)\"}" as AnyObject
+            
         ]
-
+        
         let method : String = ""
         let headers : [String:String] = [
             Client.HeaderKeys.ParseAppID: Client.Constants.AppID,
             Client.HeaderKeys.ParseRESTAPIKey: Client.Constants.RESTApiKey
         ]
-
+        
         /* 2. Make the request */
         taskForGETMethod(method: method, baseURLSecure: Client.Constants.ParseBaseURLSecure, parameters: parameters, headers: headers) { JSONResult, error in
             
@@ -72,22 +77,22 @@ extension Client {
             if let error = error {
                 completionHandler(false, error)
             } else {
-            
+                
                 if let results = JSONResult?["results"] as? [[String : AnyObject]] {
-                   
+                    
                     let studentLocation = StudentLocation.sharedInstance
                     studentLocation.studentArray  = StudentLocation.arrayFromResults(results: results)
                     studentLocation.studentArray.filter{ $0 != nil }.map{ $0 }
-                     completionHandler(true, nil)
+                    completionHandler(true, nil)
                     
                 } else {
-                        completionHandler(false, NSError(domain: "Client Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse queryStudentName data."]))
+                    completionHandler(false, NSError(domain: "Client Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse queryStudentName data."]))
                 }
-
+                
             }
         }        
     }
-   
+    
     
     func deleteSession(completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
@@ -115,12 +120,15 @@ extension Client {
         
         task.resume()
     }
-
+   
+   /* Login into Udacity Parse
+     
+     */
     func postSession(username: String, password: String,completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let method : String = Methods.UdacityPostSession
-      
+        let method : String = Client.Methods.Updatelocation
+       
         let jsonBody : [String:String] = [
                 Client.JSONBodyKeys.Username: "\(username)",
                 Client.JSONBodyKeys.Password: "\(password)"
@@ -135,8 +143,27 @@ extension Client {
                 print("Phooey!")
                 completionHandler(false, error)
             } else {
+               
+                if let error = error {
+                    completionHandler(false, error)
+                } else {
+                
+                    if let jsonResult = JSONResult as? Dictionary<String, AnyObject> {
+                        let account = jsonResult["account"]
+                        var keyAccount = account as! Dictionary<String, AnyObject>
+                        let key = keyAccount ["key"]
+                        
+                        let studentLocations = StudentLocation.sharedInstance
+                        studentLocations.uniqueKey = key as! String
 
-                completionHandler(true, nil)
+                        completionHandler(true, nil)
+                    }
+                    else
+                    {
+                          completionHandler(false, NSError(domain: "Client Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse queryStudentName data."]))
+                    }
+               }
+
             }
         }
     }
@@ -145,7 +172,8 @@ extension Client {
     func postStudentLocation(studentLocation: StudentLocation, completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let method : String = Methods.ParsePostStudentLocation
+       // let method : String = Methods.ParsePostStudentLocation
+        let method : String = Client.Methods.AddLocation
         let headers : [String:String] = [
             Client.Constants.AppID: Client.HeaderKeys.ParseAppID,
             Client.Constants.RESTApiKey: Client.HeaderKeys.ParseRESTAPIKey,

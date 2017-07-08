@@ -85,10 +85,11 @@ import UIKit
     struct Methods {
         // MARK: Udacity
         static let UdacityUserData = "users/{id}"
-        //{"uniqueKey":"1234"}
         static let UdacityUniqueKey = "{\"uniqueKey\":\"4660628637\"}"
         static let UdacityPostSession = "session"
         static let UdacityDeleteSession = "session"
+        static let AddLocation = "addLocation"
+        static let Updatelocation = "updateLocation"
         
         // MARK: Parse
         static let ParseGetStudentLocations = ""

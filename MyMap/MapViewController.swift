@@ -18,6 +18,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var tableView: UITabBarItem!
     var activityIndicator = UIActivityIndicatorView()
     var StudentLocations: [StudentLocation] = [StudentLocation]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(logOut))
 
+        
         getLocationsForMap ()   // Get locations from Parse and set them on map annotations
         mapView.delegate = self
     }
@@ -72,9 +74,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func getSingleStudentLocation(){
-        
+      
         for location in StudentLocation.sharedInstance.studentArray{
-            
+             
             if((!(location.firstName?.isEmpty)! && location.firstName != nil )
                 && (!(location.lastName?.isEmpty)! && location.lastName != nil ))
             {
@@ -213,10 +215,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 var first = "[NO_FIRSTNAME]"
                 var last  = "[NO_LASTNAME]"
                 var mediaURL  = "[NO_URL]"
-                
-                print("location",location)
-                print("location.firstName", location.firstName?.isEmpty)
-                print("location.firstName ",location.firstName )
                 
                 if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
                      first = location.firstName! as String

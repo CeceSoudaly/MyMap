@@ -25,7 +25,9 @@
 		A90FD0B71EA04C310087DFD2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B61EA04C310087DFD2 /* Config.swift */; };
 		A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */; };
 		A9102F641EBE9211003BAEAB /* StudentsTableViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */; };
-		A911DC411EBD91B400A02866 /* StudentLocationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */; };
+		A911DC411EBD91B400A02866 /* StudentLocationDetailViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A911DC401EBD91B400A02866 /* StudentLocationDetailViewContoller.swift */; };
+		A98381641F0835DE00A810DE /* MyMapTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = A90EE7771E9C7E5000877DE4 /* MyMapTests.xctest */; };
+		A98381651F0835DF00A810DE /* MyMapTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = A90EE7771E9C7E5000877DE4 /* MyMapTests.xctest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +77,7 @@
 		A90FD0B61EA04C310087DFD2 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsTableViewContoller.swift; sourceTree = "<group>"; };
-		A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationDetail.swift; sourceTree = "<group>"; };
+		A911DC401EBD91B400A02866 /* StudentLocationDetailViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationDetailViewContoller.swift; sourceTree = "<group>"; };
 		A9B2FFBA1EE3C95D000D5F81 /* MyMap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyMap.entitlements; sourceTree = "<group>"; };
 		AF2DA751C1ED5895D47925DE /* Pods_MyMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA4AE563E4AC332BF302A795 /* Pods-MyMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyMap/Pods-MyMap.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,7 +174,7 @@
 				A90DE6371EB9325700887EBF /* StudentLocation.swift */,
 				A90DE6391EB939E900887EBF /* Client.swift */,
 				A90DE63B1EB9504700887EBF /* Convienence.swift */,
-				A911DC401EBD91B400A02866 /* StudentLocationDetail.swift */,
+				A911DC401EBD91B400A02866 /* StudentLocationDetailViewContoller.swift */,
 				A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */,
 			);
 			path = MyMap;
@@ -328,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A98381641F0835DE00A810DE /* MyMapTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A98381651F0835DF00A810DE /* MyMapTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +497,7 @@
 				A9102F641EBE9211003BAEAB /* StudentsTableViewContoller.swift in Sources */,
 				A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */,
 				A90DE63C1EB9504700887EBF /* Convienence.swift in Sources */,
-				A911DC411EBD91B400A02866 /* StudentLocationDetail.swift in Sources */,
+				A911DC411EBD91B400A02866 /* StudentLocationDetailViewContoller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

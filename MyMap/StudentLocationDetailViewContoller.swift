@@ -1,5 +1,5 @@
 //
-//  StudentLocationDetail.swift
+//  StudentLocationDetailViewContoller.swift
 //  MyMap
 //
 //  Created by Cece Soudaly on 5/6/17.
@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+
 
 class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , CLLocationManagerDelegate{
     
@@ -26,6 +27,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     
     @IBOutlet var statusLabel: [UILabel]!
     
+    var studentLocation = StudentLocation.sharedInstance
+    
+    var acitivityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var locationManager: CLLocationManager!
     
     var currentLocation: CLLocation?
@@ -33,11 +38,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     let regionRadius: CLLocationDistance = 300
     
     var keyboardOnScreen = false
-    var first = ""
-    var last  = ""
-    var mediaURL  = ""
-    
-    var studentLocation = StudentLocation.sharedInstance
+    var first = "[NO_FIRSTNAME]"
+    var last  = "[NO_LASTNAME]"
+    var mediaURL  = "[NO_URL]"
+    var uniqueKey = "[NO_UNIQUEKEY]"
     
     enum viewState {
         case One
@@ -47,6 +51,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewState(viewState: .One)
+        
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -73,16 +78,12 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     func  Cancel()
     {
         print("Cancel out")
-        let editController = self.storyboard!.instantiateViewController(withIdentifier: "StudentsTableViewContoller") as! StudentsTableViewContoller
-        
-        self.navigationController!.pushViewController(editController, animated: true)
+        self.dismiss(animated: false, completion: nil)
         self.tabBarController?.tabBar.isHidden = false
     }
     
     func addLocation(){
-        
-        print("addLocation")
-        
+       
         Client.sharedInstance().queryStudentName{ (success, error) in
             
             if error != nil {
@@ -110,12 +111,11 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     func getSingleStudentLocation(){
         
         for location in StudentLocation.sharedInstance.studentArray{
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
+
             if(location.latitude != nil)
             {
                 
-                if(!(location.firstName?.isEmpty)! && location.firstName != nil ){
+                if(!(location.firstName?.isEmpty)! && location.firstName != nil){
                     first = location.firstName! as String
                 }
                 
@@ -126,7 +126,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
                 if( location.mediaURL != nil && !(location.mediaURL?.isEmpty)!){
                     mediaURL = location.mediaURL! as String
                 }
-                
+                if( location.uniqueKey != nil && !(location.uniqueKey?.isEmpty)!){
+                    uniqueKey = location.uniqueKey! as String
+
+                }
             }
         }
         
@@ -140,6 +143,12 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         print("\(address)")
         print("Get the Geo location",locationTextField.text!)
         
+        acitivityIndicator.center = self.view.center
+        acitivityIndicator.hidesWhenStopped = true
+        acitivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(acitivityIndicator)
+        acitivityIndicator.startAnimating()
+        
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(address,
                     completionHandler: { placemarks, error in
@@ -151,6 +160,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         
         if let error = error {
             print("Unable to Forward Geocode Address (\(error))")
+             Client.showAlert(caller: self, error: error as NSError)
             
         } else {
             var location: CLLocation?
@@ -162,10 +172,14 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
             if let location = location {
                 centerMapOnLocation(location: location)
             } else {
-                Client.showAlert(caller: self, error: error! as NSError)
                 print("No Matching Location Found.")
+                Client.showAlert(caller: self, error: error! as NSError)
             }
         }
+        
+        acitivityIndicator.stopAnimating()
+        //UIApplication.shared.beginIgnoringInteractionEvents()
+
     }
     
     func locationManager(locations: [CLLocation]) {
@@ -196,8 +210,8 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         //Set the student's information
         studentLocation.firstName = first
         studentLocation.lastName = last
-        studentLocation.uniqueKey = "DAGjDO9B0Q"
-        studentLocation.mapString = "MapTest"
+        studentLocation.uniqueKey = uniqueKey
+        studentLocation.mapString = "OnTheMapTest"
         studentLocation.mediaURL = urlEntryTextField.text!
         let latitude = (Float)(location.coordinate.latitude)
         studentLocation.latitude = latitude

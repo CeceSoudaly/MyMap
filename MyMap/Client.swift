@@ -72,7 +72,7 @@ class Client : NSObject {
                 var newData: NSData
                 let rangeStartByte = 0  // rangeStartByte is equivalent to "currentByte" from question
                 let maxSubdataLength = 5
-                //  let dataLength = sourceString.lengthOfBytes(using: String.Encoding.utf8)
+//                let dataLength = sourceString.lengthOfBytes(using: String.Encoding.utf8)
                 
                 if method.contains("users") {
                     let subdataLength = min(maxSubdataLength, data.count - 5)
@@ -130,11 +130,11 @@ class Client : NSObject {
             if error != nil { // Handle error…
                 return
             }
-
-            
+       
             let range = Range(5..<data!.count)
             let newData = data?.subdata(in: range) /* subset response data! */
             print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+            
             
             guard (error == nil) else {
                 print("Something went wrong with your POST request: \(String(describing: error))")
@@ -150,11 +150,18 @@ class Client : NSObject {
                 print("The request returned no data.")
                 return
             }
+            //method : String = Methods.ParsePostStudentLocation
+            print("???? ", method.contains(Client.Methods.AddLocation))
             
-            print(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!)
-
-            completionHandler(true as AnyObject?, nil)
-        
+            if(!method.contains(Client.Methods.AddLocation))
+            {
+                Client.parseJSONWithCompletionHandler( data: newData as! NSData, completionHandler: completionHandler )
+            }else
+            {
+                completionHandler(data as AnyObject, nil)
+            }
+            
+            
         }
         
         /* 7. Start the request */

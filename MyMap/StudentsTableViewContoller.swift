@@ -30,6 +30,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
         navigationItem.leftBarButtonItem = UIBarButtonItem(title:"LogOut",style: .plain, target: self, action: #selector(logOut))
         tableView.delegate = self
         
+        
     }
     
     // MARK: Table View Data Source
@@ -79,7 +80,6 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     }
     
     func getSingleStudentLocation(){
-        
         
         for location in StudentLocation.sharedInstance.studentArray{
             
