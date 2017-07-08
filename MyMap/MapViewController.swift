@@ -17,7 +17,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITabBarItem!
     var activityIndicator = UIActivityIndicatorView()
-    var StudentLocations: [StudentLocation] = [StudentLocation]()
     var uniqueKey = ""
     
     override func viewDidLoad() {

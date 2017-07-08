@@ -53,12 +53,12 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         super.viewDidLoad()
         setViewState(viewState: .One)
 
-        let studentLocations = StudentLocation.sharedInstance
-       
-        if(studentLocations.uniqueKey != nil )
-        {
-            uniqueKey = studentLocations.uniqueKey!
-        }
+//        let studentLocations = StudentLocation.sharedInstance
+//       
+//        if(studentLocations.uniqueKey != nil )
+//        {
+//            uniqueKey = studentLocations.uniqueKey!
+//        }
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

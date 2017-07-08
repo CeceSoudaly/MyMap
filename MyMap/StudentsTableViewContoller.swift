@@ -12,8 +12,6 @@ import FBSDKLoginKit
 
 class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var StudentLocations: [StudentLocation] = [StudentLocation]()
-    
     @IBOutlet weak var tableView: UITableView!
     var uniqueKey = ""
     
@@ -46,7 +44,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        StudentLocations = StudentLocation.sharedInstance.studentArray
+        let StudentLocations = StudentLocation.sharedInstance.studentArray
         tableView.reloadData()
     }
     
@@ -166,7 +164,7 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return StudentLocations.count
+       return StudentLocation.sharedInstance.studentArray.count
     }
    
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
