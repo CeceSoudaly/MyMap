@@ -159,8 +159,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                })
             } else {
                 DispatchQueue.main.async(execute: {
-//                    Client.showAlert(caller: self, error: error!)
-                    
+//                 Client.showAlert(caller: self, error: error!)
+                 
                     let refreshAlert = UIAlertController(title: nil, message: "Please Check Your Credential.", preferredStyle: UIAlertControllerStyle.alert)
                     
                     refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -168,11 +168,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     }))
                     
                     self.present(refreshAlert, animated: true, completion: nil)
-
-                })
+                    self.setUIEnabled(true)
+              })
             }
         }
-  
     }
     
     private func isConnectedToNetwork() -> Bool {
