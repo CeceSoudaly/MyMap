@@ -11,6 +11,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
+import SystemConfiguration
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
@@ -34,8 +35,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         // get the app delegate
         appDelegate = UIApplication.shared.delegate as! AppDelegate
-               
-        print("FBSDKAccessToken.currentAccessToken() ",FBSDKAccessToken.current() )
+        
         
         if (FBSDKAccessToken.current() != nil)
         {
@@ -65,37 +65,62 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         userDidTapView(self)
         
-        if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            //todo: needs a popup message
-            print("Username or Password Empty.")
-
+        if(self.isConnectedToNetwork())
+        {
+            if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+                //todo: needs a popup message
+                print("Username or Password Empty.")
+                
+            } else {
+               setUIEnabled(false)
+               logIntoUdacity()
+            }
+        }else
+        {
+            let refreshAlert = UIAlertController(title: nil, message: "Please Check Internet Connection", preferredStyle: UIAlertControllerStyle.alert)
             
-        } else {
-           setUIEnabled(false)
-           logIntoUdacity()
+            refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Retry new URL")
+            }))
+            
+            
+            self.present(refreshAlert, animated: true, completion: nil)
+            // show the alert
         }
+        
     }
 
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        print("User Logged In")
-        if ((error) != nil) {
-                    print("Failed Facebook login")
-                    DispatchQueue.main.async(execute: {
-                        Client.showAlert(caller: self, error: error! as NSError)
-                    })
-                } else if result.isCancelled {
-                       print("Cancelled Facebook login")
-                }
-                else {
-                    if result.grantedPermissions.contains("email")
-                    {
-                       Client.sharedInstance().authServiceUsed  = Client.AuthService.Facebook
-                       completeLogin(Client.AuthService.Facebook)
-                       print("Successful Facebook login token",result.token)
-                        //0x17407ad00
+       
+        if(self.isConnectedToNetwork())
+        {
+            if ((error) != nil) {
+                        print("Failed Facebook login")
+                        DispatchQueue.main.async(execute: {
+                            Client.showAlert(caller: self, error: error! as NSError)
+                        })
+                    } else if result.isCancelled {
+                           print("Cancelled Facebook login")
                     }
-                }
+                    else {
+                        if result.grantedPermissions.contains("email")
+                        {
+                           Client.sharedInstance().authServiceUsed  = Client.AuthService.Facebook
+                           completeLogin(Client.AuthService.Facebook)
+                           print("Successful Facebook login token",result.token)
+                        }
+                    }
+        }else{
+            let refreshAlert = UIAlertController(title: nil, message: "Please Check Internet Connection", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Retry new URL")
+            }))
+            
+            self.present(refreshAlert, animated: true, completion: nil)
+ 
+        }
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -106,12 +131,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         performUIUpdatesOnMain {
             self.setUIEnabled(true)
             //Tab view controller
-//            var fbAccessToken = FBSDKAccessToken.current().tokenString
-//            print("FBSDKAccessToken >>>>>> ",fbAccessToken )
-//            let studentLocations = StudentLocation.sharedInstance
-//            studentLocations.uniqueKey = fbAccessToken as! String
-//
-//            print(" studentLocations.uniqueKey>>>>>> ", studentLocations.uniqueKey )
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
         }
@@ -140,14 +159,48 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                })
             } else {
                 DispatchQueue.main.async(execute: {
-                    Client.showAlert(caller: self, error: error!)
+//                    Client.showAlert(caller: self, error: error!)
+                    
+                    let refreshAlert = UIAlertController(title: nil, message: "Please Check Your Credential.", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                        print("Retry new URL")
+                    }))
+                    
+                    self.present(refreshAlert, animated: true, completion: nil)
+
                 })
             }
         }
   
     }
     
-   }
+    private func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
+            return false
+        }
+        
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        
+        return (isReachable && !needsConnection)
+    }
+    
+ }
 
 
 // MARK: - LoginViewController: UITextFieldDelegate

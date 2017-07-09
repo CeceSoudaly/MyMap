@@ -135,31 +135,17 @@ class Client : NSObject {
             let newData = data?.subdata(in: range) /* subset response data! */
             print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
             
+            Client.manageErrors(data: data as NSData?, response: response, error: error as NSError?, completionHandler: completionHandler )
+
             
-            guard (error == nil) else {
-                print("Something went wrong with your POST request: \(String(describing: error))")
-                return
-            }
-            
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                print("Your status code does not conform to 2xx.")
-                return
-            }
-            
-            guard let data = data else {
-                print("The request returned no data.")
-                return
-            }
-            
-            if(!method.contains(Client.Methods.AddLocation))
+            if(!method.contains(Client.Methods.AddLocation) && error != nil)
             {
                 Client.parseJSONWithCompletionHandler( data: newData as! NSData, completionHandler: completionHandler )
-            }else
-            {
-                completionHandler(data as AnyObject, nil)
             }
-            
-            
+            else{
+            completionHandler(data as AnyObject, nil)
+            }
+       
         }
         
         /* 7. Start the request */

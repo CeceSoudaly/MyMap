@@ -241,33 +241,57 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         let StringB = urlEntryTextField.text!
         let ResultString = "\(StringA)\(StringB)"
         studentLocation.mediaURL = ResultString
-    
-        Client.sharedInstance().postStudentLocation(studentLocation: studentLocation) { (success, error) in
-            
-            if error != nil {
-                DispatchQueue.main.async(execute: {
-                    Client.showAlert(caller: self, error: error!)
-                })
-            } else if success {
-                print("StudentLocation posted")
-                DispatchQueue.main.async() {
-                    
-                    performUIUpdatesOnMain {
-                         //Tab view controller
-                        let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
-                        self.present(controller, animated: true, completion: nil)
+       // Check for URL Validation
+         if(verifyUrl(urlString: ResultString))
+         {
+            Client.sharedInstance().postStudentLocation(studentLocation: studentLocation) { (success, error) in
+                
+                if error != nil {
+                    DispatchQueue.main.async(execute: {
+                        Client.showAlert(caller: self, error: error!)
+                    })
+                } else if success {
+                    print("StudentLocation posted")
+                    DispatchQueue.main.async() {
+                        
+                        performUIUpdatesOnMain {
+                            //Tab view controller
+                            let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
+                            self.present(controller, animated: true, completion: nil)
+                        }
+                        
                     }
-                    
+                } else {
+                    DispatchQueue.main.async(execute: {
+                        let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not post StudentLocation."])
+                        Client.showAlert(caller: self, error: error)
+                    })
                 }
-            } else {
-                DispatchQueue.main.async(execute: {
-                    let error = NSError(domain: "Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not post StudentLocation."])
-                    Client.showAlert(caller: self, error: error)
-                })
             }
-        }
+
+         }else{
+            
+            let refreshAlert = UIAlertController(title: nil, message: "Bad URL, Please Enter A Valid URL", preferredStyle: UIAlertControllerStyle.alert)
+
+            refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Retry new URL")
+            }))
+            
+            
+            self.present(refreshAlert, animated: true, completion: nil)
+            // show the alert
+       }
+        
     }
     
+    func verifyUrl(urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = URL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url)
+            }
+        }
+        return false
+    }
     
     func setViewState(viewState: viewState) {
         switch viewState {

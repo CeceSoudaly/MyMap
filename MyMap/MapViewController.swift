@@ -286,24 +286,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-    
-   
-    
-    
-    //    /* Helper: Given raw JSON, return a usable Foundation object */
-    //    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (_ result: AnyObject?, _ error: NSError?) -> Void) {
-    //
-    //        var parsedResult: AnyObject!
-    //        do {
-    //            parsedResult = JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as AnyObject!
-    //        } catch {
-    //            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-    //            completionHandler(nil, NSError(domain: "parseJSONWithCompletionHandler", code: 1, userInfo: userInfo))
-    //        }
-    //        
-    //        completionHandler(parsedResult, nil)
-    //    }
-    
-
+  
 }
 
