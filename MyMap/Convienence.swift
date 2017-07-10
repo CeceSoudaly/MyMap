@@ -52,19 +52,10 @@ extension Client {
     }
   
     func queryStudentName(studentUdacityKey: String,completionHandler: @escaping (_ success: Bool, _ error: NSError?) -> Void) -> Void {
-        var key : String = ""
-        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-    
-        if (studentUdacityKey.isEmpty == true) {
-           key = "4660628637"
-        }else
-        {
-            key =  studentUdacityKey
-        }
         
         let parameters: [String: AnyObject] = [
 //            Client.ParameterKeys.Where: Client.Methods.UdacityUniqueKey  as AnyObjec
-              Client.ParameterKeys.Where: "{\"uniqueKey\":\"\(key)\"}" as AnyObject
+              Client.ParameterKeys.Where: "{\"uniqueKey\":\"\(studentUdacityKey)\"}" as AnyObject
          ]
         
         let method : String = ""

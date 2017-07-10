@@ -53,12 +53,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         super.viewDidLoad()
         setViewState(viewState: .One)
 
-//        let studentLocations = StudentLocation.sharedInstance
-//       
-//        if(studentLocations.uniqueKey != nil )
-//        {
-//            uniqueKey = studentLocations.uniqueKey!
-//        }
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -85,8 +79,9 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
     func  Cancel()
     {
         print("Cancel out")
-        self.dismiss(animated: false, completion: nil)
         self.tabBarController?.tabBar.isHidden = false
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     func addLocation(){
@@ -186,8 +181,6 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         }
         
         acitivityIndicator.stopAnimating()
-        //UIApplication.shared.beginIgnoringInteractionEvents()
-
     }
     
     func locationManager(locations: [CLLocation]) {
@@ -242,7 +235,7 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
         let ResultString = "\(StringA)\(StringB)"
         studentLocation.mediaURL = ResultString
        // Check for URL Validation
-         if(verifyUrl(urlString: ResultString))
+         if(verifyUrl(urlString: ResultString) && Connection.isConnectedToNetwork())
          {
             Client.sharedInstance().postStudentLocation(studentLocation: studentLocation) { (success, error) in
                 
@@ -255,10 +248,10 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
                     DispatchQueue.main.async() {
                         
                         performUIUpdatesOnMain {
-                            //Tab view controller
-                            let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
-                            self.present(controller, animated: true, completion: nil)
-                        }
+                            self.tabBarController?.tabBar.isHidden = false
+                            self.navigationController?.popViewController(animated: true)
+                            self.dismiss(animated: true, completion: nil)
+                      }
                         
                     }
                 } else {
@@ -271,16 +264,32 @@ class StudentLocationDetailViewContoller: UIViewController, MKMapViewDelegate , 
 
          }else{
             
-            let refreshAlert = UIAlertController(title: nil, message: "Bad URL, Please Enter A Valid URL", preferredStyle: UIAlertControllerStyle.alert)
+            
+            if(!Connection.isConnectedToNetwork())
+            {
+                let refreshAlert = UIAlertController(title: nil, message: "Check your Internet connection.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                    print("Retry ")
+                }))
+                
+                
+                self.present(refreshAlert, animated: true, completion: nil)
+            }
+            
+            if(!verifyUrl(urlString: ResultString) )
+            {
+                let refreshAlert = UIAlertController(title: nil, message: "Check your URL.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                    print("Retry ")
+                }))
+                
+                
+                self.present(refreshAlert, animated: true, completion: nil)
+            }
 
-            refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
-                print("Retry new URL")
-            }))
-            
-            
-            self.present(refreshAlert, animated: true, completion: nil)
-            // show the alert
-       }
+          }
         
     }
     

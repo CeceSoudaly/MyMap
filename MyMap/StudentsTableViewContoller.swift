@@ -160,7 +160,19 @@ class StudentsTableViewContoller: UIViewController, UITableViewDataSource, UITab
     func refresh()
     {
         print("refresh")
-        tableView!.reloadData()
+        
+        if(Connection.isConnectedToNetwork())
+        {
+            tableView!.reloadData()
+
+        }else{
+            let refreshAlert = UIAlertController(title: nil, message: "Check your Internet connection.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Retry ")
+            }))
+            self.present(refreshAlert, animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

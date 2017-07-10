@@ -65,7 +65,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         userDidTapView(self)
         
-        if(self.isConnectedToNetwork())
+        if(Connection.isConnectedToNetwork())
         {
             if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
                 //todo: needs a popup message
@@ -93,7 +93,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
        
-        if(self.isConnectedToNetwork())
+        if(Connection.isConnectedToNetwork())
         {
             if ((error) != nil) {
                         print("Failed Facebook login")
@@ -173,32 +173,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         }
     }
-    
-    private func isConnectedToNetwork() -> Bool {
-        
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        
-        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-                SCNetworkReachabilityCreateWithAddress(nil, $0)
-            }
-        }) else {
-            return false
-        }
-        
-        var flags: SCNetworkReachabilityFlags = []
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
-            return false
-        }
-        
-        let isReachable = flags.contains(.reachable)
-        let needsConnection = flags.contains(.connectionRequired)
-        
-        return (isReachable && !needsConnection)
-    }
-    
+ 
  }
 
 

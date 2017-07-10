@@ -22,6 +22,7 @@
 		A90EE7871E9C7E5000877DE4 /* MyMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EE7861E9C7E5000877DE4 /* MyMapUITests.swift */; };
 		A90EEEEF1E9F0BCF0094CB96 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EEEEE1E9F0BCF0094CB96 /* LoginViewController.swift */; };
 		A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EEEF01E9F0C750094CB96 /* Constants.swift */; };
+		A90F09351F132F360057A817 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90F09341F132F360057A817 /* Connection.swift */; };
 		A90FD0B71EA04C310087DFD2 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B61EA04C310087DFD2 /* Config.swift */; };
 		A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */; };
 		A9102F641EBE9211003BAEAB /* StudentsTableViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */; };
@@ -74,6 +75,7 @@
 		A90EE7881E9C7E5000877DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A90EEEEE1E9F0BCF0094CB96 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A90EEEF01E9F0C750094CB96 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A90F09341F132F360057A817 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		A90FD0B61EA04C310087DFD2 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A90FD0B81EA04D7B0087DFD2 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsTableViewContoller.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				A90DE63B1EB9504700887EBF /* Convienence.swift */,
 				A911DC401EBD91B400A02866 /* StudentLocationDetailViewContoller.swift */,
 				A9102F631EBE9211003BAEAB /* StudentsTableViewContoller.swift */,
+				A90F09341F132F360057A817 /* Connection.swift */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				A90EE7671E9C7E4F00877DE4 /* AppDelegate.swift in Sources */,
 				A90FD0B91EA04D7B0087DFD2 /* GCDBlackBox.swift in Sources */,
 				A90DE63A1EB939E900887EBF /* Client.swift in Sources */,
+				A90F09351F132F360057A817 /* Connection.swift in Sources */,
 				A9102F641EBE9211003BAEAB /* StudentsTableViewContoller.swift in Sources */,
 				A90EEEF11E9F0C750094CB96 /* Constants.swift in Sources */,
 				A90DE63C1EB9504700887EBF /* Convienence.swift in Sources */,

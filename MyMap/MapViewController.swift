@@ -141,11 +141,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func refresh()
     {
         print("refresh")
-        for annotation : MKAnnotation in self.mapView.annotations {
-            self.mapView.removeAnnotation(annotation)
-        }
+        if(Connection.isConnectedToNetwork())
+        {
+            for annotation : MKAnnotation in self.mapView.annotations {
+                self.mapView.removeAnnotation(annotation)
+            }
 
-        self.getLocationsForMap()
+            self.getLocationsForMap()
+        }else{
+            let refreshAlert = UIAlertController(title: nil, message: "Check your Internet connection.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Re-Enter", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Retry ")
+            }))
+           self.present(refreshAlert, animated: true, completion: nil)
+        }
+        
     }
     
     func startActivityIndicatorView() -> UIActivityIndicatorView {
