@@ -72,7 +72,6 @@ class Client : NSObject {
                 var newData: NSData
                 let rangeStartByte = 0  // rangeStartByte is equivalent to "currentByte" from question
                 let maxSubdataLength = 5
-//                let dataLength = sourceString.lengthOfBytes(using: String.Encoding.utf8)
                 
                 if method.contains("users") {
                     let subdataLength = min(maxSubdataLength, data.count - 5)
@@ -141,7 +140,7 @@ class Client : NSObject {
                 print("Something went wrong with your POST request: \(String(describing: error))")
                 return
             }
-            
+
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("Your status code does not conform to 2xx.")
                 return
@@ -152,9 +151,11 @@ class Client : NSObject {
                 return
             }
       
-            if(method.contains(Client.Methods.Updatelocation) && statusCode == 200)
+            if((method.contains(Client.Methods.Updatelocation) || method.contains(Client.Methods.AddLocation))
+                && statusCode == 200)
             {
                 Client.parseJSONWithCompletionHandler( data: newData as! NSData, completionHandler: completionHandler )
+                
             }
             else{
                 completionHandler(data as AnyObject, nil)
@@ -242,13 +243,12 @@ class Client : NSObject {
         
         var parsedResult: AnyObject!
         do {
-           
+     
             let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String : Any]
        
             parsedResult = json as AnyObject
-            let posts = parsedResult["posts"] as? [[String: Any]] ?? []
-            print(posts)
             
+            let posts = parsedResult["posts"] as? [[String: Any]] ?? []
             
         } catch {
             let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]

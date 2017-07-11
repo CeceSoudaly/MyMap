@@ -144,8 +144,10 @@ extension Client {
                 
                     if let jsonResult = JSONResult as? Dictionary<String, AnyObject> {
                         let account = jsonResult["account"]
+                        print("account >>> ", account)
                         var keyAccount = account as! Dictionary<String, AnyObject>
                         let key = keyAccount ["key"]
+                         print("key >>> ", key)
                         
                         let studentLocations = StudentLocation.sharedInstance
                         studentLocations.uniqueKey = key as! String
